@@ -5,8 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'AniLib - Animation Library',
-  description: 'A curated library of animations for Framer Motion, GSAP, and more.',
+  title: 'AniLib - The Animation Library',
+  description: 'Your ultimate destination for discovering and using animations from across the web.',
 };
 
 export default function RootLayout({
