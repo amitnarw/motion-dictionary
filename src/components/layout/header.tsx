@@ -51,8 +51,8 @@ export function Header() {
                              <motion.div 
                                 className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-700"
                                 variants={{
-                                    rest: { y: "100%" },
-                                    hover: { y: "0%" }
+                                    rest: { y: "0%" },
+                                    hover: { y: "-100%" }
                                 }}
                                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                              />
@@ -62,7 +62,7 @@ export function Header() {
                                     rest: { y: "100%" },
                                     hover: { y: "0%" }
                                 }}
-                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1]}}
                              />
                             <motion.span
                                 className="relative z-10 flex items-center gap-2"
