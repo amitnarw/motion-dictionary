@@ -18,7 +18,7 @@ export function NavigationDock() {
   const pathname = usePathname();
 
   return (
-    <footer className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
+    <footer className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
         <TooltipProvider>
             <motion.div
                 onMouseMove={(e) => mouseX.set(e.clientX)}
