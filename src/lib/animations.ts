@@ -25,14 +25,27 @@ import { Dock } from '@/components/animations/dock';
 import { SlidingTextButton } from '@/components/animations/sliding-text-button';
 import { RevealBgButton } from '@/components/animations/reveal-bg-button';
 
+type AnimationControl = {
+    prop: string;
+    label: string;
+    type: 'range' | 'select';
+    min?: number;
+    max?: number;
+    step?: number;
+    defaultValue: any;
+    options?: { label: string; value: any }[];
+};
+
+
 export type Animation = {
   id: string;
   title: string;
   description: string;
   category: (typeof CATEGORIES)[number];
-  preview: React.ComponentType<{ key?: number }>;
+  preview: React.ComponentType<any>;
   code: string;
   library: 'Framer Motion' | 'GSAP' | 'TailwindCSS';
+  controls?: AnimationControl[];
 };
 
 export const CATEGORIES = [
@@ -54,12 +67,12 @@ export const animations: Animation[] = [
     library: 'Framer Motion',
     code: `import { motion } from "framer-motion";
 
-const FADE_IN_VARIANTS = {
-  hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: { type: "spring" } },
-};
+export function FadeInUp({ duration = 0.5, delay = 0.1 }) {
+  const FADE_IN_VARIANTS = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", duration, delay } },
+  };
 
-export function FadeInUp() {
   return (
     <motion.div
       initial="hidden"
@@ -71,7 +84,11 @@ export function FadeInUp() {
       <h3 className="font-bold text-lg">Fade In Up</h3>
     </motion.div>
   );
-}`
+}`,
+    controls: [
+        { prop: 'duration', label: 'Duration', type: 'range', min: 0.1, max: 2, step: 0.1, defaultValue: 0.5 },
+        { prop: 'delay', label: 'Delay', type: 'range', min: 0, max: 2, step: 0.1, defaultValue: 0.1 },
+    ]
   },
   {
     id: '2',
@@ -136,18 +153,22 @@ export function StaggeredList() {
     library: 'Framer Motion',
     code: `import { motion } from "framer-motion";
 
-const slideIn = {
-    hidden: { x: "-10vw", opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { type: "spring", stiffness: 100, duration: 0.5 } },
-};
+export function SlideInFromLeft({ duration = 0.5, stiffness = 100 }) {
+    const slideIn = {
+        hidden: { x: "-10vw", opacity: 0 },
+        visible: { x: 0, opacity: 1, transition: { type: "spring", stiffness, duration } },
+    };
 
-export function SlideInFromLeft() {
   return (
     <motion.div variants={slideIn} initial="hidden" animate="visible" className="bg-card text-card-foreground p-8 rounded-lg">
       <h3 className="font-bold text-lg">Sliding In</h3>
     </motion.div>
   );
-}`
+}`,
+    controls: [
+        { prop: 'duration', label: 'Duration', type: 'range', min: 0.1, max: 2, step: 0.1, defaultValue: 0.5 },
+        { prop: 'stiffness', label: 'Stiffness', type: 'range', min: 50, max: 200, step: 10, defaultValue: 100 },
+    ]
   },
   {
     id: '6',
@@ -797,39 +818,36 @@ function AppIcon({
     code: `
 "use client";
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
 
 export function SlidingTextButton() {
-  const [isHovered, setHovered] = useState(false);
+  const textVariants = {
+    rest: { y: 0 },
+    hover: { y: '-125%' },
+  };
+
+  const newTextVariants = {
+    rest: { y: '125%' },
+    hover: { y: 0 },
+  };
 
   return (
     <motion.button
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
+      initial="rest"
+      whileHover="hover"
       className="relative block overflow-hidden whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
     >
-      <span className="relative">
+      <span className="relative inline-block h-full w-full">
         <motion.span
-          variants={{
-            initial: { y: 0 },
-            hovered: { y: '-125%' },
-          }}
-          initial="initial"
-          animate={isHovered ? 'hovered' : 'initial'}
+          variants={textVariants}
           transition={{ duration: 0.3, ease: 'easeOut' }}
           className="inline-block"
         >
           Hover Me
         </motion.span>
         <motion.span
-          variants={{
-            initial: { y: '125%' },
-            hovered: { y: 0 },
-          }}
-          initial="initial"
-          animate={isHovered ? 'hovered' : 'initial'}
+          variants={newTextVariants}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="absolute inset-0"
+          className="absolute left-0"
         >
           Let's Go!
         </motion.span>
@@ -837,6 +855,8 @@ export function SlidingTextButton() {
     </motion.button>
   );
 }
+
+
 `
   },
   {
@@ -852,15 +872,22 @@ import { motion } from 'framer-motion';
 
 export function RevealBgButton() {
   return (
-    <button className="relative overflow-hidden rounded-xl bg-secondary px-6 py-3 text-lg font-medium text-secondary-foreground shadow-lg">
+    <motion.button 
+        className="relative overflow-hidden rounded-xl bg-secondary px-6 py-3 text-lg font-medium text-secondary-foreground shadow-lg"
+        initial="rest"
+        whileHover="hover"
+        animate="rest"
+    >
       <span className="relative z-10">Hover Me</span>
       <motion.div
-        initial={{ y: '100%' }}
-        whileHover={{ y: 0 }}
+        variants={{
+            rest: { y: '100%' },
+            hover: { y: 0 }
+        }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className="absolute inset-0 z-0 bg-primary"
       />
-    </button>
+    </motion.button>
   );
 }
 `
