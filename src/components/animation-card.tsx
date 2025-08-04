@@ -12,9 +12,23 @@ import { cn } from '@/lib/utils';
 
 type AnimationCardProps = {
   animation: Animation;
+  index: number;
 };
 
-export function AnimationCard({ animation }: AnimationCardProps) {
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.05,
+      duration: 0.5,
+      ease: "easeOut"
+    },
+  }),
+};
+
+export function AnimationCard({ animation, index }: AnimationCardProps) {
   const [isCodeVisible, setCodeVisible] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   const PreviewComponent = animation.preview;
@@ -26,9 +40,11 @@ export function AnimationCard({ animation }: AnimationCardProps) {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        variants={cardVariants}
+        initial="hidden"
+        animate="visible"
+        viewport={{ once: true }}
+        custom={index}
       >
         <Card
           className={cn(

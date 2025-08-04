@@ -42,8 +42,8 @@ export default function LandingPage() {
                     A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
                  </p>
                 <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {featuredAnimations.map((animation) => (
-                        <AnimationCard key={animation.id} animation={animation} />
+                    {featuredAnimations.map((animation, index) => (
+                        <AnimationCard key={animation.id} animation={animation} index={index} />
                     ))}
                 </div>
             </div>
