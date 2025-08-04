@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-const text = "Welcome to AniLib!";
+const text = "Welcome to AniLib";
 const characters = Array.from(text);
 
 const container = {
@@ -39,10 +39,14 @@ export function TypingEffect() {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="flex overflow-hidden font-bold text-lg"
+      className="flex overflow-hidden font-headline font-bold text-4xl md:text-6xl"
     >
       {characters.map((char, index) => (
-        <motion.span key={index} variants={child}>
+        <motion.span
+          key={index}
+          variants={child}
+          className={index > 11 ? "text-primary" : ""}
+        >
           {char === " " ? "\u00A0" : char}
         </motion.span>
       ))}
