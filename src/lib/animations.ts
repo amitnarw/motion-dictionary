@@ -24,6 +24,7 @@ import { Meteors } from '@/components/animations/meteors';
 import { Dock } from '@/components/animations/dock';
 import { SlidingTextButton } from '@/components/animations/sliding-text-button';
 import { RevealBgButton } from '@/components/animations/reveal-bg-button';
+import { FollowingEyes } from '@/components/animations/following-eyes';
 
 type AnimationControl = {
     prop: string;
@@ -55,6 +56,7 @@ export const CATEGORIES = [
   'Microelements',
   'Scroll Animation',
   'Buttons',
+  'Cursor',
 ] as const;
 
 export const animations: Animation[] = [
@@ -834,6 +836,7 @@ export function SlidingTextButton() {
     <motion.button
       initial="rest"
       whileHover="hover"
+      animate="rest"
       className="relative block overflow-hidden whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
     >
       <span className="relative inline-block h-full w-full">
@@ -891,5 +894,66 @@ export function RevealBgButton() {
   );
 }
 `
+  },
+  {
+    id: '26',
+    title: 'Following Eyes',
+    description: 'A pair of cartoon eyes that follow the cursor around the screen.',
+    category: 'Cursor',
+    preview: FollowingEyes,
+    library: 'Framer Motion',
+    code: `"use client";
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+
+export function FollowingEyes() {
+  const [rotate, setRotate] = useState(0);
+  const eyesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (eyesRef.current) {
+        const { left, top, width, height } = eyesRef.current.getBoundingClientRect();
+        const eyeCenterX = left + width / 2;
+        const eyeCenterY = top + height / 2;
+        const deltaX = e.clientX - eyeCenterX;
+        const deltaY = e.clientY - eyeCenterY;
+        const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+        setRotate(angle - 90);
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div ref={eyesRef} className="flex gap-4">
+      <div className="w-24 h-24 bg-card rounded-full flex items-center justify-center">
+        <div className="w-12 h-12 bg-foreground rounded-full relative">
+          <motion.div
+            animate={{ rotate }}
+            transition={{ type: 'spring', stiffness: 100, damping: 10 }}
+            className="w-full h-full"
+          >
+            <div className="w-5 h-5 bg-background rounded-full absolute top-2 left-1/2 -translate-x-1/2" />
+          </motion.div>
+        </div>
+      </div>
+       <div className="w-24 h-24 bg-card rounded-full flex items-center justify-center">
+        <div className="w-12 h-12 bg-foreground rounded-full relative">
+          <motion.div
+            animate={{ rotate }}
+            transition={{ type: 'spring', stiffness: 100, damping: 10 }}
+            className="w-full h-full"
+          >
+            <div className="w-5 h-5 bg-background rounded-full absolute top-2 left-1/2 -translate-x-1/2" />
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}`
   }
 ];
