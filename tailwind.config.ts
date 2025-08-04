@@ -117,10 +117,14 @@ export default {
         'meteor-effect': 'meteor-effect 1.4s linear infinite',
       },
       backgroundImage: {
-        'grid-zinc-400/25': `linear-gradient(to right, transparent 1px, hsl(var(--background)) 1px, hsl(var(--background)) 20px, transparent 20px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px, transparent 20px, hsl(var(--border)) 20px);`,
-        'grid-zinc-700/25': `linear-gradient(to right, transparent 1px, hsl(var(--card)) 1px, hsl(var(--card)) 20px, transparent 20px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px, transparent 20px, hsl(var(--border)) 20px);`
+        'grid-zinc-400/25': `linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);`,
+        'grid-zinc-700/25': `linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);`
       },
+      backgroundSize: {
+        'grid-zinc-400/25': '20px 20px',
+        'grid-zinc-700/25': '20px 20px',
+      }
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('next-themes')],
 } satisfies Config;

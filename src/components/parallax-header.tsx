@@ -21,7 +21,7 @@ export function ParallaxHeader() {
       className="relative p-4 md:p-6 h-[50vh] flex flex-col justify-center items-center text-center overflow-hidden"
     >
       <motion.div
-        className="absolute inset-0 bg-grid-zinc-400/25 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+        className="absolute inset-0 bg-grid-zinc-400/25 dark:bg-grid-zinc-700/25 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
         style={{ y, opacity }}
       />
       <motion.div 

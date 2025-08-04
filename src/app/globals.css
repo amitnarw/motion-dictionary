@@ -4,24 +4,24 @@
 
 @layer base {
   :root {
-    --background: 260 50% 98%; /* Lighter version of e1d7e9 */
-    --foreground: 250 58% 15%; /* #1a103d */
-    --card: 270 27% 96%; /* Lighter version of e1d7e9 */
-    --card-foreground: 250 58% 15%; /* #1a103d */
-    --popover: 270 27% 96%;
+    --background: 0 0% 100%;
+    --foreground: 250 58% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 250 58% 15%;
+    --popover: 0 0% 100%;
     --popover-foreground: 250 58% 15%;
-    --primary: 261 40% 36%; /* #533883 */
+    --primary: 261 40% 36%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 270 27% 90%; /* #e1d7e9 */
+    --secondary: 270 27% 96%;
     --secondary-foreground: 250 58% 15%;
     --muted: 270 27% 90%;
-    --muted-foreground: 254 23% 50%; /* #70629c */
-    --accent: 270 27% 93%; /* Lighter accent */
+    --muted-foreground: 254 23% 50%;
+    --accent: 270 27% 93%;
     --accent-foreground: 261 40% 36%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 270 27% 85%; /* Darker version of e1d7e9 */
-    --input: 270 27% 85%;
+    --border: 270 27% 88%;
+    --input: 270 27% 88%;
     --ring: 261 40% 36%;
     --radius: 0.5rem;
     
@@ -31,26 +31,26 @@
     --chart-4: 247 30% 69%;
     --chart-5: 283 23% 68%;
 
-    --sidebar-background: 250 58% 15%; /* #1a103d */
-    --sidebar-foreground: 270 27% 90%; /* #e1d7e9 */
+    --sidebar-background: 250 58% 15%;
+    --sidebar-foreground: 270 27% 90%;
     --sidebar-primary: 270 27% 90%;
     --sidebar-primary-foreground: 250 58% 15%;
-    --sidebar-accent: 261 40% 36%; /* #533883 */
+    --sidebar-accent: 261 40% 36%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 261 40% 30%;
     --sidebar-ring: 270 27% 90%;
   }
 
   .dark {
-    --background: 250 58% 10%; /* Darker version of #1a103d */
-    --foreground: 270 27% 90%; /* #e1d7e9 */
-    --card: 250 58% 15%; /* #1a103d */
+    --background: 250 58% 10%;
+    --foreground: 270 27% 90%;
+    --card: 250 58% 15%;
     --card-foreground: 270 27% 90%;
     --popover: 250 58% 15%;
     --popover-foreground: 270 27% 90%;
-    --primary: 247 30% 69%; /* #9c94c7 */
+    --primary: 247 30% 69%;
     --primary-foreground: 250 58% 10%;
-    --secondary: 261 40% 36%; /* #533883 */
+    --secondary: 261 40% 36%;
     --secondary-foreground: 270 27% 90%;
     --muted: 261 40% 36%;
     --muted-foreground: 270 27% 70%;

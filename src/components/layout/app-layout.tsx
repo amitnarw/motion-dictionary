@@ -78,7 +78,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
           </SidebarContent>
         </Sidebar>
         <SidebarInset>
-          <div className="absolute top-2 left-2">
+          <div className="absolute top-2 left-2 z-50">
             <SidebarTrigger />
           </div>
           {children}
