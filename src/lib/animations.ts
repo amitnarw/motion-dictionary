@@ -748,7 +748,7 @@ animation: {
     id: '23',
     title: 'Dock',
     description: 'A macOS-style dock with a magnification effect on hover.',
-    category: 'Microelements',
+    category: 'Cursor',
     preview: Dock,
     library: 'Framer Motion',
     code: `"use client";
@@ -820,8 +820,10 @@ function AppIcon({
     code: `
 "use client";
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export function SlidingTextButton() {
+  const [isHovered, setIsHovered] = useState(false);
   const textVariants = {
     rest: { y: 0 },
     hover: { y: '-125%' },
@@ -835,8 +837,9 @@ export function SlidingTextButton() {
   return (
     <motion.button
       initial="rest"
-      whileHover="hover"
-      animate="rest"
+      animate={isHovered ? "hover" : "rest"}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       className="relative block overflow-hidden whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
     >
       <span className="relative inline-block h-full w-full">
@@ -906,7 +909,7 @@ export function RevealBgButton() {
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-export function FollowingEyes() {
+export function FollowingEyes({ direction = 1 }: { direction?: number }) {
   const [rotate, setRotate] = useState(0);
   const eyesRef = useRef<HTMLDivElement>(null);
 
@@ -919,7 +922,7 @@ export function FollowingEyes() {
         const deltaX = e.clientX - eyeCenterX;
         const deltaY = e.clientY - eyeCenterY;
         const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-        setRotate(angle - 90);
+        setRotate(angle + (90 * direction));
       }
     };
     window.addEventListener('mousemove', handleMouseMove);
@@ -954,6 +957,18 @@ export function FollowingEyes() {
       </div>
     </div>
   );
-}`
+}`,
+    controls: [
+      {
+        prop: 'direction',
+        label: 'Direction',
+        type: 'select',
+        defaultValue: 1,
+        options: [
+          { label: 'Normal', value: 1 },
+          { label: 'Opposite', value: -1 },
+        ],
+      },
+    ]
   }
 ];

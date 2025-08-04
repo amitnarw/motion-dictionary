@@ -2,22 +2,20 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-export function FollowingEyes() {
+export function FollowingEyes({ direction = 1 }: { direction?: number }) {
   const [rotate, setRotate] = useState(0);
   const eyesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (eyesRef.current) {
-        // We need to calculate the center of the viewport or the component area
-        // For simplicity, let's track the mouse relative to the center of the eyes div
         const { left, top, width, height } = eyesRef.current.getBoundingClientRect();
         const eyeCenterX = left + width / 2;
         const eyeCenterY = top + height / 2;
         const deltaX = e.clientX - eyeCenterX;
         const deltaY = e.clientY - eyeCenterY;
         const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-        setRotate(angle - 90); // a little offset to make it look up
+        setRotate(angle + (90 * direction));
       }
     };
     window.addEventListener('mousemove', handleMouseMove);
