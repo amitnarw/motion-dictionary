@@ -12,7 +12,7 @@ export default {
       fontFamily: {
         body: ['Montserrat', 'sans-serif'],
         headline: ['Montserrat', 'sans-serif'],
-        code: ['monospace'],
+        code: ['Montserrat', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
