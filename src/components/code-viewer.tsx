@@ -49,21 +49,21 @@ export function CodeViewer({ isOpen, onOpenChange, title, code }: CodeViewerProp
             Here is the code snippet for the animation. You can copy it directly.
           </DialogDescription>
         </DialogHeader>
-        <div className="relative">
-          <ScrollArea className="h-96 rounded-md border bg-secondary/50 p-4">
-            <pre className="text-sm whitespace-pre-wrap break-words">
-              <code className="font-code">{code}</code>
-            </pre>
-          </ScrollArea>
-          <Button
+        <div className="relative group">
+           <Button
             size="icon"
             variant="ghost"
-            className="absolute top-4 right-4"
+            className="absolute top-2 right-2 z-10 h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
             onClick={handleCopy}
             aria-label="Copy code"
           >
             <Copy className="h-4 w-4" />
           </Button>
+          <ScrollArea className="h-96 rounded-md border bg-secondary/50">
+            <pre className="text-sm whitespace-pre-wrap break-words p-4">
+              <code className="font-code">{code}</code>
+            </pre>
+          </ScrollArea>
         </div>
       </DialogContent>
     </Dialog>
