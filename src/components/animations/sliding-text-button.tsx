@@ -17,10 +17,9 @@ export function SlidingTextButton() {
     <motion.button
       initial="rest"
       whileHover="hover"
-      animate="rest"
       className="relative block overflow-hidden whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
     >
-      <span className="relative">
+      <span className="relative inline-block h-full w-full">
         <motion.span
           variants={textVariants}
           transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -31,7 +30,7 @@ export function SlidingTextButton() {
         <motion.span
           variants={newTextVariants}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className="absolute inset-0"
+          className="absolute left-0"
         >
           Let's Go!
         </motion.span>
@@ -39,3 +38,4 @@ export function SlidingTextButton() {
     </motion.button>
   );
 }
+
