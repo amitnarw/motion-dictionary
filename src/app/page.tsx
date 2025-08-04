@@ -4,6 +4,7 @@ import { ArrowRight, Code, Copy, Palette } from "lucide-react";
 import Link from "next/link";
 import { AnimationCard } from "@/components/animation-card";
 import { animations } from "@/lib/animations";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -12,36 +13,31 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="text-center py-20 lg:py-32 px-4">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
-
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground">
-            The Animation Library
+        <section className="relative text-center py-24 md:py-40 lg:py-48 px-4 overflow-hidden">
+           <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
+           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
+          
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground uppercase">
+            Animate Anything
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Your ultimate destination for discovering and using production-ready animations. Built for developers, designers, and creators to bring life to their projects.
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+            The ultimate open-source library of production-ready animations. Built for developers, designers, and creators to bring life to their projects with ease.
           </p>
-          <div className="mt-8 flex gap-4 justify-center">
-            <Button asChild size="lg">
-              <Link href="/animations">
-                Explore Animations <ArrowRight className="ml-2" />
+          <div className="mt-10 flex gap-4 justify-center">
+            <MagneticButton>
+              <Link href="/animations" className="flex items-center gap-2">
+                Explore Library <ArrowRight className="ml-2" />
               </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/submit">
-                Contribute <Palette className="ml-2" />
-              </Link>
-            </Button>
+            </MagneticButton>
           </div>
         </section>
 
         {/* Featured Animations Section */}
-        <section className="py-16 lg:py-24 bg-background/50">
+        <section className="py-16 lg:py-24">
             <div className="container mx-auto px-4">
                  <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
                  <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-                    Get a glimpse of the high-quality, ready-to-use animations in our ever-growing library.
+                    A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
                  </p>
                 <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {featuredAnimations.map((animation) => (
@@ -53,11 +49,11 @@ export default function LandingPage() {
 
 
         {/* How It Works Section */}
-        <section className="py-16 lg:py-24">
+        <section className="py-16 lg:py-24 bg-card/50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">How It Works</h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-              Three simple steps to find and implement the perfect animation for your project.
+              Three simple steps to find, copy, and implement the perfect animation for your project.
             </p>
             <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
               <div className="bg-card p-8 rounded-lg">
