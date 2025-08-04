@@ -28,8 +28,8 @@ export function Header() {
                 </div>
                 <nav className="hidden md:flex items-center gap-6 text-sm">
                     {navItems.map((item) => (
-                        <Link 
-                            key={item.href} 
+                        <Link
+                            key={item.href}
                             href={item.href}
                             className={cn(
                                 "transition-colors hover:text-foreground/80",
@@ -42,33 +42,49 @@ export function Header() {
                 </nav>
                 <div className="hidden md:block">
                      <Link href="/submit">
-                        <motion.div
+                        <motion.button
                             initial="rest"
-                            animate="rest"
                             whileHover="hover"
-                            className="relative flex items-center justify-center gap-2 h-10 px-6 bg-gradient-to-br from-green-400 to-green-600 text-primary-foreground rounded-full cursor-pointer overflow-hidden"
+                            animate="rest"
+                            className="relative flex items-center justify-center h-10 px-6 bg-transparent text-primary-foreground rounded-full cursor-pointer overflow-hidden border border-primary/50"
                         >
-                            <motion.div
-                                variants={{ 
-                                  rest: { x: 0, rotate: 0, scale: 1 },
-                                  hover: { x: -5, rotate: 90, scale: 1.2 } 
+                             <motion.div 
+                                className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-700"
+                                variants={{
+                                    rest: { y: "100%" },
+                                    hover: { y: "0%" }
                                 }}
-                                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                                className="z-10"
-                            >
-                                <FilePlus className="h-4 w-4" />
-                            </motion.div>
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                             />
+                              <motion.div 
+                                className="absolute inset-0 bg-gradient-to-br from-primary to-green-500"
+                                variants={{
+                                    rest: { y: "100%" },
+                                    hover: { y: "0%" }
+                                }}
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                             />
                             <motion.span
-                                variants={{ 
-                                  rest: { x: 0, opacity: 1 },
-                                  hover: { x: 50, opacity: 0 } 
+                                className="relative z-10 flex items-center gap-2"
+                                variants={{
+                                    rest: { y: "0%" },
+                                    hover: { y: "-150%" }
                                 }}
-                                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                                className="z-10"
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1]}}
                             >
-                                Submit
+                                <FilePlus className="h-4 w-4" /> Submit
                             </motion.span>
-                        </motion.div>
+                             <motion.span
+                                className="absolute z-10 flex items-center gap-2"
+                                variants={{
+                                    rest: { y: "150%" },
+                                    hover: { y: "0%" }
+                                }}
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1]}}
+                            >
+                               <FilePlus className="h-4 w-4" /> Contribute
+                            </motion.span>
+                        </motion.button>
                     </Link>
                 </div>
             </div>
