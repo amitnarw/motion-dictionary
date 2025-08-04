@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CodeViewer } from './code-viewer';
 import { useState } from 'react';
-import { Code, RefreshCw } from 'lucide-react';
+import { Code, RefreshCw, Settings2, Expand } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import {
@@ -25,7 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Settings2 } from 'lucide-react';
+import { FullViewViewer } from './full-view-viewer';
 
 
 type AnimationCardProps = {
@@ -48,6 +48,7 @@ const cardVariants = {
 
 export function AnimationCard({ animation, index }: AnimationCardProps) {
   const [isCodeVisible, setCodeVisible] = useState(false);
+  const [isFullViewVisible, setFullViewVisible] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   
   const initialControls = animation.controls?.reduce((acc, control) => {
@@ -161,6 +162,10 @@ export function AnimationCard({ animation, index }: AnimationCardProps) {
                 <RefreshCw className="h-4 w-4" />
                 <span className="sr-only">Replay Animation</span>
               </Button>
+               <Button variant="ghost" size="icon" onClick={() => setFullViewVisible(true)} className="h-8 w-8 text-muted-foreground hover:text-primary">
+                <Expand className="h-4 w-4" />
+                 <span className="sr-only">View Fullscreen</span>
+              </Button>
               <Button variant="ghost" size="icon" onClick={() => setCodeVisible(true)} className="h-8 w-8 text-muted-foreground hover:text-primary">
                 <Code className="h-4 w-4" />
                  <span className="sr-only">View Code</span>
@@ -174,6 +179,15 @@ export function AnimationCard({ animation, index }: AnimationCardProps) {
         onOpenChange={setCodeVisible}
         title={animation.title}
         code={animation.code}
+      />
+       <FullViewViewer
+        isOpen={isFullViewVisible}
+        onOpenChange={setFullViewVisible}
+        animation={animation}
+        animationKey={animationKey}
+        controls={controls}
+        onControlChange={handleControlChange}
+        onReplay={replayAnimation}
       />
     </>
   );
