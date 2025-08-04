@@ -19,7 +19,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-svh flex flex-col">
+    <div className="min-h-svh flex flex-col w-4/5 mx-auto">
         <Header />
         <main className="flex-1 flex flex-col">
           {children}
