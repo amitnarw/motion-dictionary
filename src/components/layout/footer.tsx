@@ -49,7 +49,7 @@ export function Footer() {
         <div className="absolute inset-0">
              <Meteors />
         </div>
-        <div className="relative z-10 container py-12">
+        <div className="relative z-10 container py-12 w-4/5 mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <div className="lg:col-span-2 pr-8">
                     <h3 className="font-headline text-lg font-semibold text-foreground">Stay updated</h3>
