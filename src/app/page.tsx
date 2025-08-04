@@ -77,23 +77,19 @@ export default function LandingPage() {
                 Three simple steps to find, copy, and implement the perfect animation for your project.
               </p>
             </div>
-            <div className="relative mt-20 max-w-3xl mx-auto">
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-border"></div>
+            <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
               {steps.map((step, index) => (
-                <div key={index} className="relative mb-16 flex items-center justify-center">
-                  <div className={`flex items-center w-full ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-                    <div className={`w-5/12 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
-                      <div className="bg-card p-6 rounded-xl shadow-lg border border-border/50">
+                <div key={index} className="relative p-8 bg-card rounded-xl shadow-lg border border-border/50 overflow-hidden">
+                    <div className="absolute top-4 right-4 text-5xl font-black text-primary/10">
+                        0{index + 1}
+                    </div>
+                    <div className="relative z-10">
+                        <div className="bg-primary/10 text-primary p-3 rounded-lg inline-block mb-4">
+                            <step.icon className="h-8 w-8" />
+                        </div>
                         <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
                         <p className="text-muted-foreground">{step.description}</p>
-                      </div>
                     </div>
-                  </div>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-background p-2 rounded-full border-2 border-primary">
-                    <div className="bg-primary text-primary-foreground p-3 rounded-full">
-                      <step.icon className="h-6 w-6" />
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>
