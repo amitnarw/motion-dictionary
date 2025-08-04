@@ -126,5 +126,5 @@ export default {
       }
     },
   },
-  plugins: [require('tailwindcss-animate'), require('next-themes')],
+  plugins: [require('tailwindcss-animate')],
 } satisfies Config;
