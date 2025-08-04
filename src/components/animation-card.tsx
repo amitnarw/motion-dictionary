@@ -32,8 +32,8 @@ export function AnimationCard({ animation }: AnimationCardProps) {
         <Card
           className="flex flex-col h-full overflow-hidden transition-all duration-300 group hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-1"
         >
-          <CardContent className="flex-1 flex items-center justify-center p-0 bg-background/50 min-h-[180px] relative overflow-hidden">
-             <div className="absolute inset-0 bg-grid-zinc-700/25 [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] z-0" />
+          <CardContent className="flex-1 flex items-center justify-center p-0 bg-secondary/40 min-h-[180px] relative overflow-hidden">
+             <div className="absolute inset-0 bg-grid-zinc-400/25 [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] z-0" />
             <div className="z-10">
               <PreviewComponent key={animationKey} />
             </div>
@@ -58,7 +58,7 @@ export function AnimationCard({ animation }: AnimationCardProps) {
               </Button>
             </div>
           </CardFooter>
-           <CardHeader className="pt-4">
+           <CardHeader className="pt-4 p-4">
             <CardTitle className="font-headline text-lg">{animation.title}</CardTitle>
             <CardDescription className="text-sm text-muted-foreground">{animation.description}</CardDescription>
           </CardHeader>

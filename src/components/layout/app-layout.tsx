@@ -15,31 +15,11 @@ import {
   SidebarTrigger,
   SidebarGroup,
   SidebarGroupLabel,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarMenuSubButton
 } from '@/components/ui/sidebar';
 import { CATEGORIES } from '@/lib/animations';
 import {
   Palette,
-  LayoutGrid,
-  Sparkles,
-  FilePlus,
-  MonitorPlay,
-  Replace,
-  Loader,
-  MousePointerClick,
-  MoveDown,
-  ChevronDown
 } from 'lucide-react';
-
-const categoryIcons: Record<string, React.ReactNode> = {
-  'Welcome Screen': <MonitorPlay className="h-4 w-4" />,
-  'Page Transitions': <Replace className="h-4 w-4" />,
-  'Loading': <Loader className="h-4 w-4" />,
-  'Microelements': <MousePointerClick className="h-4 w-4" />,
-  'Scroll Animation': <MoveDown className="h-4 w-4" />,
-};
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -53,17 +33,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     return pathname === href;
   };
 
-  const getIsCategoryActive = (category: string) => {
-    if (pathname !== '/') return false;
-    // This is a placeholder for searchParam logic which is harder to do in a client layout component
-    // In a real app, you'd use useSearchParams() here.
-    return false;
-  };
-
   if (!isMounted) {
     return (
       <div className="flex min-h-svh w-full">
-        <div className="w-64 bg-gray-800" />
+        <div className="w-64 bg-gray-100" />
         <main className="flex-1">{children}</main>
       </div>
     );
@@ -83,25 +56,22 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarContent>
           <SidebarMenu>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive={getIsActive('/')}>
+              <SidebarMenuButton asChild isActive={getIsActive('/')} className="text-base">
                 <Link href="/">
-                  <LayoutGrid />
                   Browse Animations
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive={getIsActive('/ai-suggestions')}>
+              <SidebarMenuButton asChild isActive={getIsActive('/ai-suggestions')} className="text-base">
                 <Link href="/ai-suggestions">
-                  <Sparkles />
                   AI Suggestions
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild isActive={getIsActive('/submit')}>
+              <SidebarMenuButton asChild isActive={getIsActive('/submit')} className="text-base">
                 <Link href="/submit">
-                  <FilePlus />
                   Submit Snippet
                 </Link>
               </SidebarMenuButton>
@@ -112,9 +82,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
              <SidebarMenu>
                 {CATEGORIES.map(category => (
                     <SidebarMenuItem key={category}>
-                        <SidebarMenuButton asChild size="sm" variant="ghost">
+                        <SidebarMenuButton asChild size="sm" variant="ghost" className="text-sm">
                             <Link href={`/?category=${encodeURIComponent(category)}`}>
-                                {categoryIcons[category] || <div className="h-4 w-4" />}
                                 {category}
                             </Link>
                         </SidebarMenuButton>
