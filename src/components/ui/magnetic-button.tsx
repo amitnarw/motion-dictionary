@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center rounded-full font-semibold transition-colors duration-300",
+  "relative inline-flex items-center justify-center rounded-full font-semibold transition-colors duration-300 overflow-hidden group",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       },
       size: {
@@ -60,7 +60,8 @@ export function MagneticButton({ className, variant, size, children, ...props }:
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       {...props}
     >
-      {children}
+      <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></div>
+      <span className="relative">{children}</span>
     </motion.div>
   );
 }

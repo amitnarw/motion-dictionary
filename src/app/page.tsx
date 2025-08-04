@@ -17,7 +17,7 @@ export default function LandingPage() {
            <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
            <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
           
-          <div className="w-4/5 mx-auto">
+          <div className="container w-4/5 mx-auto">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground uppercase">
               Animate Anything
             </h1>
