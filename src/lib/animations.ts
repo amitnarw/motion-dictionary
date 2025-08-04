@@ -22,6 +22,8 @@ import { AuroraBackground } from '@/components/animations/aurora-background';
 import { TextReveal } from '@/components/animations/text-reveal';
 import { Meteors } from '@/components/animations/meteors';
 import { Dock } from '@/components/animations/dock';
+import { SlidingTextButton } from '@/components/animations/sliding-text-button';
+import { RevealBgButton } from '@/components/animations/reveal-bg-button';
 
 export type Animation = {
   id: string;
@@ -39,6 +41,7 @@ export const CATEGORIES = [
   'Loading',
   'Microelements',
   'Scroll Animation',
+  'Buttons',
 ] as const;
 
 export const animations: Animation[] = [
@@ -74,7 +77,7 @@ export function FadeInUp() {
     id: '2',
     title: 'Pulsing Button',
     description: 'A subtle pulse animation to draw attention to a button.',
-    category: 'Microelements',
+    category: 'Buttons',
     preview: PulsingButton,
     library: 'TailwindCSS',
     code: `<button className="animate-pulse bg-primary text-primary-foreground font-bold py-2 px-4 rounded-lg shadow-lg">
@@ -248,7 +251,7 @@ export function FlipCard() {
     id: '10',
     title: 'Shaking Button',
     description: 'A button that shakes on hover to indicate an error or warning.',
-    category: 'Microelements',
+    category: 'Buttons',
     preview: ShakingButton,
     library: 'TailwindCSS',
     code: `<button className="hover:animate-shake bg-primary text-primary-foreground font-bold py-2 px-4 rounded-lg shadow-lg">
@@ -670,26 +673,36 @@ export function TextReveal() {
     library: 'TailwindCSS',
     code: `"use client";
 
-export function Meteors() {
-  const meteors = new Array(20).fill(true);
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+
+export function Meteors({ number = 20, className}: { number?: number, className?: string}) {
+  const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>([]);
+
+  useEffect(() => {
+    // This effect will only run on the client, preventing hydration errors.
+    const styles = Array.from({ length: number }).map(() => ({
+      top: 0,
+      left: Math.floor(Math.random() * (400 - -400) + -400) + "px",
+      animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
+      animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
+    }));
+    setMeteorStyles(styles);
+  }, [number]); // Only re-run if the number of meteors changes
+
   return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg bg-background">
-      <div className="relative z-10 font-bold text-foreground">Meteors</div>
-      {meteors.map((_, idx) => (
+    <div className={cn("relative flex h-full w-full items-center justify-center overflow-hidden bg-transparent", className)}>
+      {meteorStyles.map((style, idx) => (
         <span
           key={"meteor" + idx}
           className="absolute left-1/2 top-1/2 h-0.5 w-0.5 rotate-[215deg] animate-meteor-effect rounded-full bg-primary shadow-[0_0_0_1px_#ffffff10]"
-          style={{
-            top: 0,
-            left: Math.floor(Math.random() * (400 - -400) + -400) + "px",
-            animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
-            animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
-          }}
+          style={style}
         ></span>
       ))}
     </div>
   );
 };
+
 // tailwind.config.ts
 ...
 keyframes: {
@@ -773,5 +786,85 @@ function AppIcon({
     </motion.div>
   );
 }`
+  },
+  {
+    id: '24',
+    title: 'Sliding Text Button',
+    description: 'A button where text slides up on hover, revealing new text.',
+    category: 'Buttons',
+    preview: SlidingTextButton,
+    library: 'Framer Motion',
+    code: `
+"use client";
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+
+export function SlidingTextButton() {
+  const [isHovered, setHovered] = useState(false);
+
+  return (
+    <motion.button
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      className="relative block overflow-hidden whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
+    >
+      <span className="relative">
+        <motion.span
+          variants={{
+            initial: { y: 0 },
+            hovered: { y: '-125%' },
+          }}
+          initial="initial"
+          animate={isHovered ? 'hovered' : 'initial'}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="inline-block"
+        >
+          Hover Me
+        </motion.span>
+        <motion.span
+          variants={{
+            initial: { y: '125%' },
+            hovered: { y: 0 },
+          }}
+          initial="initial"
+          animate={isHovered ? 'hovered' : 'initial'}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="absolute inset-0"
+        >
+          Let's Go!
+        </motion.span>
+      </span>
+    </motion.button>
+  );
+}
+`
+  },
+  {
+    id: '25',
+    title: 'Reveal Background Button',
+    description: 'A button with a background that reveals from bottom to top on hover.',
+    category: 'Buttons',
+    preview: RevealBgButton,
+    library: 'Framer Motion',
+    code: `
+"use client";
+import { motion } from 'framer-motion';
+
+export function RevealBgButton() {
+  return (
+    <button className="relative overflow-hidden rounded-lg bg-secondary px-6 py-3 text-lg font-medium text-secondary-foreground shadow-lg">
+      <span className="relative z-10">Hover Me</span>
+      <motion.div
+        initial={{ y: '100%' }}
+        whileHover={{ y: 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        className="absolute inset-0 z-0 bg-primary"
+      />
+    </button>
+  );
+}
+`
   }
 ];
+
+    
