@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -40,11 +41,27 @@ export function Header() {
                     ))}
                 </nav>
                 <div className="hidden md:block">
-                     <MagneticButton variant="secondary">
-                        <Link href="/submit">
-                            Submit
-                        </Link>
-                     </MagneticButton>
+                     <Link href="/submit">
+                        <motion.div
+                            whileHover="hover"
+                            className="relative flex items-center justify-center gap-2 h-10 px-6 bg-secondary text-secondary-foreground rounded-full cursor-pointer overflow-hidden"
+                        >
+                            <motion.div
+                                variants={{ hover: { x: -5, rotate: 90, scale: 1.2 } }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                className="z-10"
+                            >
+                                <FilePlus className="h-4 w-4" />
+                            </motion.div>
+                            <motion.span
+                                variants={{ hover: { x: 50, opacity: 0 } }}
+                                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                className="z-10"
+                            >
+                                Submit
+                            </motion.span>
+                        </motion.div>
+                    </Link>
                 </div>
             </div>
         </header>
