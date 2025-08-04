@@ -18,6 +18,10 @@ import { GsapTimeline } from '@/components/animations/gsap-timeline';
 import { AnimatedTabs } from '@/components/animations/animated-tabs';
 import { OrbitingIcons } from '@/components/animations/orbiting-icons';
 import { CardStack } from '@/components/animations/card-stack';
+import { AuroraBackground } from '@/components/animations/aurora-background';
+import { TextReveal } from '@/components/animations/text-reveal';
+import { Meteors } from '@/components/animations/meteors';
+import { Dock } from '@/components/animations/dock';
 
 export type Animation = {
   id: string;
@@ -569,6 +573,180 @@ export function CardStack() {
         </motion.div>
       ))}
     </div>
+  );
+}`
+  },
+  {
+    id: '20',
+    title: 'Aurora Background',
+    category: 'Welcome Screen',
+    preview: AuroraBackground,
+    library: 'TailwindCSS',
+    code: `"use client";
+
+import { motion } from "framer-motion";
+
+export function AuroraBackground() {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center bg-black transition-colors duration-200 overflow-hidden rounded-lg">
+      <div className="absolute inset-0 overflow-hidden">
+         <div className="absolute h-full w-full bg-[radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]" />
+      </div>
+      <div className="relative z-10 text-white font-bold">Aurora</div>
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: [0, 1, 0], y: 0 }}
+        transition={{ duration: 4, repeat: Infinity, repeatType: "loop", ease: "easeInOut" }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      />
+    </div>
+  );
+}`
+  },
+  {
+    id: '21',
+    title: 'Text Reveal',
+    category: 'Welcome Screen',
+    preview: TextReveal,
+    library: 'Framer Motion',
+    code: `"use client";
+
+import { motion } from "framer-motion";
+
+export function TextReveal() {
+  return (
+    <div className="z-10 flex min-h-[10rem] items-center justify-center rounded-lg bg-background">
+      <h1 className="text-4xl md:text-5xl font-bold text-foreground text-center">
+        <motion.span
+          initial={{
+            opacity: 1,
+          }}
+          animate={{
+            opacity: 0,
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: 'loop'
+          }}
+          className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent"
+        >
+          Animate
+        </motion.span>
+        Text
+      </h1>
+    </div>
+  );
+}`
+  },
+  {
+    id: '22',
+    title: 'Meteors',
+    category: 'Welcome Screen',
+    preview: Meteors,
+    library: 'TailwindCSS',
+    code: `"use client";
+
+export function Meteors() {
+  const meteors = new Array(20).fill(true);
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-lg bg-background">
+      <div className="relative z-10 font-bold text-foreground">Meteors</div>
+      {meteors.map((_, idx) => (
+        <span
+          key={"meteor" + idx}
+          className="absolute left-1/2 top-1/2 h-0.5 w-0.5 rotate-[215deg] animate-meteor-effect rounded-full bg-primary shadow-[0_0_0_1px_#ffffff10]"
+          style={{
+            top: 0,
+            left: Math.floor(Math.random() * (400 - -400) + -400) + "px",
+            animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
+            animationDuration: Math.floor(Math.random() * (10 - 2) + 2) + "s",
+          }}
+        ></span>
+      ))}
+    </div>
+  );
+};
+// tailwind.config.ts
+...
+keyframes: {
+  'meteor-effect': {
+    "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+    "70%": { opacity: "1" },
+    "100%": {
+      transform: "rotate(215deg) translateX(-500px)",
+      opacity: "0",
+    },
+  },
+},
+animation: {
+  "meteor-effect": "meteor-effect 1.4s linear infinite",
+},
+...
+`
+  },
+  {
+    id: '23',
+    title: 'Dock',
+    category: 'Microelements',
+    preview: Dock,
+    library: 'Framer Motion',
+    code: `"use client";
+
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Home, Search, Settings, User } from "lucide-react";
+
+export function Dock() {
+    let mouseX = useMotionValue(Infinity);
+
+  return (
+    <div className="flex h-16 items-center justify-center gap-4 rounded-2xl bg-muted px-4">
+      <div
+        onMouseMove={(e) => mouseX.set(e.pageX)}
+        onMouseLeave={() => mouseX.set(Infinity)}
+        className="flex h-full items-center gap-4"
+      >
+        {[
+          <Home key="home" />,
+          <Search key="search" />,
+          <Settings key="settings" />,
+          <User key="user" />,
+        ].map((icon, i) => (
+          <AppIcon mouseX={mouseX} key={i}>
+            {icon}
+          </AppIcon>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AppIcon({
+  children,
+  mouseX,
+}: {
+  children: React.ReactNode;
+  mouseX: any;
+}) {
+  let ref = useRef<HTMLDivElement>(null);
+
+  let distance = useTransform(mouseX, (val) => {
+    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  let widthSync = useTransform(distance, [-100, 0, 100], [40, 80, 40]);
+  let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ width }}
+      className="aspect-square w-10 rounded-full bg-background flex items-center justify-center"
+    >
+      {children}
+    </motion.div>
   );
 }`
   }
