@@ -51,7 +51,7 @@ export function CodeViewer({ isOpen, onOpenChange, title, code }: CodeViewerProp
         </DialogHeader>
         <div className="relative">
           <ScrollArea className="h-96 rounded-md border bg-secondary/50 p-4">
-            <pre className="text-sm">
+            <pre className="text-sm whitespace-pre-wrap break-words">
               <code className="font-code">{code}</code>
             </pre>
           </ScrollArea>
