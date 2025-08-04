@@ -14,15 +14,17 @@ export function FollowingEyes({ direction = 1 }: { direction?: number }) {
         const eyeCenterY = top + height / 2;
         const deltaX = e.clientX - eyeCenterX;
         const deltaY = e.clientY - eyeCenterY;
+        // Correct angle calculation: atan2 gives the angle in radians.
+        // Convert to degrees and add 90 to align the pupil (which starts at the top)
         const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-        setRotate(angle + (90 * direction));
+        setRotate(angle + 90);
       }
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [direction]); // Add direction to dependencies to re-run effect on change
 
   return (
     <div ref={eyesRef} className="flex gap-4">
@@ -30,7 +32,7 @@ export function FollowingEyes({ direction = 1 }: { direction?: number }) {
       <div className="w-24 h-24 bg-card rounded-full flex items-center justify-center">
         <div className="w-12 h-12 bg-foreground rounded-full relative">
           <motion.div
-            animate={{ rotate }}
+            animate={{ rotate: rotate * direction }}
             transition={{ type: 'spring', stiffness: 100, damping: 10 }}
             className="w-full h-full"
           >
@@ -42,7 +44,7 @@ export function FollowingEyes({ direction = 1 }: { direction?: number }) {
        <div className="w-24 h-24 bg-card rounded-full flex items-center justify-center">
         <div className="w-12 h-12 bg-foreground rounded-full relative">
           <motion.div
-            animate={{ rotate }}
+            animate={{ rotate: rotate * direction }}
             transition={{ type: 'spring', stiffness: 100, damping: 10 }}
             className="w-full h-full"
           >
