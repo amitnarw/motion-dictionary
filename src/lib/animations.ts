@@ -26,6 +26,7 @@ import { Dock } from '@/components/animations/dock';
 export type Animation = {
   id: string;
   title: string;
+  description: string;
   category: (typeof CATEGORIES)[number];
   preview: React.ComponentType<{ key?: number }>;
   code: string;
@@ -44,6 +45,7 @@ export const animations: Animation[] = [
   {
     id: '1',
     title: 'Fade In Up',
+    description: 'A simple and elegant fade-in and slide-up effect.',
     category: 'Welcome Screen',
     preview: FadeInUp,
     library: 'Framer Motion',
@@ -71,6 +73,7 @@ export function FadeInUp() {
   {
     id: '2',
     title: 'Pulsing Button',
+    description: 'A subtle pulse animation to draw attention to a button.',
     category: 'Microelements',
     preview: PulsingButton,
     library: 'TailwindCSS',
@@ -81,6 +84,7 @@ export function FadeInUp() {
   {
     id: '3',
     title: 'Spinning Loader',
+    description: 'A classic spinning loader for indicating loading states.',
     category: 'Loading',
     preview: SpinningLoader,
     library: 'TailwindCSS',
@@ -89,6 +93,7 @@ export function FadeInUp() {
   {
     id: '4',
     title: 'Staggered List Entrance',
+    description: 'List items animate in one by one with a pleasing stagger effect.',
     category: 'Welcome Screen',
     preview: StaggeredList,
     library: 'Framer Motion',
@@ -122,6 +127,7 @@ export function StaggeredList() {
   {
     id: '5',
     title: 'Slide In From Left',
+    description: 'An element smoothly slides in from the left side of the screen.',
     category: 'Page Transitions',
     preview: SlideInFromLeft,
     library: 'Framer Motion',
@@ -143,6 +149,7 @@ export function SlideInFromLeft() {
   {
     id: '6',
     title: 'GSAP Color Tween',
+    description: 'A smooth color transition animation powered by GSAP.',
     category: 'Microelements',
     preview: GsapColorTween,
     library: 'GSAP',
@@ -167,6 +174,7 @@ export function GsapColorTween() {
   {
     id: '7',
     title: 'Scroll Reveal',
+    description: 'Elements animate into view as you scroll down the page.',
     category: 'Scroll Animation',
     preview: ScrollReveal,
     library: 'Framer Motion',
@@ -195,6 +203,7 @@ export function ScrollReveal() {
   {
     id: '8',
     title: 'Bouncing Skeleton',
+    description: 'A pulsing skeleton loader with a subtle bouncing effect.',
     category: 'Loading',
     preview: BouncingSkeleton,
     library: 'TailwindCSS',
@@ -207,6 +216,7 @@ export function ScrollReveal() {
   {
     id: '9',
     title: '3D Flipping Card',
+    description: 'A card that flips over in 3D space on hover.',
     category: 'Microelements',
     preview: FlipCard,
     library: 'Framer Motion',
@@ -237,6 +247,7 @@ export function FlipCard() {
   {
     id: '10',
     title: 'Shaking Button',
+    description: 'A button that shakes on hover to indicate an error or warning.',
     category: 'Microelements',
     preview: ShakingButton,
     library: 'TailwindCSS',
@@ -266,6 +277,7 @@ theme: {
   {
     id: '11',
     title: 'GSAP Staggered Fade',
+    description: 'Elements fade in and up in a staggered sequence using GSAP.',
     category: 'Welcome Screen',
     preview: GsapStaggeredFade,
     library: 'GSAP',
@@ -303,6 +315,7 @@ export function GsapStaggeredFade() {
   {
     id: '12',
     title: 'Multi-Step Loader',
+    description: 'A loader that cycles through different text steps.',
     category: 'Loading',
     preview: MultiStepLoader,
     library: 'Framer Motion',
@@ -340,6 +353,7 @@ export function MultiStepLoader() {
   {
     id: '13',
     title: 'Page Fly-In',
+    description: 'A smooth transition for page content flying in from the bottom.',
     category: 'Page Transitions',
     preview: PageFlyIn,
     library: 'Framer Motion',
@@ -368,6 +382,7 @@ export function PageFlyIn() {
   {
     id: '14',
     title: 'Typing Effect',
+    description: 'Text appears with a character-by-character typing animation.',
     category: 'Welcome Screen',
     preview: TypingEffect,
     library: 'Framer Motion',
@@ -425,6 +440,7 @@ export function TypingEffect() {
   {
     id: '15',
     title: 'Background Spotlight',
+    description: 'A spotlight effect that follows the mouse on hover.',
     category: 'Scroll Animation',
     preview: BackgroundSpotlight,
     library: 'TailwindCSS',
@@ -455,6 +471,7 @@ animation: {
   {
     id: '16',
     title: 'GSAP Timeline Animation',
+    description: 'A complex, multi-step animation sequence controlled by a GSAP timeline.',
     category: 'Welcome Screen',
     preview: GsapTimeline,
     library: 'GSAP',
@@ -486,6 +503,7 @@ export function GsapTimeline() {
   {
     id: '17',
     title: 'Animated Tabs',
+    description: 'A slick tab component with a smooth sliding indicator.',
     category: 'Microelements',
     preview: AnimatedTabs,
     library: 'Framer Motion',
@@ -522,6 +540,7 @@ export function AnimatedTabs() {
   {
     id: '18',
     title: 'Orbiting Icons',
+    description: 'Decorative icons orbiting a central point. Great for loading states.',
     category: 'Loading',
     preview: OrbitingIcons,
     library: 'TailwindCSS',
@@ -546,6 +565,7 @@ animation: {
   {
     id: '19',
     title: 'Draggable Card Stack',
+    description: 'A stack of cards that can be dragged and reordered.',
     category: 'Microelements',
     preview: CardStack,
     library: 'Framer Motion',
@@ -579,6 +599,7 @@ export function CardStack() {
   {
     id: '20',
     title: 'Aurora Background',
+    description: 'A beautiful, animated aurora borealis effect for backgrounds.',
     category: 'Welcome Screen',
     preview: AuroraBackground,
     library: 'TailwindCSS',
@@ -606,6 +627,7 @@ export function AuroraBackground() {
   {
     id: '21',
     title: 'Text Reveal',
+    description: 'A gradient reveal effect that wipes across text.',
     category: 'Welcome Screen',
     preview: TextReveal,
     library: 'Framer Motion',
@@ -642,6 +664,7 @@ export function TextReveal() {
   {
     id: '22',
     title: 'Meteors',
+    description: 'A stunning meteor shower effect for backgrounds.',
     category: 'Welcome Screen',
     preview: Meteors,
     library: 'TailwindCSS',
@@ -688,6 +711,7 @@ animation: {
   {
     id: '23',
     title: 'Dock',
+    description: 'A macOS-style dock with a magnification effect on hover.',
     category: 'Microelements',
     preview: Dock,
     library: 'Framer Motion',

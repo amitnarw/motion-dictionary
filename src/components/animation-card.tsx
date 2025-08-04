@@ -1,7 +1,7 @@
 "use client";
 
 import type { Animation } from '@/lib/animations';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { CodeViewer } from './code-viewer';
@@ -32,9 +32,6 @@ export function AnimationCard({ animation }: AnimationCardProps) {
         <Card
           className="flex flex-col h-full overflow-hidden transition-all duration-300 group hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-1"
         >
-           <CardHeader>
-            <CardTitle className="font-headline text-lg truncate">{animation.title}</CardTitle>
-          </CardHeader>
           <CardContent className="flex-1 flex items-center justify-center p-0 bg-background/50 min-h-[180px] relative overflow-hidden">
              <div className="absolute inset-0 bg-grid-zinc-700/25 [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] z-0" />
             <div className="z-10">
@@ -55,12 +52,16 @@ export function AnimationCard({ animation }: AnimationCardProps) {
                 <RefreshCw className="h-4 w-4" />
                 <span className="sr-only">Replay Animation</span>
               </Button>
-              <Button variant="ghost" size="sm" onClick={() => setCodeVisible(true)} className="text-muted-foreground hover:text-foreground">
-                <Code className="mr-2 h-4 w-4" />
-                Code
+              <Button variant="ghost" size="icon" onClick={() => setCodeVisible(true)} className="h-8 w-8 text-muted-foreground hover:text-foreground">
+                <Code className="h-4 w-4" />
+                 <span className="sr-only">View Code</span>
               </Button>
             </div>
           </CardFooter>
+           <CardHeader className="pt-4">
+            <CardTitle className="font-headline text-lg">{animation.title}</CardTitle>
+            <CardDescription className="text-sm text-muted-foreground">{animation.description}</CardDescription>
+          </CardHeader>
         </Card>
       </motion.div>
       <CodeViewer
