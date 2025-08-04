@@ -8,6 +8,7 @@ import { CodeViewer } from './code-viewer';
 import { useState } from 'react';
 import { Code, RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 type AnimationCardProps = {
   animation: Animation;
@@ -30,37 +31,47 @@ export function AnimationCard({ animation }: AnimationCardProps) {
         transition={{ duration: 0.5 }}
       >
         <Card
-          className="flex flex-col h-full overflow-hidden transition-all duration-300 group hover:shadow-primary/20 hover:shadow-lg hover:-translate-y-1"
+          className={cn(
+            "group relative flex flex-col h-full overflow-hidden transition-all duration-300",
+            "bg-secondary/30 border-secondary/50 hover:border-accent/50",
+            "hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2"
+          )}
         >
-          <CardContent className="flex-1 flex items-center justify-center p-0 bg-secondary/40 min-h-[180px] relative overflow-hidden">
-             <div className="absolute inset-0 bg-grid-zinc-700/25 [mask-image:radial-gradient(ellipse_at_center,transparent_40%,black)] z-0" />
-            <div className="z-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
+          
+          <CardContent className="flex-1 flex items-center justify-center p-0 bg-transparent min-h-[180px] relative overflow-hidden rounded-t-lg">
+            <div className="z-10 w-full h-full flex items-center justify-center">
               <PreviewComponent key={animationKey} />
             </div>
           </CardContent>
-          <CardFooter className="flex justify-between items-center p-3 bg-card/50">
-            <Badge variant={
+          <CardFooter className="flex justify-between items-center p-3 bg-card/50 backdrop-blur-sm">
+             <Badge variant={
               animation.library === 'Framer Motion' ? 'default' :
               animation.library === 'GSAP' ? 'secondary' : 'outline'
             }
-            className="border-primary/50"
+            className={cn(
+              "border-transparent",
+              animation.library === 'Framer Motion' && "bg-blue-500/20 text-blue-300",
+              animation.library === 'GSAP' && "bg-green-500/20 text-green-300",
+              animation.library === 'TailwindCSS' && "bg-teal-500/20 text-teal-300"
+            )}
             >
               {animation.library}
             </Badge>
             <div className="flex items-center gap-1">
-              <Button variant="ghost" size="icon" onClick={replayAnimation} className="h-8 w-8 text-muted-foreground hover:text-foreground">
+              <Button variant="ghost" size="icon" onClick={replayAnimation} className="h-8 w-8 text-muted-foreground hover:text-accent-foreground">
                 <RefreshCw className="h-4 w-4" />
                 <span className="sr-only">Replay Animation</span>
               </Button>
-              <Button variant="ghost" size="icon" onClick={() => setCodeVisible(true)} className="h-8 w-8 text-muted-foreground hover:text-foreground">
+              <Button variant="ghost" size="icon" onClick={() => setCodeVisible(true)} className="h-8 w-8 text-muted-foreground hover:text-accent-foreground">
                 <Code className="h-4 w-4" />
                  <span className="sr-only">View Code</span>
               </Button>
             </div>
           </CardFooter>
-           <CardHeader className="pt-4 p-4">
-            <CardTitle className="font-headline text-lg">{animation.title}</CardTitle>
-            <CardDescription className="text-sm text-muted-foreground">{animation.description}</CardDescription>
+           <CardHeader className="p-4">
+            <CardTitle className="font-headline text-lg text-foreground/90">{animation.title}</CardTitle>
+            <CardDescription className="text-sm text-foreground/70">{animation.description}</CardDescription>
           </CardHeader>
         </Card>
       </motion.div>

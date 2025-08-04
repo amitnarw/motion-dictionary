@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { SearchBar } from "./search-bar";
 import { TypingEffect } from "./animations/typing-effect";
+import { AuroraBackground } from "./animations/aurora-background";
 
 export function ParallaxHeader() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -18,16 +19,15 @@ export function ParallaxHeader() {
   return (
     <header
       ref={containerRef}
-      className="relative p-4 md:p-6 h-[50vh] flex flex-col justify-center items-center text-center overflow-hidden"
+      className="relative p-4 md:p-6 h-[75vh] flex flex-col justify-center items-center text-center overflow-hidden"
     >
       <motion.div
-        className="absolute inset-0 bg-grid-zinc-400/25 dark:bg-grid-zinc-700/25 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+        className="absolute inset-0"
         style={{ y, opacity }}
-      />
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"
-        style={{ y, opacity }}
-      />
+      >
+        <AuroraBackground />
+      </motion.div>
+      
       <motion.div 
         className="z-10"
         initial={{ opacity: 0, y: 20 }}
@@ -37,7 +37,7 @@ export function ParallaxHeader() {
         <div className="flex items-center justify-center mb-4">
           <TypingEffect />
         </div>
-        <p className="max-w-2xl text-lg text-muted-foreground mx-auto">
+        <p className="max-w-2xl text-lg text-foreground/80 mx-auto">
           A curated collection of production-ready animations for your next project.
         </p>
         <div className="mt-8 flex justify-center">

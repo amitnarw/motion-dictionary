@@ -23,13 +23,13 @@ export function NavigationDock() {
             <motion.div
                 onMouseMove={(e) => mouseX.set(e.clientX)}
                 onMouseLeave={() => mouseX.set(Infinity)}
-                className="flex h-16 items-center gap-4 rounded-2xl bg-card/30 backdrop-blur-lg px-4 shadow-lg ring-1 ring-black/5"
+                className="flex h-16 items-center gap-2 rounded-2xl bg-black/20 backdrop-blur-lg px-4 shadow-lg ring-1 ring-white/10"
             >
                 {navItems.map(({ href, label, icon: Icon }) => (
                 <AppIcon mouseX={mouseX} key={href} href={href} isActive={pathname === href}>
                      <Tooltip>
                         <TooltipTrigger asChild>
-                             <Icon className={`h-6 w-6 transition-colors duration-200 ${pathname === href ? 'text-primary' : 'text-foreground/70 hover:text-foreground'}`} />
+                             <Icon className={`h-6 w-6 transition-colors duration-200 ${pathname === href ? 'text-accent' : 'text-foreground/70 hover:text-foreground'}`} />
                         </TooltipTrigger>
                         <TooltipContent>
                             <p>{label}</p>
@@ -68,7 +68,7 @@ function AppIcon({
     <motion.div
       ref={ref}
       style={{ width }}
-      className={`aspect-square w-12 rounded-full flex items-center justify-center transition-colors duration-200 ${isActive ? 'bg-background/80' : 'bg-transparent hover:bg-background/50'}`}
+      className={`aspect-square w-12 rounded-full flex items-center justify-center transition-colors duration-200 ${isActive ? 'bg-white/10' : 'bg-transparent hover:bg-white/5'}`}
     >
       <Link href={href} className="w-full h-full flex items-center justify-center">
         {children}

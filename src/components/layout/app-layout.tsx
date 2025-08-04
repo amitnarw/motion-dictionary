@@ -18,8 +18,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
   if (!isMounted) {
     return (
-      <div className="flex min-h-svh w-full">
-        <div className="w-64 bg-gray-100 hidden md:block" />
+      <div className="flex min-h-svh w-full bg-background">
+        <div className="w-64 bg-muted hidden md:block" />
         <main className="flex-1">{children}</main>
       </div>
     );
@@ -89,10 +89,10 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-svh flex flex-col">
+      <NavigationDock />
        <main className="flex-1 flex flex-col">
           {children}
         </main>
-      <NavigationDock />
     </div>
   );
 }
