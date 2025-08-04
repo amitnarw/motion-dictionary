@@ -60,7 +60,6 @@ export function MagneticButton({ className, variant, size, children, ...props }:
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       {...props}
     >
-      <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10"></div>
       <span className="relative">{children}</span>
     </motion.div>
   );

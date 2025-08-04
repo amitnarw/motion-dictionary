@@ -797,7 +797,7 @@ function AppIcon({
     code: `
 "use client";
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 export function SlidingTextButton() {
   const [isHovered, setHovered] = useState(false);
@@ -806,7 +806,7 @@ export function SlidingTextButton() {
     <motion.button
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="relative block overflow-hidden whitespace-nowrap rounded-lg bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
+      className="relative block overflow-hidden whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
     >
       <span className="relative">
         <motion.span
@@ -852,7 +852,7 @@ import { motion } from 'framer-motion';
 
 export function RevealBgButton() {
   return (
-    <button className="relative overflow-hidden rounded-lg bg-secondary px-6 py-3 text-lg font-medium text-secondary-foreground shadow-lg">
+    <button className="relative overflow-hidden rounded-xl bg-secondary px-6 py-3 text-lg font-medium text-secondary-foreground shadow-lg">
       <span className="relative z-10">Hover Me</span>
       <motion.div
         initial={{ y: '100%' }}
@@ -866,5 +866,3 @@ export function RevealBgButton() {
 `
   }
 ];
-
-    
