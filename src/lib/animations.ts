@@ -6,6 +6,7 @@ import { StaggeredList } from '@/components/animations/staggered-list';
 import { SlideInFromLeft } from '@/components/animations/slide-in-from-left';
 import { ScrollReveal } from '@/components/animations/scroll-reveal';
 import { BouncingSkeleton } from '@/components/animations/bouncing-skeleton';
+import { GsapColorTween } from '@/components/animations/gsap-color-tween';
 
 export type Animation = {
   id: string;
@@ -118,7 +119,7 @@ const Page = () => (
     id: '6',
     title: 'GSAP Color Tween',
     category: 'Microelements',
-    preview: () => <div className="w-24 h-24 bg-gray-400" />,
+    preview: GsapColorTween,
     library: 'GSAP',
     code: `import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
