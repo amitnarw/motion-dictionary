@@ -1,7 +1,6 @@
 "use client";
 
 import type { Animation } from '@/lib/animations';
-import Image from 'next/image';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +14,7 @@ type AnimationCardProps = {
 
 export function AnimationCard({ animation }: AnimationCardProps) {
   const [isCodeVisible, setCodeVisible] = useState(false);
+  const PreviewComponent = animation.preview;
 
   return (
     <>
@@ -24,15 +24,8 @@ export function AnimationCard({ animation }: AnimationCardProps) {
         <CardHeader>
           <CardTitle className="font-headline text-lg">{animation.title}</CardTitle>
         </CardHeader>
-        <CardContent className="flex-1 flex items-center justify-center p-0">
-          <Image
-            src={animation.preview}
-            alt={`Preview of ${animation.title}`}
-            width={600}
-            height={400}
-            className="w-full h-auto object-cover aspect-video"
-            data-ai-hint="animation motion"
-          />
+        <CardContent className="flex-1 flex items-center justify-center p-0 bg-secondary/30 min-h-[150px]">
+          <PreviewComponent />
         </CardContent>
         <CardFooter className="flex justify-between items-center p-4">
           <Badge variant={

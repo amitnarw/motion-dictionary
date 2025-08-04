@@ -1,8 +1,17 @@
+import React from 'react';
+import { FadeInUp } from '@/components/animations/fade-in-up';
+import { PulsingButton } from '@/components/animations/pulsing-button';
+import { SpinningLoader } from '@/components/animations/spinning-loader';
+import { StaggeredList } from '@/components/animations/staggered-list';
+import { SlideInFromLeft } from '@/components/animations/slide-in-from-left';
+import { ScrollReveal } from '@/components/animations/scroll-reveal';
+import { BouncingSkeleton } from '@/components/animations/bouncing-skeleton';
+
 export type Animation = {
   id: string;
   title: string;
   category: (typeof CATEGORIES)[number];
-  preview: string;
+  preview: React.ComponentType;
   code: string;
   library: 'Framer Motion' | 'GSAP' | 'TailwindCSS';
 };
@@ -20,7 +29,7 @@ export const animations: Animation[] = [
     id: '1',
     title: 'Fade In Up',
     category: 'Welcome Screen',
-    preview: 'https://placehold.co/600x400.png',
+    preview: FadeInUp,
     library: 'Framer Motion',
     code: `import { motion } from "framer-motion";
 
@@ -40,7 +49,7 @@ const MyComponent = () => (
     id: '2',
     title: 'Pulsing Button',
     category: 'Microelements',
-    preview: 'https://placehold.co/600x400.png',
+    preview: PulsingButton,
     library: 'TailwindCSS',
     code: `<button class="animate-pulse bg-primary text-primary-foreground font-bold py-2 px-4 rounded-lg shadow-lg">
   Click me
@@ -50,7 +59,7 @@ const MyComponent = () => (
     id: '3',
     title: 'Spinning Loader',
     category: 'Loading',
-    preview: 'https://placehold.co/600x400.png',
+    preview: SpinningLoader,
     library: 'TailwindCSS',
     code: `<div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-primary"></div>`
   },
@@ -58,7 +67,7 @@ const MyComponent = () => (
     id: '4',
     title: 'Staggered List',
     category: 'Welcome Screen',
-    preview: 'https://placehold.co/600x400.png',
+    preview: StaggeredList,
     library: 'Framer Motion',
     code: `import { motion } from "framer-motion";
 
@@ -89,7 +98,7 @@ const StaggeredList = () => (
     id: '5',
     title: 'Slide In From Left',
     category: 'Page Transitions',
-    preview: 'https://placehold.co/600x400.png',
+    preview: SlideInFromLeft,
     library: 'Framer Motion',
     code: `import { motion } from "framer-motion";
 
@@ -109,7 +118,7 @@ const Page = () => (
     id: '6',
     title: 'GSAP Color Tween',
     category: 'Microelements',
-    preview: 'https://placehold.co/600x400.png',
+    preview: () => <div className="w-24 h-24 bg-gray-400" />,
     library: 'GSAP',
     code: `import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
@@ -133,7 +142,7 @@ const Box = () => {
     id: '7',
     title: 'Scroll Reveal',
     category: 'Scroll Animation',
-    preview: 'https://placehold.co/600x400.png',
+    preview: ScrollReveal,
     library: 'Framer Motion',
     code: `import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -160,7 +169,7 @@ const ScrollRevealComponent = () => {
     id: '8',
     title: 'Bouncing Skeleton',
     category: 'Loading',
-    preview: 'https://placehold.co/600x400.png',
+    preview: BouncingSkeleton,
     library: 'TailwindCSS',
     code: `<div class="space-y-2">
   <div class="h-4 bg-gray-300 rounded w-3/4 animate-pulse"></div>
