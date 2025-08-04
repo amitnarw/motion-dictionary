@@ -9,6 +9,24 @@ import { MagneticButton } from "@/components/ui/magnetic-button";
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
 
+  const steps = [
+    {
+      icon: Palette,
+      title: "1. Discover",
+      description: "Browse our extensive collection of animations, categorized and searchable for easy discovery. Find the perfect motion for any component."
+    },
+    {
+      icon: Copy,
+      title: "2. Copy",
+      description: "Once you find an animation you love, simply view the code and copy it to your clipboard with a single click."
+    },
+    {
+      icon: Code,
+      title: "3. Implement",
+      description: "Paste the code directly into your project. Our snippets are designed to be clean, efficient, and easy to integrate into any modern framework."
+    }
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
@@ -22,12 +40,12 @@ export default function LandingPage() {
               Animate Anything
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              The ultimate open-source library of production-ready animations. Built for developers, designers, and creators to bring life to their projects with ease.
+              The ultimate open-source hub of production-ready animations. Built for developers, designers, and creators to bring life to their projects with ease.
             </p>
             <div className="mt-10 flex gap-4 justify-center">
               <MagneticButton>
                 <Link href="/animations" className="flex items-center gap-2">
-                  Explore Library <ArrowRight className="ml-2" />
+                  Explore Animations <ArrowRight className="ml-2" />
                 </Link>
               </MagneticButton>
             </div>
@@ -53,44 +71,31 @@ export default function LandingPage() {
         {/* How It Works Section */}
         <section className="py-16 lg:py-24 bg-card/50">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">How It Works</h2>
-            <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-              Three simple steps to find, copy, and implement the perfect animation for your project.
-            </p>
-            <div className="mt-12 grid md:grid-cols-3 gap-8 text-center">
-              <div className="bg-card p-8 rounded-lg">
-                <div className="flex justify-center mb-4">
-                  <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Palette className="h-8 w-8" />
+            <div className="text-center">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">How It Works</h2>
+              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                Three simple steps to find, copy, and implement the perfect animation for your project.
+              </p>
+            </div>
+            <div className="relative mt-20 max-w-3xl mx-auto">
+              <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-border"></div>
+              {steps.map((step, index) => (
+                <div key={index} className="relative mb-16 flex items-center justify-center">
+                  <div className={`flex items-center w-full ${index % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
+                    <div className={`w-5/12 ${index % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                      <div className="bg-card p-6 rounded-xl shadow-lg border border-border/50">
+                        <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
+                        <p className="text-muted-foreground">{step.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 bg-background p-2 rounded-full border-2 border-primary">
+                    <div className="bg-primary text-primary-foreground p-3 rounded-full">
+                      <step.icon className="h-6 w-6" />
+                    </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold">1. Discover</h3>
-                <p className="text-muted-foreground mt-2">
-                  Browse our extensive library of animations, categorized and searchable for easy discovery.
-                </p>
-              </div>
-              <div className="bg-card p-8 rounded-lg">
-                 <div className="flex justify-center mb-4">
-                  <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Copy className="h-8 w-8" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold">2. Copy</h3>
-                <p className="text-muted-foreground mt-2">
-                  Once you find an animation you love, simply view the code and copy it to your clipboard with a single click.
-                </p>
-              </div>
-              <div className="bg-card p-8 rounded-lg">
-                 <div className="flex justify-center mb-4">
-                  <div className="bg-primary/10 text-primary p-4 rounded-full">
-                    <Code className="h-8 w-8" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold">3. Implement</h3>
-                <p className="text-muted-foreground mt-2">
-                  Paste the code directly into your project. Our snippets are designed to be clean, efficient, and easy to integrate.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </section>

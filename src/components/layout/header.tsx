@@ -22,7 +22,7 @@ export function Header() {
                 <div className="mr-4 flex">
                     <Link href="/" className="flex items-center gap-2">
                         <Palette className="h-6 w-6 text-primary" />
-                        <span className="font-bold text-lg">AniLib</span>
+                        <span className="font-bold text-lg">AniMotion</span>
                     </Link>
                 </div>
                 <nav className="hidden md:flex items-center gap-6 text-sm">

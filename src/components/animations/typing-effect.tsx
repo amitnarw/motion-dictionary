@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-const text = "Welcome to AniLib";
+const text = "Welcome to AniMotion";
 const characters = Array.from(text);
 
 const container = {

@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'AniLib - The Animation Library',
+  title: 'AniMotion - The Animation Hub',
   description: 'Your ultimate destination for discovering and using animations from across the web.',
 };
 
