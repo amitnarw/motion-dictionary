@@ -49,7 +49,7 @@ export function Header() {
                             className="relative flex items-center justify-center h-10 px-6 bg-transparent text-primary-foreground rounded-full cursor-pointer overflow-hidden border border-primary/50"
                         >
                              <motion.div 
-                                className="absolute inset-0 bg-gradient-to-br from-green-500 to-green-700"
+                                className="absolute inset-0 bg-gradient-to-br from-[#0ae448] to-[#abff84]"
                                 variants={{
                                     rest: { y: "0%" },
                                     hover: { y: "-100%" }
@@ -57,7 +57,7 @@ export function Header() {
                                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                              />
                               <motion.div 
-                                className="absolute inset-0 bg-gradient-to-br from-primary to-green-500"
+                                className="absolute inset-0 bg-gradient-to-br from-primary to-[#0ae448]"
                                 variants={{
                                     rest: { y: "100%" },
                                     hover: { y: "0%" }

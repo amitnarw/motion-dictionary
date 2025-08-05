@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-br from-green-400 to-green-600 text-primary-foreground shadow-sm hover:from-green-500 hover:to-green-700",
+        default: "bg-gradient-to-br from-[#0ae448] to-[#abff84] text-primary-foreground shadow-sm hover:from-[#abff84] hover:to-[#0ae448]",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       },
       size: {
