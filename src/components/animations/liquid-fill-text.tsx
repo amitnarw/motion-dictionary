@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function LiquidFillText() {
   return (
-    <div className="relative w-full text-center h-48 flex flex-col items-center justify-center">
+    <div className="relative w-full text-center flex flex-col items-center justify-center">
       <svg width="100%" viewBox="0 0 800 200" className="max-w-5xl mx-auto">
         <defs>
           <clipPath id="text-clip-path-motion">
@@ -49,12 +49,12 @@ export function LiquidFillText() {
             y="52%"
             dominantBaseline="hanging"
             textAnchor="end"
-            className="text-9xl md:text-[10rem] font-bold tracking-tighter fill-current text-foreground lg:hidden"
+            className="text-9xl md:text-[10rem] font-bold tracking-tighter fill-current text-foreground"
         >
              Dictionary
         </text>
         
-         <g clipPath="url(#text-clip-path-dictionary)" className="hidden lg:block">
+         <g clipPath="url(#text-clip-path-dictionary)">
           <rect width="800" height="200" className="fill-foreground" />
            <motion.path
             d="M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z"
