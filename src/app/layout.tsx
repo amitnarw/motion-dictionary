@@ -3,22 +3,19 @@ import './globals.css';
 import { AppLayout } from '@/components/layout/app-layout';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
-import { Space_Grotesk, Inter } from 'next/font/google';
+import { Barlow } from 'next/font/google';
 
 export const metadata: Metadata = {
   title: 'AniMotion - The Animation Hub',
   description: 'Your ultimate destination for discovering and using animations from across the web.',
 };
 
-const spaceGrotesk = Space_Grotesk({
+const barlow = Barlow({
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-barlow',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
 
 export default function RootLayout({
   children,
@@ -27,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${inter.variable} font-body antialiased bg-background`}>
+      <body className={`${barlow.variable} font-body antialiased bg-background`}>
          <ThemeProvider
             attribute="class"
             defaultTheme="light"
