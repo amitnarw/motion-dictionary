@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface WavyTextProps {
-  text: string;
+  text?: string;
   className?: string;
   delay?: number;
   duration?: number;
 }
 
 export function WavyText({
-  text,
+  text = "Wavy Text",
   className,
   delay = 0,
   duration = 0.05,
@@ -50,8 +50,8 @@ export function WavyText({
   };
 
   return (
-    <motion.div
-      className={cn("flex overflow-hidden", className)}
+    <motion.h1
+      className={cn("flex overflow-hidden font-headline text-4xl", className)}
       variants={container}
       initial="hidden"
       animate="visible"
@@ -66,6 +66,6 @@ export function WavyText({
           {letter === " " ? "\u00A0" : letter}
         </motion.span>
       ))}
-    </motion.div>
+    </motion.h1>
   );
 }

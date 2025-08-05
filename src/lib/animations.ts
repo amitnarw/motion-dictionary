@@ -25,11 +25,12 @@ import { Dock } from '@/components/animations/dock';
 import { SlidingTextButton } from '@/components/animations/sliding-text-button';
 import { RevealBgButton } from '@/components/animations/reveal-bg-button';
 import { FollowingEyes } from '@/components/animations/following-eyes';
+import { WavyText } from '@/components/animations/wavy-text';
 
 type AnimationControl = {
     prop: string;
     label: string;
-    type: 'range' | 'select';
+    type: 'range' | 'select' | 'text';
     min?: number;
     max?: number;
     step?: number;
@@ -57,6 +58,7 @@ export const CATEGORIES = [
   'Scroll Animation',
   'Buttons',
   'Cursor',
+  'Text',
 ] as const;
 
 export const animations: Animation[] = [
@@ -654,7 +656,7 @@ export function AuroraBackground() {
     id: '21',
     title: 'Text Reveal',
     description: 'A gradient reveal effect that wipes across text.',
-    category: 'Welcome Screen',
+    category: 'Text',
     preview: TextReveal,
     library: 'Framer Motion',
     code: `"use client";
@@ -820,10 +822,8 @@ function AppIcon({
     code: `
 "use client";
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 
 export function SlidingTextButton() {
-  const [isHovered, setIsHovered] = useState(false);
   const textVariants = {
     rest: { y: 0 },
     hover: { y: '-125%' },
@@ -837,9 +837,7 @@ export function SlidingTextButton() {
   return (
     <motion.button
       initial="rest"
-      animate={isHovered ? "hover" : "rest"}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      whileHover="hover"
       className="relative block overflow-hidden whitespace-nowrap rounded-xl bg-primary px-6 py-3 text-lg font-medium text-primary-foreground shadow-lg"
     >
       <span className="relative inline-block h-full w-full">
@@ -969,6 +967,90 @@ export function FollowingEyes({ direction = 1 }: { direction?: number }) {
           { label: 'Opposite', value: -1 },
         ],
       },
+    ]
+  },
+  {
+    id: '27',
+    title: 'Wavy Text',
+    description: 'Text with a subtle, staggered up-and-down wave animation.',
+    category: 'Text',
+    preview: WavyText,
+    library: 'Framer Motion',
+    code: `
+"use client";
+
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface WavyTextProps {
+  text?: string;
+  className?: string;
+  delay?: number;
+  duration?: number;
+}
+
+export function WavyText({
+  text = "Wavy Text",
+  className,
+  delay = 0,
+  duration = 0.05,
+}: WavyTextProps) {
+  const letters = text.split("");
+
+  const container = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: delay,
+      },
+    },
+  };
+
+  const child = {
+    hidden: { y: 0 },
+    visible: {
+      y: [
+        "0%",
+        "-20%",
+        "0%",
+        "20%",
+        "0%",
+      ],
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatDelay: 2
+      },
+    },
+  };
+
+  return (
+    <motion.h1
+      className={cn("flex overflow-hidden font-headline text-4xl", className)}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {letters.map((letter, index) => (
+        <motion.span
+          key={index}
+          variants={child}
+          transition={{ duration: 1, delay: index * duration }}
+          style={{display: 'inline-block'}}
+        >
+          {letter === " " ? "\\u00A0" : letter}
+        </motion.span>
+      ))}
+    </motion.h1>
+  );
+}
+`,
+    controls: [
+      { prop: 'delay', label: 'Animation Delay', type: 'range', min: 0, max: 2, step: 0.1, defaultValue: 0 },
+      { prop: 'duration', label: 'Letter Stagger', type: 'range', min: 0.01, max: 0.2, step: 0.01, defaultValue: 0.05 },
     ]
   }
 ];
