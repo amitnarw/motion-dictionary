@@ -32,13 +32,16 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative text-center py-24 md:py-40 lg:py-48 px-4 overflow-hidden">
+        <section className="relative text-center py-24 px-4 overflow-hidden">
            <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
            <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
           
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-            <h1 className="text-8xl md:text-9xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70">
-              Motionary
+            <h1 className="w-full text-left text-6xl sm:text-8xl lg:text-[150px] font-semibold tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70">
+              Motion
+            </h1>
+            <h1 className="w-full text-right text-6xl sm:text-8xl lg:text-[150px] font-semibold tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70 -mt-8 sm:-mt-12 lg:-mt-16">
+              Dictionary
             </h1>
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
               Every animation. One search.
