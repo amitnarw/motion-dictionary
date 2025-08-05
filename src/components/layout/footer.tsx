@@ -4,10 +4,11 @@
 import { Meteors } from '@/components/animations/meteors';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Github, Send, Twitter, Youtube } from 'lucide-react';
+import { Send } from 'lucide-react';
 import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { FaceWithFollowingEyes } from '../animations/face-with-following-eyes';
 
 const footerLinks = [
   {
@@ -39,11 +40,6 @@ const footerLinks = [
   },
 ];
 
-const socialLinks = [
-  { icon: <Github />, href: '#', 'aria-label': 'GitHub' },
-  { icon: <Twitter />, href: '#', 'aria-label': 'Twitter' },
-  { icon: <Youtube />, href: '#', 'aria-label': 'YouTube' },
-];
 
 export function Footer() {
   const footerRef = useRef(null);
@@ -106,11 +102,7 @@ export function Footer() {
                     &copy; {new Date().getFullYear()} AniMotion. All rights reserved.
                 </p>
                 <div className="flex items-center gap-4 mt-4 sm:mt-0">
-                    {socialLinks.map((link) => (
-                        <Link key={link['aria-label']} href={link.href} aria-label={link['aria-label']} className="text-muted-foreground hover:text-primary transition-colors">
-                            {link.icon}
-                        </Link>
-                    ))}
+                   <FaceWithFollowingEyes />
                 </div>
             </div>
         </motion.div>
