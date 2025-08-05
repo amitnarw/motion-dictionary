@@ -14,7 +14,7 @@ export function LiquidFillText() {
               y="50%"
               dy=".35em"
               textAnchor="start"
-              className="text-8xl md:text-9xl font-black tracking-tighter uppercase select-none"
+              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
             >
               Motion
             </text>
@@ -25,7 +25,7 @@ export function LiquidFillText() {
               y="70%"
               dy=".35em"
               textAnchor="end"
-              className="text-8xl md:text-9xl font-black tracking-tighter uppercase select-none"
+              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
             >
               Dictionary
             </text>
@@ -38,7 +38,7 @@ export function LiquidFillText() {
             y="50%"
             dy=".35em"
             textAnchor="start"
-            className="text-8xl md:text-9xl font-black tracking-tighter uppercase fill-current text-foreground"
+            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
         >
              Motion
         </text>
@@ -47,7 +47,7 @@ export function LiquidFillText() {
             y="70%"
             dy=".35em"
             textAnchor="end"
-            className="text-8xl md:text-9xl font-black tracking-tighter uppercase fill-current text-foreground"
+            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
         >
              Dictionary
         </text>
