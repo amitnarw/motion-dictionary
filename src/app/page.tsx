@@ -39,14 +39,14 @@ export default function LandingPage() {
 
           <div className="container w-4/5 mx-auto flex flex-col items-center">
             <div className="max-w-fit mx-auto">
-                <h1 className="w-full text-left text-7xl sm:text-[120px] lg:text-[200px] font-headline">
-                    MOTION
+                <h1 className="w-full text-left text-6xl sm:text-[80px] lg:text-[150px] font-headline">
+                    Motion
                 </h1>
                 <LiquidFillText 
                     text="DICTIONARY" 
                     alignment="right"
-                    size="text-9xl sm:text-[160px] lg:text-[280px]"
-                    className="w-full font-black -mt-4 sm:-mt-6 lg:-mt-8" 
+                    size="text-[150px]"
+                    className="w-full font-black -mt-4" 
                 />
             </div>
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">

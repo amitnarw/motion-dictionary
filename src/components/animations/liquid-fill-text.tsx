@@ -33,13 +33,12 @@ export function LiquidFillText({
   const alignmentProps = getAlignmentProps(alignment);
   const textClasses = cn(
     "select-none",
-    size,
-    className?.split(' ').filter(cls => !cls.startsWith('text-') && !cls.startsWith('sm:text-') && !cls.startsWith('lg:text-'))
+    size
   );
 
   return (
     <div className={cn("relative", className)}>
-       <svg width="100%" viewBox="0 0 1200 300" className="w-full">
+       <svg width="100%" viewBox="0 0 1200 200" className="w-full">
          <defs>
            <clipPath id="text-clip-path-dictionary">
             <text
@@ -57,22 +56,22 @@ export function LiquidFillText({
             {...alignmentProps}
             y="50%"
             dominantBaseline="middle"
-            className={cn("fill-current text-foreground", textClasses)}
+            className={cn("fill-current", textClasses)}
         >
             {text}
         </text>
 
          <g clipPath="url(#text-clip-path-dictionary)">
-           <rect width="1200" height="300" className="fill-foreground" />
+           <rect width="1200" height="200" className="fill-foreground" />
            <motion.path
-             d="M -200 150 Q 200 180 600 150 Q 1000 120 1400 150 V 300 H -200 Z"
+             d="M -200 100 Q 200 130 600 100 Q 1000 70 1400 100 V 200 H -200 Z"
              className="fill-accent"
              style={{ opacity: 0.8 }}
              animate={{
                d: [
-                 "M -200 150 Q 200 180 600 150 Q 1000 120 1400 150 V 300 H -200 Z",
-                 "M -200 150 Q 200 120 600 150 Q 1000 180 1400 150 V 300 H -200 Z",
-                 "M -200 150 Q 200 180 600 150 Q 1000 120 1400 150 V 300 H -200 Z",
+                 "M -200 100 Q 200 130 600 100 Q 1000 70 1400 100 V 200 H -200 Z",
+                 "M -200 100 Q 200 70 600 100 Q 1000 130 1400 100 V 200 H -200 Z",
+                 "M -200 100 Q 200 130 600 100 Q 1000 70 1400 100 V 200 H -200 Z",
                ],
              }}
              transition={{
@@ -83,13 +82,13 @@ export function LiquidFillText({
              }}
            />
            <motion.path
-             d="M -200 150 Q 250 120 600 150 Q 950 180 1400 150 V 300 H -200 Z"
+             d="M -200 100 Q 250 70 600 100 Q 950 130 1400 100 V 200 H -200 Z"
              className="fill-primary"
              animate={{
                d: [
-                "M -200 150 Q 250 120 600 150 Q 950 180 1400 150 V 300 H -200 Z",
-                "M -200 150 Q 250 180 600 150 Q 950 120 1400 150 V 300 H -200 Z",
-                "M -200 150 Q 250 120 600 150 Q 950 180 1400 150 V 300 H -200 Z",
+                "M -200 100 Q 250 70 600 100 Q 950 130 1400 100 V 200 H -200 Z",
+                "M -200 100 Q 250 130 600 100 Q 950 70 1400 100 V 200 H -200 Z",
+                "M -200 100 Q 250 70 600 100 Q 950 130 1400 100 V 200 H -200 Z",
                ],
              }}
              transition={{
