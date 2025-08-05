@@ -12,7 +12,7 @@ export function LiquidFillText() {
             <text
               x="0"
               y="48%"
-              dominant-baseline="alphabetic"
+              dominantBaseline="alphabetic"
               textAnchor="start"
               className="text-9xl md:text-[10rem] font-black tracking-tighter select-none"
             >
@@ -23,7 +23,7 @@ export function LiquidFillText() {
              <text
               x="100%"
               y="52%"
-              dominant-baseline="hanging"
+              dominantBaseline="hanging"
               textAnchor="end"
               className="text-9xl md:text-[10rem] font-black tracking-tighter select-none"
             >
@@ -36,7 +36,7 @@ export function LiquidFillText() {
         <text
             x="0"
             y="48%"
-            dominant-baseline="alphabetic"
+            dominantBaseline="alphabetic"
             textAnchor="start"
             className="text-9xl md:text-[10rem] font-black tracking-tighter fill-current text-foreground"
         >
@@ -45,7 +45,7 @@ export function LiquidFillText() {
         <text
             x="100%"
             y="52%"
-            dominant-baseline="hanging"
+            dominantBaseline="hanging"
             textAnchor="end"
             className="text-9xl md:text-[10rem] font-black tracking-tighter fill-current text-foreground"
         >
