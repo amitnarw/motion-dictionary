@@ -30,6 +30,7 @@ import { WavyText } from '@/components/animations/wavy-text';
 import { LiquidFillTextPreview } from '@/components/animations/liquid-fill-text-preview';
 import { ScrollRevealText } from '@/components/animations/scroll-reveal-text';
 import { MagneticButtonPreview } from '@/components/animations/magnetic-button-preview';
+import { FancyButtonPreview } from '@/components/animations/fancy-button-preview';
 
 type AnimationControl = {
     prop: string;
@@ -1068,6 +1069,7 @@ export function WavyText({
     description: 'Text that appears to fill up with a flowing liquid.',
     category: 'Text',
     preview: LiquidFillTextPreview,
+    library: 'Framer Motion',
     code: `
 "use client";
 
@@ -1294,6 +1296,67 @@ export function MagneticButton({ className, variant, size, children, ...props }:
     >
       <span className="relative">{children}</span>
     </motion.div>
+  );
+}
+`
+  },
+  {
+    id: '31',
+    title: 'Liquid Fill Button',
+    description: 'A button that fills with a liquid-like wave on hover.',
+    category: 'Buttons',
+    preview: FancyButtonPreview,
+    library: 'Framer Motion',
+    code: `"use client";
+
+import { motion, Variants } from "framer-motion";
+import React from "react";
+
+interface FancyButtonProps {
+  text: string;
+  icon?: React.ReactNode;
+}
+
+export function FancyButton({ text, icon }: FancyButtonProps) {
+  const textVariants: Variants = {
+    rest: {
+      color: "hsl(var(--primary))",
+    },
+    hover: {
+      color: "hsl(var(--primary-foreground))",
+    },
+  };
+
+  const liquidVariants: Variants = {
+    rest: {
+      height: "0%",
+    },
+    hover: {
+      height: "100%",
+    },
+  };
+
+  return (
+    <motion.button
+      className="relative px-6 py-2 font-medium text-primary transition-colors duration-300 border border-primary rounded-full overflow-hidden"
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+    >
+      <motion.span
+        className="relative z-10 flex items-center"
+        variants={textVariants}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
+        {text}
+        {icon}
+      </motion.span>
+      <motion.div
+        className="absolute bottom-0 left-0 w-full bg-primary"
+        variants={liquidVariants}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+    </motion.button>
   );
 }
 `
