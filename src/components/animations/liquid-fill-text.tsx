@@ -21,7 +21,7 @@ export function LiquidFillText({
   const getAlignmentProps = (align: Alignment) => {
     switch (align) {
       case 'left':
-        return { x: "0", textAnchor: "start" };
+        return { x: "0%", textAnchor: "start" };
       case 'right':
         return { x: "100%", textAnchor: "end" };
       case 'center':
