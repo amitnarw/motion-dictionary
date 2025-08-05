@@ -3,9 +3,10 @@
 import { Meteors } from '@/components/animations/meteors';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
 import { Github, Send, Twitter, Youtube } from 'lucide-react';
 import Link from 'next/link';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const footerLinks = [
   {
@@ -44,12 +45,32 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { once: true, amount: 0.3 });
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8, 
+        ease: [0.6, 0.01, -0.05, 0.95] 
+      } 
+    },
+  };
+
   return (
-    <footer className="relative border-t border-border/20 overflow-hidden">
+    <footer ref={footerRef} className="relative border-t border-border/20 overflow-hidden">
         <div className="absolute inset-0">
              <Meteors />
         </div>
-        <div className="relative z-10 container py-12 w-4/5 mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          className="relative z-10 container py-12 w-4/5 mx-auto"
+        >
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
                 <div className="lg:col-span-2 pr-8">
                     <h3 className="font-headline text-lg font-semibold text-foreground">Stay updated</h3>
@@ -91,7 +112,7 @@ export function Footer() {
                     ))}
                 </div>
             </div>
-        </div>
+        </motion.div>
     </footer>
   );
 }
