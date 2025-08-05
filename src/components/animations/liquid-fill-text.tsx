@@ -11,10 +11,10 @@ export function LiquidFillText() {
           <clipPath id="text-clip-path-motion">
             <text
               x="0"
-              y="50%"
-              dy=".35em"
+              y="48%"
+              dominant-baseline="alphabetic"
               textAnchor="start"
-              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
+              className="text-9xl md:text-[10rem] font-black tracking-tighter select-none"
             >
               Motion
             </text>
@@ -22,10 +22,10 @@ export function LiquidFillText() {
           <clipPath id="text-clip-path-dictionary">
              <text
               x="100%"
-              y="70%"
-              dy=".35em"
+              y="52%"
+              dominant-baseline="hanging"
               textAnchor="end"
-              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
+              className="text-9xl md:text-[10rem] font-black tracking-tighter select-none"
             >
               Dictionary
             </text>
@@ -35,19 +35,19 @@ export function LiquidFillText() {
         {/* Fallback for non-supporting browsers */}
         <text
             x="0"
-            y="50%"
-            dy=".35em"
+            y="48%"
+            dominant-baseline="alphabetic"
             textAnchor="start"
-            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
+            className="text-9xl md:text-[10rem] font-black tracking-tighter fill-current text-foreground"
         >
              Motion
         </text>
         <text
             x="100%"
-            y="70%"
-            dy=".35em"
+            y="52%"
+            dominant-baseline="hanging"
             textAnchor="end"
-            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
+            className="text-9xl md:text-[10rem] font-black tracking-tighter fill-current text-foreground"
         >
              Dictionary
         </text>
