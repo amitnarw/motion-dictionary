@@ -17,10 +17,17 @@ export function FancyButton({
       whileHover="hover"
       animate="rest"
     >
-      <span className="relative z-10 flex items-center">
+      <motion.span
+        className="relative z-10 flex items-center"
+         variants={{
+          rest: { color: "hsl(var(--primary))" },
+          hover: { color: "hsl(var(--primary-foreground))" },
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
         {text}
         {icon}
-      </span>
+      </motion.span>
       <motion.div
         className="absolute inset-0 z-0 bg-primary"
         variants={{
@@ -30,21 +37,8 @@ export function FancyButton({
         transition={{ duration: 0.3, ease: "easeInOut" }}
         style={{
           borderRadius: "0 0 50% 50%",
-          transform: "scaleY(1.5)",
-          transformOrigin: "bottom",
         }}
       />
-       <motion.span
-        className="relative z-10 text-primary transition-colors duration-300"
-        variants={{
-          rest: { opacity: 1 },
-          hover: { opacity: 0 },
-        }}
-         transition={{ duration: 0.1 }}
-      >
-        {text}
-        {icon}
-      </motion.span>
     </motion.button>
   );
 }
