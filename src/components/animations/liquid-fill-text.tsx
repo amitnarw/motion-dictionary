@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -37,27 +38,35 @@ export function LiquidFillText() {
           <rect width="800" height="120" className="fill-foreground" />
           
           {/* Liquid Wave */}
-          <motion.path
-            d="M -10 120 Q 200 100 400 120 Q 600 140 810 120 V 240 H -10 Z"
+           <motion.path
+            d="M -10 60 Q 200 40 400 60 Q 600 80 810 60 V 120 H -10 Z"
             className="fill-primary"
             animate={{
-              y: ["0%", "-100%"],
+              d: [
+                "M -10 60 Q 200 40 400 60 Q 600 80 810 60 V 120 H -10 Z",
+                "M -10 60 Q 200 80 400 60 Q 600 40 810 60 V 120 H -10 Z",
+                "M -10 60 Q 200 40 400 60 Q 600 80 810 60 V 120 H -10 Z",
+              ],
             }}
             transition={{
-              duration: 4,
+              duration: 5,
               ease: "linear",
               repeat: Infinity,
             }}
           />
           <motion.path
-            d="M -10 120 Q 190 140 400 120 Q 610 100 810 120 V 240 H -10 Z"
+             d="M -10 60 Q 190 80 400 60 Q 610 40 810 60 V 120 H -10 Z"
             className="fill-accent"
             style={{ opacity: 0.5 }}
-             animate={{
-              y: ["0%", "-100%"],
+            animate={{
+              d: [
+                "M -10 60 Q 190 80 400 60 Q 610 40 810 60 V 120 H -10 Z",
+                "M -10 60 Q 190 40 400 60 Q 610 80 810 60 V 120 H -10 Z",
+                "M -10 60 Q 190 80 400 60 Q 610 40 810 60 V 120 H -10 Z",
+              ],
             }}
-            transition={{
-              duration: 4,
+             transition={{
+              duration: 5,
               ease: "linear",
               repeat: Infinity,
               delay: 1,
