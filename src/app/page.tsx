@@ -33,7 +33,7 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative text-center py-12 px-4 overflow-hidden">
+        <section className="relative text-center py-16 px-4 overflow-hidden">
           <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
@@ -41,7 +41,7 @@ export default function LandingPage() {
             <h1 className="w-full text-left text-7xl sm:text-[120px] lg:text-[150px] font-headline">
               MOTION
             </h1>
-            <LiquidFillText text="DICTIONARY" className="w-full text-right text-9xl sm:text-[160px] lg:text-[280px] font-semibold -mt-4" />
+            <LiquidFillText text="DICTIONARY" className="w-full text-right text-9xl sm:text-[160px] lg:text-[150px] font-semibold -mt-4 sm:-mt-6 lg:-mt-8" />
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
               Every animation. One search.
             </h2>
