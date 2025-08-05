@@ -2,7 +2,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Palette, Sparkles, FilePlus, Sun, Moon } from 'lucide-react';
+import { FilePlus, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -14,6 +14,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { CreativeLogo } from './creative-logo';
 
 const navItems = [
     { href: "/animations", label: "Animations" },
@@ -55,9 +56,8 @@ export function Header() {
         <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg">
             <div className="container flex h-16 items-center justify-between w-4/5 mx-auto">
                 <div className="mr-4 flex">
-                    <Link href="/" className="flex items-center gap-2">
-                        <Palette className="h-6 w-6 text-primary" />
-                        <span className="font-bold text-lg">Motionary</span>
+                    <Link href="/">
+                        <CreativeLogo />
                     </Link>
                 </div>
                 <nav className="hidden md:flex items-center gap-6 text-sm">
