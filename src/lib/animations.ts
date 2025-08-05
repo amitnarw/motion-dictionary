@@ -1302,7 +1302,7 @@ export function MagneticButton({ className, variant, size, children, ...props }:
   },
   {
     id: '31',
-    title: 'Liquid Fill Button',
+    title: 'Liquid Wave Button',
     description: 'A button that fills with a liquid-like wave on hover.',
     category: 'Buttons',
     preview: FancyButtonPreview,
@@ -1324,38 +1324,77 @@ export function FancyButton({ text, icon }: FancyButtonProps) {
     },
     hover: {
       color: "hsl(var(--primary-foreground))",
+      transition: {
+        duration: 0.3,
+        ease: "easeOut"
+      }
     },
   };
 
   const liquidVariants: Variants = {
     rest: {
-      height: "0%",
+      y: "105%",
     },
     hover: {
-      height: "100%",
+      y: "0%",
     },
   };
+  
+  const waveVariants1: Variants = {
+    rest: {},
+    hover: {
+        d: [
+            "M -50 20 Q 45 30 100 20 Q 155 10 200 20 V 50 H -50 Z",
+            "M -50 20 Q 45 10 100 20 Q 155 30 200 20 V 50 H -50 Z",
+            "M -50 20 Q 45 30 100 20 Q 155 10 200 20 V 50 H -50 Z",
+        ],
+        transition: { duration: 4, ease: "linear", repeat: Infinity }
+    }
+  }
+
+  const waveVariants2: Variants = {
+    rest: {},
+    hover: {
+        d: [
+            "M -50 20 Q 50 10 100 20 Q 150 30 200 20 V 50 H -50 Z",
+            "M -50 20 Q 50 30 100 20 Q 150 10 200 20 V 50 H -50 Z",
+            "M -50 20 Q 50 10 100 20 Q 150 30 200 20 V 50 H -50 Z",
+        ],
+        transition: { duration: 4, ease: "linear", repeat: Infinity, delay: 1 }
+    }
+  }
 
   return (
     <motion.button
-      className="relative px-6 py-2 font-medium text-primary transition-colors duration-300 border border-primary rounded-full overflow-hidden"
+      className="relative w-48 h-12 font-medium border border-primary rounded-full overflow-hidden"
       initial="rest"
       whileHover="hover"
       animate="rest"
     >
       <motion.span
-        className="relative z-10 flex items-center"
+        className="relative z-10 flex items-center justify-center h-full w-full"
         variants={textVariants}
-        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {text}
         {icon}
       </motion.span>
       <motion.div
-        className="absolute bottom-0 left-0 w-full bg-primary"
+        className="absolute inset-0 z-0"
         variants={liquidVariants}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      >
+         <svg viewBox="0 0 150 50" preserveAspectRatio="none" className="absolute h-full w-full">
+            <motion.path 
+                variants={waveVariants1} 
+                className="fill-accent"
+                style={{ opacity: 0.8 }}
+            />
+             <motion.path 
+                variants={waveVariants2} 
+                className="fill-primary"
+            />
+         </svg>
+      </motion.div>
     </motion.button>
   );
 }
