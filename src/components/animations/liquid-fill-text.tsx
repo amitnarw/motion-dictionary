@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function LiquidFillText({ text, className }: { text: string; className?: string }) {
   return (
-    <div className={cn("relative flex items-center justify-center", className?.includes("-mt") ? className?.split(" ").find(c => c.startsWith("-mt")) : "")}>
+    <div className={cn("relative flex items-center justify-center", className)}>
        <svg width="100%" viewBox="0 0 1200 300" className="w-full">
          <defs>
            <clipPath id="text-clip-path-dictionary">
@@ -15,7 +15,7 @@ export function LiquidFillText({ text, className }: { text: string; className?: 
                 y="50%"
                 dominantBaseline="middle"
                 textAnchor="middle"
-                className={cn("select-none", className?.split(" ").filter(c => !c.startsWith("-mt")).join(" "))}
+                className={cn("select-none", className)}
             >
                 {text}
             </text>
@@ -27,7 +27,7 @@ export function LiquidFillText({ text, className }: { text: string; className?: 
             y="50%"
             dominantBaseline="middle"
             textAnchor="middle"
-            className={cn("fill-current text-foreground select-none", className?.split(" ").filter(c => !c.startsWith("-mt")).join(" "))}
+            className={cn("fill-current text-foreground select-none", className)}
         >
             {text}
         </text>
