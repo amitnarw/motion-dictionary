@@ -101,7 +101,7 @@ export function AnimationCard({ animation, index }: AnimationCardProps) {
                     className={cn(
                     "border-transparent text-xs mb-2",
                     animation.library === 'Framer Motion' && "bg-blue-500/20 text-blue-300",
-                    animation.library === 'GSAP' && "bg-gradient-to-r from-[#0ae448] to-[#abff84] text-black",
+                    animation.library === 'GSAP' && "bg-gradient-to-r from-[var(--color-shockingly-green)] to-[var(--color-lt-green)] text-black",
                     animation.library === 'TailwindCSS' && "bg-teal-500/20 text-teal-300"
                     )}
                     >

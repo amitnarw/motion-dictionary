@@ -68,8 +68,8 @@ export function Footer() {
           animate={isInView ? 'visible' : 'hidden'}
           className="relative z-10 container py-12 w-4/5 mx-auto"
         >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-                <div className="lg:col-span-2 pr-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div className="pr-8">
                     <h3 className="font-headline text-lg font-semibold text-foreground">Stay updated</h3>
                     <p className="mt-2 text-sm text-muted-foreground">
                         Get the latest animations and updates delivered right to your inbox.
@@ -81,29 +81,33 @@ export function Footer() {
                         </Button>
                     </form>
                 </div>
-                {footerLinks.map((section) => (
-                    <div key={section.title}>
-                        <h3 className="font-headline text-lg font-semibold text-foreground">{section.title}</h3>
-                        <ul className="mt-4 space-y-2">
-                        {section.links.map((link) => (
-                            <li key={link.label}>
-                            <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                                {link.label}
-                            </Link>
-                            </li>
-                        ))}
-                        </ul>
-                    </div>
-                ))}
+                
+                <div className="flex justify-center items-center">
+                    <FaceWithFollowingEyes />
+                </div>
+
+                <div className="grid grid-cols-3 gap-8 text-right">
+                    {footerLinks.map((section) => (
+                        <div key={section.title}>
+                            <h3 className="font-headline text-lg font-semibold text-foreground">{section.title}</h3>
+                            <ul className="mt-4 space-y-2">
+                            {section.links.map((link) => (
+                                <li key={link.label}>
+                                <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                                    {link.label}
+                                </Link>
+                                </li>
+                            ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className="mt-12 pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between">
                 <p className="text-sm text-muted-foreground">
                     &copy; {new Date().getFullYear()} AniMotion. All rights reserved.
                 </p>
-                <div className="flex items-center gap-4 mt-4 sm:mt-0">
-                   <FaceWithFollowingEyes />
-                </div>
             </div>
         </motion.div>
     </footer>
