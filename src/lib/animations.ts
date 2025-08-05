@@ -29,6 +29,7 @@ import { FollowingEyes } from '@/components/animations/following-eyes';
 import { WavyText } from '@/components/animations/wavy-text';
 import { LiquidFillText } from '@/components/animations/liquid-fill-text';
 import { ScrollRevealText } from '@/components/animations/scroll-reveal-text';
+import { MagneticButtonPreview } from '@/components/animations/magnetic-button-preview';
 
 type AnimationControl = {
     prop: string;
@@ -1072,50 +1073,66 @@ export function WavyText({
 "use client";
 
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 
 export function LiquidFillText() {
   return (
-    <div className="relative w-full text-center">
-      <svg width="100%" viewBox="0 0 800 120" className="max-w-4xl mx-auto">
+    <div className="relative w-full text-center h-48 flex flex-col items-center justify-center">
+      <svg width="100%" viewBox="0 0 800 200" className="max-w-5xl mx-auto">
         <defs>
-          <clipPath id="text-clip-path">
+          <clipPath id="text-clip-path-motion">
             <text
-              x="50%"
+              x="0"
               y="50%"
               dy=".35em"
-              textAnchor="middle"
-              className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase select-none"
+              textAnchor="start"
+              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
             >
-              Animate Text
+              Motion
+            </text>
+          </clipPath>
+          <clipPath id="text-clip-path-dictionary">
+             <text
+              x="100%"
+              y="70%"
+              dy=".35em"
+              textAnchor="end"
+              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
+            >
+              Dictionary
             </text>
           </clipPath>
         </defs>
         
         {/* Fallback for non-supporting browsers */}
         <text
-            x="50%"
+            x="0"
             y="50%"
             dy=".35em"
-            textAnchor="middle"
-            className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase fill-current text-foreground"
+            textAnchor="start"
+            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
         >
-             Animate Text
+             Motion
+        </text>
+        <text
+            x="100%"
+            y="70%"
+            dy=".35em"
+            textAnchor="end"
+            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
+        >
+             Dictionary
         </text>
 
-        <g clipPath="url(#text-clip-path)">
-          {/* Background fill */}
-          <rect width="800" height="120" className="fill-foreground" />
-          
-          {/* Liquid Wave */}
+        <g clipPath="url(#text-clip-path-motion)">
+          <rect width="800" height="200" className="fill-foreground" />
            <motion.path
-            d="M -10 60 Q 200 40 400 60 Q 600 80 810 60 V 120 H -10 Z"
+            d="M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z"
             className="fill-primary"
             animate={{
               d: [
-                "M -10 60 Q 200 40 400 60 Q 600 80 810 60 V 120 H -10 Z",
-                "M -10 60 Q 200 80 400 60 Q 600 40 810 60 V 120 H -10 Z",
-                "M -10 60 Q 200 40 400 60 Q 600 80 810 60 V 120 H -10 Z",
+                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
+                "M -10 100 Q 200 120 400 100 Q 600 80 810 100 V 200 H -10 Z",
+                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
               ],
             }}
             transition={{
@@ -1124,15 +1141,18 @@ export function LiquidFillText() {
               repeat: Infinity,
             }}
           />
-          <motion.path
-             d="M -10 60 Q 190 80 400 60 Q 610 40 810 60 V 120 H -10 Z"
+        </g>
+         <g clipPath="url(#text-clip-path-dictionary)">
+          <rect width="800" height="200" className="fill-foreground" />
+           <motion.path
+            d="M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z"
             className="fill-accent"
-            style={{ opacity: 0.5 }}
+            style={{ opacity: 0.8 }}
             animate={{
               d: [
-                "M -10 60 Q 190 80 400 60 Q 610 40 810 60 V 120 H -10 Z",
-                "M -10 60 Q 190 40 400 60 Q 610 80 810 60 V 120 H -10 Z",
-                "M -10 60 Q 190 80 400 60 Q 610 40 810 60 V 120 H -10 Z",
+                "M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z",
+                "M -10 100 Q 190 80 400 100 Q 610 120 810 100 V 200 H -10 Z",
+                "M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z",
               ],
             }}
              transition={{
@@ -1225,5 +1245,82 @@ export function ScrollRevealText({
       },
        { prop: 'text', label: 'Text', type: 'text', defaultValue: 'Scroll To Reveal' },
     ]
+  },
+  {
+    id: '30',
+    title: 'Magnetic Button',
+    description: 'A button that attracts the cursor like a magnet.',
+    category: 'Buttons',
+    preview: MagneticButtonPreview,
+    library: 'Framer Motion',
+    code: `// @/components/ui/magnetic-button.tsx
+"use client";
+import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import { cva, type VariantProps } from "class-variance-authority";
+
+const buttonVariants = cva(
+  "relative inline-flex items-center justify-center rounded-full font-semibold transition-colors duration-300 overflow-hidden group text-black",
+  {
+    variants: {
+      variant: {
+        default: "shadow-sm",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+      },
+      size: {
+        default: "px-8 py-4 text-base",
+        lg: "px-12 py-5 text-lg",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface MagneticButtonProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof buttonVariants> {
+  children: React.ReactNode;
+}
+
+export function MagneticButton({ className, variant, size, children, ...props }: MagneticButtonProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
+    const { clientX, clientY } = e;
+    if (ref.current) {
+      const { height, width, left, top } = ref.current.getBoundingClientRect();
+      const x = clientX - (left + width / 2);
+      const y = clientY - (top + height / 2);
+      setPosition({ x, y });
+    }
+  };
+
+  const reset = () => {
+    setPosition({ x: 0, y: 0 });
+  };
+
+  const { x, y } = position;
+  return (
+    <motion.div
+      ref={ref}
+      className={cn(buttonVariants({ variant, size, className }))}
+      style={{ background: 'var(--gradient-macha)'}}
+      onMouseMove={handleMouse}
+      onMouseLeave={reset}
+      animate={{ x, y }}
+      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      {...props}
+    >
+      <span className="relative">{children}</span>
+    </motion.div>
+  );
+}
+`
   }
 ];
+
