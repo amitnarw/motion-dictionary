@@ -49,6 +49,11 @@ export default function LandingPage() {
                     className="w-full font-black -mt-4" 
                 />
             </div>
+             <div className="mt-10 flex gap-4 justify-center">
+              <Link href="/animations">
+                <FancyButton />
+              </Link>
+            </div>
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
               Every animation. One search.
             </h2>
@@ -57,11 +62,6 @@ export default function LandingPage() {
               Search, preview, and copy production-ready animation code with ease.
               Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
             </p>
-            <div className="mt-10 flex gap-4 justify-center">
-              <Link href="/animations">
-                <FancyButton />
-              </Link>
-            </div>
           </div>
         </section>
 
