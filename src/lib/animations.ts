@@ -26,6 +26,7 @@ import { SlidingTextButton } from '@/components/animations/sliding-text-button';
 import { RevealBgButton } from '@/components/animations/reveal-bg-button';
 import { FollowingEyes } from '@/components/animations/following-eyes';
 import { WavyText } from '@/components/animations/wavy-text';
+import { LiquidFillText } from '@/components/animations/liquid-fill-text';
 
 type AnimationControl = {
     prop: string;
@@ -411,12 +412,12 @@ export function PageFlyIn() {
     id: '14',
     title: 'Typing Effect',
     description: 'Text appears with a character-by-character typing animation.',
-    category: 'Welcome Screen',
+    category: 'Text',
     preview: TypingEffect,
     library: 'Framer Motion',
     code: `import { motion } from "framer-motion";
 
-const text = "Welcome to AniLib!";
+const text = "Welcome to AniMotion";
 const characters = Array.from(text);
 
 const container = {
@@ -454,10 +455,14 @@ export function TypingEffect() {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="flex overflow-hidden font-bold text-lg"
+      className="flex overflow-hidden font-headline font-bold text-4xl md:text-6xl"
     >
       {characters.map((char, index) => (
-        <motion.span key={index} variants={child}>
+        <motion.span
+          key={index}
+          variants={child}
+          className={index > 11 ? "text-primary" : ""}
+        >
           {char === " " ? "\\u00A0" : char}
         </motion.span>
       ))}
@@ -1049,8 +1054,89 @@ export function WavyText({
 }
 `,
     controls: [
+      { prop: 'text', label: 'Text', type: 'text', defaultValue: 'Wavy Text Animation' },
       { prop: 'delay', label: 'Animation Delay', type: 'range', min: 0, max: 2, step: 0.1, defaultValue: 0 },
       { prop: 'duration', label: 'Letter Stagger', type: 'range', min: 0.01, max: 0.2, step: 0.01, defaultValue: 0.05 },
     ]
+  },
+   {
+    id: '28',
+    title: 'Liquid Fill Text',
+    description: 'Text that appears to fill up with a flowing liquid.',
+    category: 'Text',
+    preview: LiquidFillText,
+    library: 'Framer Motion',
+    code: `
+"use client";
+
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+export function LiquidFillText() {
+  return (
+    <div className="relative w-full text-center">
+      <svg width="100%" viewBox="0 0 800 120" className="max-w-4xl mx-auto">
+        <defs>
+          <clipPath id="text-clip-path">
+            <text
+              x="50%"
+              y="50%"
+              dy=".35em"
+              textAnchor="middle"
+              className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase select-none"
+            >
+              Animate Anything
+            </text>
+          </clipPath>
+        </defs>
+        
+        {/* Fallback for non-supporting browsers */}
+        <text
+            x="50%"
+            y="50%"
+            dy=".35em"
+            textAnchor="middle"
+            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase fill-current text-foreground"
+        >
+             Animate Anything
+        </text>
+
+        <g clipPath="url(#text-clip-path)">
+          {/* Background fill */}
+          <rect width="800" height="120" className="fill-foreground" />
+          
+          {/* Liquid Wave */}
+          <motion.path
+            d="M -10 120 Q 200 100 400 120 Q 600 140 810 120 V 240 H -10 Z"
+            className="fill-primary"
+            animate={{
+              y: ["0%", "-100%"],
+            }}
+            transition={{
+              duration: 4,
+              ease: "linear",
+              repeat: Infinity,
+            }}
+          />
+          <motion.path
+            d="M -10 120 Q 190 140 400 120 Q 610 100 810 120 V 240 H -10 Z"
+            className="fill-accent"
+            style={{ opacity: 0.5 }}
+             animate={{
+              y: ["0%", "-100%"],
+            }}
+            transition={{
+              duration: 4,
+              ease: "linear",
+              repeat: Infinity,
+              delay: 1,
+            }}
+          />
+        </g>
+      </svg>
+    </div>
+  );
+}
+`
   }
 ];
