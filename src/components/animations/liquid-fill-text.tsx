@@ -14,7 +14,7 @@ export function LiquidFillText() {
               y="48%"
               dominantBaseline="alphabetic"
               textAnchor="start"
-              className="text-9xl md:text-[10rem] font-black tracking-tighter select-none"
+              className="text-9xl md:text-[10rem] font-bold tracking-tighter select-none"
             >
               Motion
             </text>
@@ -25,53 +25,36 @@ export function LiquidFillText() {
               y="52%"
               dominantBaseline="hanging"
               textAnchor="end"
-              className="text-9xl md:text-[10rem] font-black tracking-tighter select-none"
+              className="text-9xl md:text-[10rem] font-bold tracking-tighter select-none"
             >
               Dictionary
             </text>
           </clipPath>
         </defs>
         
-        {/* Fallback for non-supporting browsers */}
+        {/* Render Motion as static text */}
         <text
             x="0"
             y="48%"
             dominantBaseline="alphabetic"
             textAnchor="start"
-            className="text-9xl md:text-[10rem] font-black tracking-tighter fill-current text-foreground"
+            className="text-9xl md:text-[10rem] font-bold tracking-tighter fill-current text-foreground"
         >
              Motion
         </text>
+
+        {/* Fallback for Dictionary */}
         <text
             x="100%"
             y="52%"
             dominantBaseline="hanging"
             textAnchor="end"
-            className="text-9xl md:text-[10rem] font-black tracking-tighter fill-current text-foreground"
+            className="text-9xl md:text-[10rem] font-bold tracking-tighter fill-current text-foreground lg:hidden"
         >
              Dictionary
         </text>
-
-        <g clipPath="url(#text-clip-path-motion)">
-          <rect width="800" height="200" className="fill-foreground" />
-           <motion.path
-            d="M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z"
-            className="fill-primary"
-            animate={{
-              d: [
-                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
-                "M -10 100 Q 200 120 400 100 Q 600 80 810 100 V 200 H -10 Z",
-                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
-              ],
-            }}
-            transition={{
-              duration: 5,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          />
-        </g>
-         <g clipPath="url(#text-clip-path-dictionary)">
+        
+         <g clipPath="url(#text-clip-path-dictionary)" className="hidden lg:block">
           <rect width="800" height="200" className="fill-foreground" />
            <motion.path
             d="M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z"
@@ -89,6 +72,22 @@ export function LiquidFillText() {
               ease: "linear",
               repeat: Infinity,
               delay: 1,
+            }}
+          />
+           <motion.path
+            d="M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z"
+            className="fill-primary"
+            animate={{
+              d: [
+                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
+                "M -10 100 Q 200 120 400 100 Q 600 80 810 100 V 200 H -10 Z",
+                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
+              ],
+            }}
+            transition={{
+              duration: 5,
+              ease: "linear",
+              repeat: Infinity,
             }}
           />
         </g>
