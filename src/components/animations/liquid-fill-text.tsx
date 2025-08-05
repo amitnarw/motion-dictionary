@@ -15,9 +15,9 @@ export function LiquidFillText() {
               y="50%"
               dy=".35em"
               textAnchor="middle"
-              className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase select-none"
+              className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase select-none"
             >
-              Animate Anything
+              Motion Unleashed
             </text>
           </clipPath>
         </defs>
@@ -28,9 +28,9 @@ export function LiquidFillText() {
             y="50%"
             dy=".35em"
             textAnchor="middle"
-            className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase fill-current text-foreground"
+            className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase fill-current text-foreground"
         >
-             Animate Anything
+             Motion Unleashed
         </text>
 
         <g clipPath="url(#text-clip-path)">
