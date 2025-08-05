@@ -3,38 +3,9 @@
 
 import { motion } from "framer-motion";
 
-export function CreativeLogo() {
+export function InteractiveTextPreview() {
   const text = "Motionary";
   const letters = Array.from(text);
-
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.05, delayChildren: 0.1 },
-    },
-  };
-
-  const child = {
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-    hidden: {
-      opacity: 0,
-      scale: 0.5,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
 
   const letterAnimations = [
     { scale: 1.2, y: -2 }, // M
@@ -49,22 +20,18 @@ export function CreativeLogo() {
   ];
 
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className="flex items-center text-xl font-bold cursor-pointer"
+    <div
+      className="flex items-center justify-center text-4xl font-bold cursor-pointer"
     >
       {letters.map((letter, index) => (
         <motion.span
           key={index}
-          variants={child}
           whileHover={{ ...letterAnimations[index], transition: { duration: 0.2 } }}
           className={index === 0 ? "text-primary" : ""}
         >
           {letter}
         </motion.span>
       ))}
-    </motion.div>
+    </div>
   );
 }
