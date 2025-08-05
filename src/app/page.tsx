@@ -1,5 +1,6 @@
 
 
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Copy, Palette } from "lucide-react";
 import Link from "next/link";
@@ -38,7 +39,7 @@ export default function LandingPage() {
           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-            <div className="w-full">
+            <div className="max-w-fit mx-auto">
                 <h1 className="w-full text-left text-6xl sm:text-[80px] lg:text-[150px] font-headline">
                     Motion
                 </h1>
@@ -51,7 +52,7 @@ export default function LandingPage() {
             </div>
              <div className="mt-10 flex gap-4 justify-center">
               <Link href="/animations">
-                <FancyButton />
+                <FancyButton text="Explore Animations" icon={<ArrowRight className="ml-2 h-5 w-5" />} />
               </Link>
             </div>
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
