@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { FadeInUp } from '@/components/animations/fade-in-up';
 import { PulsingButton } from '@/components/animations/pulsing-button';
@@ -27,11 +28,12 @@ import { RevealBgButton } from '@/components/animations/reveal-bg-button';
 import { FollowingEyes } from '@/components/animations/following-eyes';
 import { WavyText } from '@/components/animations/wavy-text';
 import { LiquidFillText } from '@/components/animations/liquid-fill-text';
+import { ScrollRevealText } from '@/components/animations/scroll-reveal-text';
 
 type AnimationControl = {
     prop: string;
     label: string;
-    type: 'range' | 'select' | 'text';
+    type: 'range' | 'select' | 'text' | 'color';
     min?: number;
     max?: number;
     step?: number;
@@ -1146,5 +1148,82 @@ export function LiquidFillText() {
   );
 }
 `
+  },
+  {
+    id: '29',
+    title: 'Scroll Reveal Text',
+    description: 'Text color is revealed from left or right based on scroll position.',
+    category: 'Text',
+    preview: ScrollRevealText,
+    library: 'Framer Motion',
+    code: `"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { cn } from "@/lib/utils";
+
+interface ScrollRevealTextProps {
+  text?: string;
+  className?: string;
+  direction?: "left" | "right";
+  color?: string;
+}
+
+export function ScrollRevealText({
+  text = "Scroll to reveal text",
+  className,
+  direction = "left",
+  color = "hsl(var(--primary))",
+}: ScrollRevealTextProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const backgroundSize = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0% 100%", "100% 100%"]
+  );
+
+  const gradientDirection = direction === "left" 
+    ? \`linear-gradient(to right, \${color}, \${color})\`
+    : \`linear-gradient(to left, \${color}, \${color})\`;
+
+  return (
+    <div ref={containerRef} className={cn("py-20", className)}>
+      <motion.h1 
+        className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text"
+        style={{ 
+            backgroundImage: gradientDirection,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: backgroundSize,
+        }}
+      >
+        {text}
+      </motion.h1>
+    </div>
+  );
+}`,
+    controls: [
+      {
+        prop: 'direction',
+        label: 'Direction',
+        type: 'select',
+        defaultValue: 'left',
+        options: [
+          { label: 'Left to Right', value: 'left' },
+          { label: 'Right to Left', value: 'right' },
+        ],
+      },
+      {
+        prop: 'color',
+        label: 'Color',
+        type: 'color',
+        defaultValue: 'hsl(var(--primary))',
+      },
+       { prop: 'text', label: 'Text', type: 'text', defaultValue: 'Scroll To Reveal' },
+    ]
   }
 ];

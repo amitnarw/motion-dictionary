@@ -16,8 +16,6 @@ const footerLinks = [
     links: [
       { label: 'Animations', href: '/animations' },
       { label: 'AI Suggestions', href: '/ai-suggestions' },
-      { label: 'Submit', href: '/submit' },
-      { label: 'Pricing', href: '#' },
     ],
   },
   {
@@ -25,8 +23,13 @@ const footerLinks = [
     links: [
       { label: 'About Us', href: '#' },
       { label: 'Blog', href: '#' },
+    ],
+  },
+   {
+    title: 'Actions',
+    links: [
+      { label: 'Submit', href: '/submit' },
       { label: 'Contact', href: '#' },
-      { label: 'Careers', href: '#' },
     ],
   },
   {
@@ -34,8 +37,6 @@ const footerLinks = [
     links: [
       { label: 'Documentation', href: '#' },
       { label: 'Support', href: '#' },
-      { label: 'Community', href: '#' },
-      { label: 'Terms of Service', href: '#' },
     ],
   },
 ];
@@ -86,7 +87,7 @@ export function Footer() {
                     <FaceWithFollowingEyes />
                 </div>
 
-                <div className="grid grid-cols-3 gap-8 text-right">
+                <div className="grid grid-cols-2 gap-8 text-right">
                     {footerLinks.map((section) => (
                         <div key={section.title}>
                             <h3 className="font-headline text-lg font-semibold text-foreground">{section.title}</h3>
