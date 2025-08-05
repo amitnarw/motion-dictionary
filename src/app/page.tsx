@@ -1,6 +1,5 @@
 
 
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Copy, Palette } from "lucide-react";
 import Link from "next/link";
@@ -39,14 +38,13 @@ export default function LandingPage() {
           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-            <div className="max-w-fit mx-auto">
+            <div className="w-full">
                 <h1 className="w-full text-left text-6xl sm:text-[80px] lg:text-[150px] font-headline">
                     Motion
                 </h1>
                 <LiquidFillText 
                     text="DICTIONARY" 
                     alignment="right"
-                    size="text-9xl sm:text-[160px] lg:text-[280px]"
                     className="w-full font-black -mt-4" 
                 />
             </div>
