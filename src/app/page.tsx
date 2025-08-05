@@ -38,10 +38,10 @@ export default function LandingPage() {
           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-            <h1 className="w-full text-left text-7xl sm:text-[120px] lg:text-[200px] font-semibold font-headline">
+            <h1 className="w-full text-left text-7xl sm:text-[120px] lg:text-[150px] font-light">
               MOTION
             </h1>
-            <LiquidFillText text="DICTIONARY" className="w-full transform [scaleX(1.4)] text-right text-7xl sm:text-[120px] lg:text-[200px] font-semibold -mt-4" />
+            <LiquidFillText text="DICTIONARY" className="w-full text-right text-7xl sm:text-[120px] lg:text-[200px] font-semibold -mt-4 font-headline" />
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
               Every animation. One search.
             </h2>
