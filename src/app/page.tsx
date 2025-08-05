@@ -5,7 +5,7 @@ import { ArrowRight, Code, Copy, Palette } from "lucide-react";
 import Link from "next/link";
 import { AnimationCard } from "@/components/animation-card";
 import { animations } from "@/lib/animations";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+import { FancyButton } from "@/components/ui/fancy-button";
 import { LiquidFillText } from "@/components/animations/liquid-fill-text";
 
 export default function LandingPage() {
@@ -58,11 +58,9 @@ export default function LandingPage() {
               Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
             </p>
             <div className="mt-10 flex gap-4 justify-center">
-              <MagneticButton>
-                <Link href="/animations" className="flex items-center gap-2">
-                  Explore Animations <ArrowRight className="ml-2" />
-                </Link>
-              </MagneticButton>
+              <Link href="/animations">
+                <FancyButton />
+              </Link>
             </div>
           </div>
         </section>
