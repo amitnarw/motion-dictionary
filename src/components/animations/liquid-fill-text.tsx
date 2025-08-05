@@ -11,9 +11,10 @@ export function LiquidFillText({ text, className }: { text: string; className?: 
          <defs>
            <clipPath id="text-clip-path-dictionary">
             <text
-                x="0"
+                x="100%"
                 y="50%"
                 dominantBaseline="middle"
+                textAnchor="end"
                 className={cn("select-none", className)}
             >
                 {text}
@@ -22,9 +23,10 @@ export function LiquidFillText({ text, className }: { text: string; className?: 
          </defs>
 
          <text
-            x="0"
+            x="100%"
             y="50%"
             dominantBaseline="middle"
+            textAnchor="end"
             className={cn("fill-current text-foreground select-none", className)}
         >
             {text}
