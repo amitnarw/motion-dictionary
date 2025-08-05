@@ -1,10 +1,12 @@
 
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Copy, Palette } from "lucide-react";
 import Link from "next/link";
 import { AnimationCard } from "@/components/animation-card";
 import { animations } from "@/lib/animations";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { WavyText } from "@/components/animations/wavy-text";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -35,10 +37,11 @@ export default function LandingPage() {
            <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
            <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
           
-          <div className="container w-4/5 mx-auto">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground uppercase">
-              Animate Anything
-            </h1>
+          <div className="container w-4/5 mx-auto flex flex-col items-center">
+            <WavyText 
+              text="Animate Anything" 
+              className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground uppercase"
+            />
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               The ultimate open-source hub of production-ready animations. Built for developers, designers, and creators to bring life to their projects with ease.
             </p>
