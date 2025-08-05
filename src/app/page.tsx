@@ -6,7 +6,6 @@ import Link from "next/link";
 import { AnimationCard } from "@/components/animation-card";
 import { animations } from "@/lib/animations";
 import { MagneticButton } from "@/components/ui/magnetic-button";
-import { LiquidFillText } from "@/components/animations/liquid-fill-text";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -38,7 +37,9 @@ export default function LandingPage() {
            <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
           
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-            <LiquidFillText />
+            <h1 className="text-8xl md:text-9xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground/70">
+              Motionary
+            </h1>
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
               Every animation. One search.
             </h2>
