@@ -27,7 +27,7 @@ import { SlidingTextButton } from '@/components/animations/sliding-text-button';
 import { RevealBgButton } from '@/components/animations/reveal-bg-button';
 import { FollowingEyes } from '@/components/animations/following-eyes';
 import { WavyText } from '@/components/animations/wavy-text';
-import { LiquidFillText } from '@/components/animations/liquid-fill-text';
+import { LiquidFillTextPreview } from '@/components/animations/liquid-fill-text-preview';
 import { ScrollRevealText } from '@/components/animations/scroll-reveal-text';
 import { MagneticButtonPreview } from '@/components/animations/magnetic-button-preview';
 
@@ -1067,8 +1067,7 @@ export function WavyText({
     title: 'Liquid Fill Text',
     description: 'Text that appears to fill up with a flowing liquid.',
     category: 'Text',
-    preview: LiquidFillText,
-    library: 'Framer Motion',
+    preview: LiquidFillTextPreview,
     code: `
 "use client";
 
@@ -1076,83 +1075,44 @@ import { motion } from "framer-motion";
 
 export function LiquidFillText() {
   return (
-    <div className="relative w-full text-center h-48 flex flex-col items-center justify-center">
-      <svg width="100%" viewBox="0 0 800 200" className="max-w-5xl mx-auto">
+    <div className="relative w-full flex flex-col items-center justify-center">
+      <svg width="100%" viewBox="0 0 400 100" className="max-w-md mx-auto">
         <defs>
-          <clipPath id="text-clip-path-motion">
+          <clipPath id="text-clip-path-preview">
             <text
-              x="0"
+              x="50%"
               y="50%"
-              dy=".35em"
-              textAnchor="start"
-              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
+              dominantBaseline="middle"
+              textAnchor="middle"
+              className="text-7xl font-bold tracking-tighter select-none"
             >
-              Motion
-            </text>
-          </clipPath>
-          <clipPath id="text-clip-path-dictionary">
-             <text
-              x="100%"
-              y="70%"
-              dy=".35em"
-              textAnchor="end"
-              className="text-8xl md:text-9xl font-black tracking-tighter select-none"
-            >
-              Dictionary
+              Animate
             </text>
           </clipPath>
         </defs>
-        
+
         {/* Fallback for non-supporting browsers */}
         <text
-            x="0"
+            x="50%"
             y="50%"
-            dy=".35em"
-            textAnchor="start"
-            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
+            dominantBaseline="middle"
+            textAnchor="middle"
+            className="text-7xl font-bold tracking-tighter fill-current text-foreground"
         >
-             Motion
-        </text>
-        <text
-            x="100%"
-            y="70%"
-            dy=".35em"
-            textAnchor="end"
-            className="text-8xl md:text-9xl font-black tracking-tighter fill-current text-foreground"
-        >
-             Dictionary
+             Animate
         </text>
 
-        <g clipPath="url(#text-clip-path-motion)">
-          <rect width="800" height="200" className="fill-foreground" />
+        <g clipPath="url(#text-clip-path-preview)">
+          <rect width="400" height="100" className="fill-foreground" />
            <motion.path
-            d="M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z"
-            className="fill-primary"
-            animate={{
-              d: [
-                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
-                "M -10 100 Q 200 120 400 100 Q 600 80 810 100 V 200 H -10 Z",
-                "M -10 100 Q 200 80 400 100 Q 600 120 810 100 V 200 H -10 Z",
-              ],
-            }}
-            transition={{
-              duration: 5,
-              ease: "linear",
-              repeat: Infinity,
-            }}
-          />
-        </g>
-         <g clipPath="url(#text-clip-path-dictionary)">
-          <rect width="800" height="200" className="fill-foreground" />
-           <motion.path
-            d="M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z"
+            d="M -10 50 Q 95 60 200 50 Q 305 40 410 50 V 100 H -10 Z"
             className="fill-accent"
             style={{ opacity: 0.8 }}
             animate={{
               d: [
-                "M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z",
-                "M -10 100 Q 190 80 400 100 Q 610 120 810 100 V 200 H -10 Z",
-                "M -10 100 Q 190 120 400 100 Q 610 80 810 100 V 200 H -10 Z",
+                "M -10 50 Q 95 60 200 50 Q 305 40 410 50 V 100 H -10 Z",
+                "M -10 50 Q 95 40 200 50 Q 305 60 410 50 V 100 H -10 Z",
+                "M -10 50 Q 95 60 200 50 Q 305 40 410 50 V 100 H -10 Z",
               ],
             }}
              transition={{
@@ -1160,6 +1120,22 @@ export function LiquidFillText() {
               ease: "linear",
               repeat: Infinity,
               delay: 1,
+            }}
+          />
+           <motion.path
+            d="M -10 50 Q 100 40 200 50 Q 300 60 410 50 V 100 H -10 Z"
+            className="fill-primary"
+            animate={{
+              d: [
+                "M -10 50 Q 100 40 200 50 Q 300 60 410 50 V 100 H -10 Z",
+                "M -10 50 Q 100 60 200 50 Q 300 40 410 50 V 100 H -10 Z",
+                "M -10 50 Q 100 40 200 50 Q 300 60 410 50 V 100 H -10 Z",
+              ],
+            }}
+            transition={{
+              duration: 5,
+              ease: "linear",
+              repeat: Infinity,
             }}
           />
         </g>
@@ -1323,4 +1299,3 @@ export function MagneticButton({ className, variant, size, children, ...props }:
 `
   }
 ];
-
