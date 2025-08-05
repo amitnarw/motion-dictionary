@@ -4,18 +4,49 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export function LiquidFillText({ text, className }: { text: string; className?: string }) {
+type Alignment = "left" | "center" | "right";
+
+export function LiquidFillText({ 
+    text, 
+    className, 
+    size, 
+    alignment = "center" 
+}: { 
+    text: string; 
+    className?: string; 
+    size?: string;
+    alignment?: Alignment;
+}) {
+
+  const getAlignmentProps = (align: Alignment) => {
+    switch (align) {
+      case 'left':
+        return { x: "0", textAnchor: "start" };
+      case 'right':
+        return { x: "100%", textAnchor: "end" };
+      case 'center':
+      default:
+        return { x: "50%", textAnchor: "middle" };
+    }
+  };
+  
+  const alignmentProps = getAlignmentProps(alignment);
+  const textClasses = cn(
+    "select-none",
+    size,
+    className?.split(' ').filter(cls => !cls.startsWith('text-') && !cls.startsWith('sm:text-') && !cls.startsWith('lg:text-'))
+  );
+
   return (
     <div className={cn("relative", className)}>
        <svg width="100%" viewBox="0 0 1200 300" className="w-full">
          <defs>
            <clipPath id="text-clip-path-dictionary">
             <text
-                x="100%"
+                {...alignmentProps}
                 y="50%"
                 dominantBaseline="middle"
-                textAnchor="end"
-                className={cn("select-none", className)}
+                className={textClasses}
             >
                 {text}
             </text>
@@ -23,11 +54,10 @@ export function LiquidFillText({ text, className }: { text: string; className?: 
          </defs>
 
          <text
-            x="100%"
+            {...alignmentProps}
             y="50%"
             dominantBaseline="middle"
-            textAnchor="end"
-            className={cn("fill-current text-foreground select-none", className)}
+            className={cn("fill-current text-foreground", textClasses)}
         >
             {text}
         </text>
