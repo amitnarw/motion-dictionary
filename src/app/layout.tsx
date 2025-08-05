@@ -6,8 +6,8 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Barlow } from 'next/font/google';
 
 export const metadata: Metadata = {
-  title: 'AniMotion - The Animation Hub',
-  description: 'Your ultimate destination for discovering and using animations from across the web.',
+  title: 'Motionary - Every animation. One search',
+  description: 'Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you\'re building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.',
 };
 
 const barlow = Barlow({

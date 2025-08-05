@@ -106,7 +106,7 @@ export function Footer() {
 
             <div className="mt-12 pt-8 border-t border-border/20 flex flex-col sm:flex-row items-center justify-between">
                 <p className="text-sm text-muted-foreground">
-                    &copy; {new Date().getFullYear()} AniMotion. All rights reserved.
+                    &copy; {new Date().getFullYear()} Motionary. All rights reserved.
                 </p>
             </div>
         </motion.div>

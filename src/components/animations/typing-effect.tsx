@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-const text = "Welcome to AniMotion";
+const text = "Welcome to Motionary";
 const characters = Array.from(text);
 
 const container = {
