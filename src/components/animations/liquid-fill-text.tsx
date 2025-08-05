@@ -6,15 +6,14 @@ import { cn } from "@/lib/utils";
 
 export function LiquidFillText({ text, className }: { text: string; className?: string }) {
   return (
-    <div className={cn("relative flex items-center justify-center", className)}>
+    <div className={cn("relative", className)}>
        <svg width="100%" viewBox="0 0 1200 300" className="w-full">
          <defs>
            <clipPath id="text-clip-path-dictionary">
             <text
-                x="50%"
+                x="0"
                 y="50%"
                 dominantBaseline="middle"
-                textAnchor="middle"
                 className={cn("select-none", className)}
             >
                 {text}
@@ -23,10 +22,9 @@ export function LiquidFillText({ text, className }: { text: string; className?: 
          </defs>
 
          <text
-            x="50%"
+            x="0"
             y="50%"
             dominantBaseline="middle"
-            textAnchor="middle"
             className={cn("fill-current text-foreground select-none", className)}
         >
             {text}
