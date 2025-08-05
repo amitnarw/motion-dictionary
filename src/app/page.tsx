@@ -34,14 +34,14 @@ export default function LandingPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative text-center py-12 px-4 overflow-hidden">
-           <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
-           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
-          
+          <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
+          <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
+
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-            <h1 className="w-full text-center text-7xl sm:text-[120px] lg:text-[200px] font-semibold">
-                Motion
+            <h1 className="w-full text-left text-7xl sm:text-[120px] lg:text-[200px] font-semibold font-headline">
+              MOTION
             </h1>
-            <LiquidFillText text="Dictionary" className="w-full text-center text-7xl sm:text-[120px] lg:text-[200px] font-semibold -mt-4" />
+            <LiquidFillText text="DICTIONARY" className="w-full transform [scaleX(1.4)] text-right text-7xl sm:text-[120px] lg:text-[200px] font-semibold -mt-4" />
             <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
               Every animation. One search.
             </h2>
@@ -62,17 +62,17 @@ export default function LandingPage() {
 
         {/* Featured Animations Section */}
         <section className="py-16 lg:py-24">
-            <div className="container mx-auto px-4 w-4/5">
-                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
-                 <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-                    A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
-                 </p>
-                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {featuredAnimations.map((animation, index) => (
-                        <AnimationCard key={animation.id} animation={animation} index={index} />
-                    ))}
-                </div>
+          <div className="container mx-auto px-4 w-4/5">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
+            <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
+              A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
+            </p>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredAnimations.map((animation, index) => (
+                <AnimationCard key={animation.id} animation={animation} index={index} />
+              ))}
             </div>
+          </div>
         </section>
 
 
@@ -88,16 +88,16 @@ export default function LandingPage() {
             <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
               {steps.map((step, index) => (
                 <div key={index} className="relative p-8 bg-card rounded-xl shadow-lg border border-border/50 overflow-hidden">
-                    <div className="absolute top-4 right-4 text-5xl font-black text-primary/10">
-                        0{index + 1}
+                  <div className="absolute top-4 right-4 text-5xl font-black text-primary/10">
+                    0{index + 1}
+                  </div>
+                  <div className="relative z-10">
+                    <div className="bg-primary/10 text-primary p-3 rounded-lg inline-block mb-4">
+                      <step.icon className="h-8 w-8" />
                     </div>
-                    <div className="relative z-10">
-                        <div className="bg-primary/10 text-primary p-3 rounded-lg inline-block mb-4">
-                            <step.icon className="h-8 w-8" />
-                        </div>
-                        <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
-                        <p className="text-muted-foreground">{step.description}</p>
-                    </div>
+                    <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
+                    <p className="text-muted-foreground">{step.description}</p>
+                  </div>
                 </div>
               ))}
             </div>

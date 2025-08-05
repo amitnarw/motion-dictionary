@@ -3,7 +3,7 @@ import './globals.css';
 import { AppLayout } from '@/components/layout/app-layout';
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from '@/components/theme-provider';
-import { Barlow } from 'next/font/google';
+import { Barlow, Montserrat } from 'next/font/google';
 
 export const metadata: Metadata = {
   title: 'Motionary - Every animation. One search',
@@ -16,6 +16,12 @@ const barlow = Barlow({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+});
+
 
 export default function RootLayout({
   children,
@@ -24,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${barlow.variable} font-body antialiased bg-background`}>
+      <body className={`${barlow.variable} ${montserrat.variable} font-body antialiased bg-background`}>
          <ThemeProvider
             attribute="class"
             defaultTheme="light"
