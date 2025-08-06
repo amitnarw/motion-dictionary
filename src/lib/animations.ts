@@ -33,6 +33,7 @@ import { MagneticButtonPreview } from '@/components/animations/magnetic-button-p
 import { FancyButtonPreview } from '@/components/animations/fancy-button-preview';
 import { InteractiveTextPreview } from '@/components/animations/interactive-text-preview';
 import { TextRevealByWordPreview } from '@/components/animations/text-reveal-by-word-preview';
+import { PageScrollRevealText } from '@/components/animations/page-scroll-reveal-text';
 
 type AnimationControl = {
     prop: string;
@@ -1170,96 +1171,83 @@ export function LiquidFillText() {
   },
   {
     id: '29',
-    title: 'Scroll Reveal Color Wipe',
-    description: 'Text color wipes from one color to another based on scroll position.',
-    category: 'Text',
+    title: 'Scroll Reveal',
+    description: 'Text reveals word-by-word as you scroll down the container.',
+    category: 'Scroll Animation',
     preview: ScrollRevealText,
     library: 'Framer Motion',
     code: `"use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
+import { FC, ReactNode, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface ScrollRevealTextProps {
   text?: string;
   className?: string;
-  direction?: "left" | "right";
-  fromColor?: string;
-  toColor?: string;
-  size?: string;
 }
 
 export function ScrollRevealText({
-  text = "Scroll to reveal text",
+  text = "Scroll down to reveal the text word by word.",
   className,
-  direction = "left",
-  fromColor = "hsl(var(--muted-foreground))",
-  toColor = "hsl(var(--foreground))",
-  size = "text-4xl md:text-6xl"
 }: ScrollRevealTextProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   
   const { scrollYProgress } = useScroll({
-    target: textRef,
-    container: containerRef,
-    offset: ["start end", "end start"]
+    target: containerRef,
   });
 
-  const clipPathValue = useTransform(
-    scrollYProgress,
-    [0.2, 0.8], // Animate between 20% and 80% of scroll progress
-    direction === 'left' 
-      ? ["inset(0 100% 0 0)", "inset(0 0 0 0)"] 
-      : ["inset(0 0 0 100%)", "inset(0 0 0 0)"]
-  );
-
-  const textClasses = cn("font-bold", size);
+  const words = text.split(" ");
 
   return (
-    <div ref={containerRef} className={cn("h-48 w-full overflow-y-scroll rounded-md border", className)}>
-        <div ref={textRef} className="relative mt-24 mb-24 py-10">
-            <h1 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
-                {text}
-            </h1>
-            <motion.h1 
-                className={cn(textClasses, "absolute inset-0 text-center py-10")}
-                style={{ 
-                    clipPath: clipPathValue,
-                    color: toColor
-                }}
-            >
-                {text}
-            </motion.h1>
-        </div>
+    <div ref={containerRef} className={cn("relative z-0 h-[200vh]", className)}>
+      <div
+        className={
+          "sticky top-0 mx-auto flex h-[100vh] max-w-4xl items-center bg-transparent px-2 py-4"
+        }
+      >
+        <p
+          className={
+            "flex flex-wrap p-2 text-2xl font-bold text-muted-foreground/20 md:p-4 md:text-3xl lg:p-5 lg:text-4xl"
+          }
+        >
+          {words.map((word, i) => {
+            const start = i / words.length;
+            const end = start + 1 / words.length;
+            return (
+              <Word key={i} progress={scrollYProgress} range={[start, end]}>
+                {word}
+              </Word>
+            );
+          })}
+        </p>
+      </div>
     </div>
   );
-}`,
+};
+
+interface WordProps {
+  children: ReactNode;
+  progress: MotionValue<number>;
+  range: [number, number];
+}
+
+const Word: FC<WordProps> = ({ children, progress, range }) => {
+  const opacity = useTransform(progress, range, [0, 1]);
+  return (
+    <span className="relative mx-1">
+      <span className={"absolute opacity-30"}>{children}</span>
+      <motion.span
+        style={{ opacity: opacity }}
+        className={"text-foreground"}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+};`,
     controls: [
-      {
-        prop: 'direction',
-        label: 'Direction',
-        type: 'select',
-        defaultValue: 'left',
-        options: [
-          { label: 'Left to Right', value: 'left' },
-          { label: 'Right to Left', value: 'right' },
-        ],
-      },
-      {
-        prop: 'fromColor',
-        label: 'From Color',
-        type: 'color',
-        defaultValue: 'hsl(var(--muted-foreground))',
-      },
-      {
-        prop: 'toColor',
-        label: 'To Color',
-        type: 'color',
-        defaultValue: 'hsl(var(--foreground))',
-      },
-       { prop: 'text', label: 'Text', type: 'text', defaultValue: 'Scroll To Reveal' },
-       { prop: 'size', label: 'Text Size (CSS class)', type: 'text', defaultValue: 'text-4xl md:text-6xl' },
+       { prop: 'text', label: 'Text', type: 'text', defaultValue: 'Scroll down to reveal the text word by word.' },
     ]
   },
   {
