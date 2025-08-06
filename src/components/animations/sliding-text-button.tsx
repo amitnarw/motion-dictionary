@@ -2,7 +2,7 @@
 "use client";
 import { motion } from 'framer-motion';
 
-export function SlidingTextButton() {
+export function SlidingTextButton({ duration = 0.3 }: { duration?: number }) {
   const textVariants = {
     rest: { y: 0 },
     hover: { y: '-125%' },
@@ -22,14 +22,14 @@ export function SlidingTextButton() {
       <span className="relative inline-block h-full w-full">
         <motion.span
           variants={textVariants}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          transition={{ duration, ease: 'easeOut' }}
           className="inline-block"
         >
           Hover Me
         </motion.span>
         <motion.span
           variants={newTextVariants}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          transition={{ duration, ease: 'easeOut' }}
           className="absolute left-0"
         >
           Let's Go!
@@ -38,4 +38,5 @@ export function SlidingTextButton() {
     </motion.button>
   );
 }
+
 

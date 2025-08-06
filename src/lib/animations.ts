@@ -833,7 +833,7 @@ function AppIcon({
 "use client";
 import { motion } from 'framer-motion';
 
-export function SlidingTextButton() {
+export function SlidingTextButton({ duration = 0.3 }: { duration?: number }) {
   const textVariants = {
     rest: { y: 0 },
     hover: { y: '-125%' },
@@ -853,14 +853,14 @@ export function SlidingTextButton() {
       <span className="relative inline-block h-full w-full">
         <motion.span
           variants={textVariants}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          transition={{ duration, ease: 'easeOut' }}
           className="inline-block"
         >
           Hover Me
         </motion.span>
         <motion.span
           variants={newTextVariants}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          transition={{ duration, ease: 'easeOut' }}
           className="absolute left-0"
         >
           Let's Go!
@@ -869,9 +869,18 @@ export function SlidingTextButton() {
     </motion.button>
   );
 }
-
-
-`
+`,
+    controls: [
+        {
+            prop: 'duration',
+            label: 'Duration',
+            type: 'range',
+            min: 0.1,
+            max: 1,
+            step: 0.1,
+            defaultValue: 0.3,
+        },
+    ],
   },
   {
     id: '25',
@@ -1347,7 +1356,7 @@ export function FancyButton({
 
   const liquidVariants: Variants = {
     rest: {
-      y: "105%",
+      y: "101%",
     },
     hover: {
       y: \`\${100 - fill}%\`,
@@ -1388,6 +1397,10 @@ export function FancyButton({
       <motion.span
         className={cn("relative z-10 flex items-center justify-center h-full w-full", textClassName)}
         variants={textVariants}
+        transition={{
+            duration: 0.5,
+            ease: [0.22, 1, 0.36, 1],
+        }}
       >
         {text}
         {icon}
