@@ -10,9 +10,19 @@ interface FancyButtonProps {
   icon?: React.ReactNode;
   className?: string;
   textClassName?: string;
+  fillPercentage?: number;
 }
 
-export function FancyButton({ text, icon, className, textClassName }: FancyButtonProps) {
+export function FancyButton({ 
+  text, 
+  icon, 
+  className, 
+  textClassName,
+  fillPercentage = 100 
+}: FancyButtonProps) {
+
+  const fill = Math.max(0, Math.min(100, fillPercentage));
+  
   const textVariants: Variants = {
     rest: {
       color: "hsl(var(--primary))",
@@ -31,7 +41,7 @@ export function FancyButton({ text, icon, className, textClassName }: FancyButto
       y: "105%",
     },
     hover: {
-      y: "0%",
+      y: `${100 - fill}%`,
     },
   };
   

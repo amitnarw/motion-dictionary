@@ -34,23 +34,31 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative text-center py-16 px-4 overflow-hidden">
+        <section className="relative text-center py-32 px-4 overflow-hidden">
           <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
-          <div className="container w-4/5 mx-auto flex flex-col items-center">
-             <LoadingMotionText />
-             <div className="w-full">
-                <LiquidFillText 
-                    text="DICTIONARY" 
-                    alignment="right"
-                    size="text-[180px] sm:text-[160px] lg:text-[150px]"
-                    className="w-full font-black -mt-2 sm:-mt-4 lg:mt-0" 
-                />
+          <div className="container w-11/12 sm:w-4/5 mx-auto flex flex-col items-center">
+            <h1 className="w-full text-left text-4xl sm:text-[80px] lg:text-[150px] font-headline">
+              Motion
+            </h1>
+            <div className="w-full">
+              <LiquidFillText
+                text="DICTIONARY"
+                alignment="right"
+                size="text-[180px] sm:text-[160px] lg:text-[150px]"
+                className="w-full font-black -mt-2 sm:-mt-4 lg:mt-0"
+              />
             </div>
             <div className="w-full mt-10 flex flex-row items-center justify-end">
-              <Link href="/animations">
-                <FancyButton text="Explore Animations" icon={<ArrowRight size="20" className="ml-2" />} textClassName="px-6 py-2 text-white text-sm sm:text-lg w-full sm:w-auto" />
+              <Link href="/animations" className="w-full flex justify-end group">
+                <FancyButton 
+                  text="Explore Animations" 
+                  icon={<ArrowRight size="20" className="ml-2" />}
+                  className="w-full sm:w-auto px-2 py-2" 
+                  textClassName="px-6 py-2 !text-white text-sm sm:text-lg !group-hover:!text-black"
+                  fillPercentage={100}
+                />
               </Link>
             </div>
           </div>
@@ -59,7 +67,7 @@ export default function LandingPage() {
         {/* Featured Animations Section */}
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
-             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">
               Every animation. One search.
             </h2>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center">
