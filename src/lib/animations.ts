@@ -1379,9 +1379,9 @@ export function FancyButton({
     rest: {},
     hover: {
         d: [
-            "M -50 10 Q 45 20 100 10 Q 155 0 200 10 V 50 H -50 Z",
-            "M -50 10 Q 45 0 100 10 Q 155 20 200 10 V 50 H -50 Z",
-            "M -50 10 Q 45 20 100 10 Q 155 0 200 10 V 50 H -50 Z",
+            "M -50 20 Q 45 30 100 20 Q 155 10 200 20 V 60 H -50 Z",
+            "M -50 20 Q 45 10 100 20 Q 155 30 200 20 V 60 H -50 Z",
+            "M -50 20 Q 45 30 100 20 Q 155 10 200 20 V 60 H -50 Z",
         ],
         transition: { duration: 4, ease: "linear", repeat: Infinity }
     }
@@ -1391,9 +1391,9 @@ export function FancyButton({
     rest: {},
     hover: {
         d: [
-            "M -50 10 Q 50 0 100 10 Q 150 20 200 10 V 50 H -50 Z",
-            "M -50 10 Q 50 20 100 10 Q 150 0 200 10 V 50 H -50 Z",
-            "M -50 10 Q 50 0 100 10 Q 150 20 200 10 V 50 H -50 Z",
+            "M -50 20 Q 50 10 100 20 Q 150 30 200 20 V 60 H -50 Z",
+            "M -50 20 Q 50 30 100 20 Q 150 10 200 20 V 60 H -50 Z",
+            "M -50 20 Q 50 10 100 20 Q 150 30 200 20 V 60 H -50 Z",
         ],
         transition: { duration: 4, ease: "linear", repeat: Infinity, delay: 1 }
     }
