@@ -26,6 +26,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { FullViewViewer } from './full-view-viewer';
+import { Input } from './ui/input';
+import { ColorPicker } from './ui/color-picker';
 
 
 type AnimationCardProps = {
@@ -149,6 +151,23 @@ export function AnimationCard({ animation, index }: AnimationCardProps) {
                             </SelectContent>
                           </Select>
                        )}
+                       {control.type === 'text' && (
+                          <Input
+                            id={control.prop}
+                            type="text"
+                            value={controls[control.prop]}
+                            onChange={(e) => handleControlChange(control.prop, e.target.value)}
+                            className="h-8 text-xs"
+                          />
+                        )}
+                        {control.type === 'color' && (
+                           <ColorPicker
+                            id={control.prop}
+                            value={controls[control.prop]}
+                            onChange={(e) => handleControlChange(control.prop, e.target.value)}
+                            className="h-8 text-xs"
+                          />
+                        )}
                     </div>
                   ))}
                 </AccordionContent>

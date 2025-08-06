@@ -14,6 +14,8 @@ import { Button } from './ui/button';
 import { Label } from './ui/label';
 import { Slider } from './ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Input } from './ui/input';
+import { ColorPicker } from './ui/color-picker';
 
 type FullViewViewerProps = {
   isOpen: boolean;
@@ -95,6 +97,23 @@ export function FullViewViewer({
                                     ))}
                                 </SelectContent>
                                 </Select>
+                            )}
+                            {control.type === 'text' && (
+                                <Input
+                                    id={`full-${control.prop}`}
+                                    type="text"
+                                    value={controls[control.prop]}
+                                    onChange={(e) => onControlChange(control.prop, e.target.value)}
+                                    className="h-9 text-sm"
+                                />
+                            )}
+                            {control.type === 'color' && (
+                                <ColorPicker
+                                    id={`full-${control.prop}`}
+                                    value={controls[control.prop]}
+                                    onChange={(e) => onControlChange(control.prop, e.target.value)}
+                                    className="h-9 text-sm"
+                                />
                             )}
                             </div>
                         ))
