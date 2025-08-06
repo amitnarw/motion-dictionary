@@ -53,21 +53,21 @@ export default function LandingPage() {
                 <FancyButton text="Explore Animations" icon={<ArrowRight className="ml-2 h-5 w-5" />} />
               </Link>
             </div>
-            <h2 className="mt-4 text-2xl md:text-3xl font-medium tracking-tight text-foreground">
-              Every animation. One search.
-            </h2>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-              Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more.
-              Search, preview, and copy production-ready animation code with ease.
-              Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
-            </p>
           </div>
         </section>
 
         {/* Featured Animations Section */}
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">
+              Every animation. One search.
+            </h2>
+            <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center">
+              Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more.
+              Search, preview, and copy production-ready animation code with ease.
+              Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
+            </p>
+            <h2 className="mt-16 text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
               A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
             </p>
