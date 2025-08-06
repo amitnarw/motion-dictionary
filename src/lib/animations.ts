@@ -32,6 +32,7 @@ import { ScrollRevealText } from '@/components/animations/scroll-reveal-text';
 import { MagneticButtonPreview } from '@/components/animations/magnetic-button-preview';
 import { FancyButtonPreview } from '@/components/animations/fancy-button-preview';
 import { InteractiveTextPreview } from '@/components/animations/interactive-text-preview';
+import { AnimatedBorderInput } from '@/components/animations/animated-border-input';
 
 type AnimationControl = {
     prop: string;
@@ -65,6 +66,7 @@ export const CATEGORIES = [
   'Buttons',
   'Cursor',
   'Text',
+  'Text Input',
 ] as const;
 
 export const animations: Animation[] = [
@@ -893,7 +895,7 @@ export function SlidingTextButton({ duration = 0.3 }: { duration?: number }) {
 "use client";
 import { motion } from 'framer-motion';
 
-export function RevealBgButton() {
+export function RevealBgButton({ duration = 0.3 }: { duration?: number }) {
   return (
     <motion.button 
         className="relative overflow-hidden rounded-xl bg-secondary px-6 py-3 text-lg font-medium text-secondary-foreground shadow-lg"
@@ -907,13 +909,24 @@ export function RevealBgButton() {
             rest: { y: '100%' },
             hover: { y: 0 }
         }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        transition={{ duration, ease: 'easeOut' }}
         className="absolute inset-0 z-0 bg-primary"
       />
     </motion.button>
   );
 }
-`
+`,
+    controls: [
+      {
+        prop: 'duration',
+        label: 'Duration',
+        type: 'range',
+        min: 0.1,
+        max: 1,
+        step: 0.1,
+        defaultValue: 0.3,
+      },
+    ],
   },
   {
     id: '26',
@@ -1367,9 +1380,9 @@ export function FancyButton({
     rest: {},
     hover: {
         d: [
-            "M -50 20 Q 45 30 100 20 Q 155 10 200 20 V 50 H -50 Z",
-            "M -50 20 Q 45 10 100 20 Q 155 30 200 20 V 50 H -50 Z",
-            "M -50 20 Q 45 30 100 20 Q 155 10 200 20 V 50 H -50 Z",
+            "M -50 10 Q 45 20 100 10 Q 155 0 200 10 V 50 H -50 Z",
+            "M -50 10 Q 45 0 100 10 Q 155 20 200 10 V 50 H -50 Z",
+            "M -50 10 Q 45 20 100 10 Q 155 0 200 10 V 50 H -50 Z",
         ],
         transition: { duration: 4, ease: "linear", repeat: Infinity }
     }
@@ -1379,9 +1392,9 @@ export function FancyButton({
     rest: {},
     hover: {
         d: [
-            "M -50 20 Q 50 10 100 20 Q 150 30 200 20 V 50 H -50 Z",
-            "M -50 20 Q 50 30 100 20 Q 150 10 200 20 V 50 H -50 Z",
-            "M -50 20 Q 50 10 100 20 Q 150 30 200 20 V 50 H -50 Z",
+            "M -50 10 Q 50 0 100 10 Q 150 20 200 10 V 50 H -50 Z",
+            "M -50 10 Q 50 20 100 10 Q 150 0 200 10 V 50 H -50 Z",
+            "M -50 10 Q 50 0 100 10 Q 150 20 200 10 V 50 H -50 Z",
         ],
         transition: { duration: 4, ease: "linear", repeat: Infinity, delay: 1 }
     }
@@ -1481,5 +1494,42 @@ export function InteractiveText() {
     </div>
   );
 }`
+  },
+  {
+    id: '33',
+    title: 'Animated Border Input',
+    description: 'An input field with a gradient border that animates on focus.',
+    category: 'Text Input',
+    preview: AnimatedBorderInput,
+    library: 'TailwindCSS',
+    code: `
+"use client";
+
+export function AnimatedBorderInput() {
+  return (
+    <div className="relative w-full max-w-xs">
+      <input
+        type="text"
+        placeholder="your-email@gmail.com"
+        className="
+          w-full p-3 bg-background text-foreground rounded-lg
+          border border-transparent 
+          focus:outline-none focus:ring-2 focus:ring-transparent
+          peer
+        "
+      />
+      <div 
+        className="
+          absolute inset-0 rounded-lg -z-10
+          bg-border
+          peer-focus:bg-gradient-to-r peer-focus:from-primary peer-focus:to-accent
+          motion-safe:peer-focus:animate-pulse
+        "
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+`
   }
 ];
