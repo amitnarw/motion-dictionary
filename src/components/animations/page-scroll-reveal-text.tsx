@@ -1,53 +1,62 @@
 
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { useRef, ReactNode, FC } from "react";
 import { cn } from "@/lib/utils";
 
 interface PageScrollRevealTextProps {
-  text?: string;
+  text: string;
   className?: string;
-  fromColor?: string;
-  toColor?: string;
-  size?: string;
 }
 
+interface WordProps {
+  children: ReactNode;
+  progress: MotionValue<number>;
+  range: [number, number];
+}
+
+const Word: FC<WordProps> = ({ children, progress, range }) => {
+  const opacity = useTransform(progress, range, [0, 1]);
+  return (
+    <span className="relative mx-1">
+      <span className={"absolute opacity-30"}>{children}</span>
+      <motion.span
+        style={{ opacity: opacity }}
+        className={"text-foreground"}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+};
+
 export function PageScrollRevealText({
-  text = "Scroll to reveal text",
+  text,
   className,
-  fromColor = "hsl(var(--muted-foreground))",
-  toColor = "hsl(var(--foreground))",
-  size = "text-4xl md:text-6xl"
 }: PageScrollRevealTextProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLParagraphElement>(null);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.8", "start 0.2"]
+    offset: ["start 0.9", "start 0.25"]
   });
 
-  const clipPathValue = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
-  );
-
-  const textClasses = cn("font-bold", size);
+  const words = text.split(" ");
 
   return (
-    <div ref={containerRef} className={cn("relative", className)}>
-        <h2 className={cn(textClasses, "text-center py-4")} style={{ color: fromColor }}>
-            {text}
-        </h2>
-        <motion.h2
-            className={cn(textClasses, "absolute inset-0 text-center py-4")}
-            style={{ 
-                clipPath: clipPathValue,
-                color: toColor,
-            }}
-        >
-            {text}
-        </motion.h2>
-    </div>
+    <p
+        ref={containerRef}
+        className={cn("flex flex-wrap text-muted-foreground/30", className)}
+    >
+        {words.map((word, i) => {
+        const start = i / words.length;
+        const end = start + 1 / words.length;
+        return (
+            <Word key={i} progress={scrollYProgress} range={[start, end]}>
+            {word}
+            </Word>
+        );
+        })}
+    </p>
   );
 }
