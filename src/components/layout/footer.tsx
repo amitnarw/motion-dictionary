@@ -59,7 +59,7 @@ export function Footer() {
   };
 
   return (
-    <footer ref={footerRef} className="relative border-t border-border/20 overflow-hidden">
+    <footer ref={footerRef} className="relative border-t border-border/20 overflow-hidden" style={{background: 'linear-gradient(0deg,hsl(var(--background)) 20%,#1d1d1d 100%)'}}>
         <div className="absolute inset-0">
              <Meteors />
         </div>

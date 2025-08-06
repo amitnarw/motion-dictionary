@@ -107,21 +107,10 @@ export default function LandingPage() {
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
             <div className="flex flex-row gap-20">
-               <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="inline-block mr-2"
-                >
-                  <path
-                    d="M11.5303 6.53033C11.8232 6.23744 11.8232 5.76256 11.5303 5.46967L6.75736 0.696699C6.46447 0.403806 5.98959 0.403806 5.6967 0.696699C5.40381 0.989593 5.40381 1.46447 5.6967 1.75736L9.93934 6L5.6967 10.2426C5.40381 10.5355 5.40381 11.0104 5.6967 11.3033C5.98959 11.5962 6.46447 11.5962 6.75736 11.3033L11.5303 6.53033ZM0 6.75H11V5.25H0V6.75Z"
-                    fill="currentColor"
-                  />
-                </svg>
+              <Image src="/1.png" alt="1" height={1500} width={1500} ></Image>
               <div className="flex flex-col gap-6">
                 <div className="flex gap-5 items-center justify-center">
+                  <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
                   <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
                     Every animation. One search.
                   </h2>
@@ -133,11 +122,11 @@ export default function LandingPage() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {steps.map((step, index) => (
-                    <div key={index} className="p-8 rounded-3xl shadow-lg border border-border/50 overflow-hidden">
-                      <div className="top-4 left-4 text-5xl font-black text-primary/40">
+                    <div key={index} className="relative p-10 rounded-3xl shadow-lg border border-primary/10 overflow-hidden hover:bg-primary/50 duration-300">
+                      <p className="absolute top-2 left-2 text-7xl font-black text-transparent bg-gradient-to-b from-primary/20 to-primary/0 bg-clip-text">
                         0{index + 1}
-                      </div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
+                      </p>
+                      <h3 className="text-xl font-bold text-foreground text-center">{step.title}</h3>
                     </div>
                   ))}
                 </div>
@@ -162,32 +151,30 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 lg:py-32" style={{background: 'linear-gradient(0deg,hsl(var(--background)) 20%,#1d1d1d 100%)'}}>
+        <section className="py-20 lg:py-32">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-start font-headline bg-clip-text text-transparent bg-gradient-to-r from-white to-green-500">
+            <h2 className="text-3xl md:text-7xl font-bold tracking-tight text-start font-headline bg-clip-text text-transparent bg-gradient-to-r from-white to-[#99ec46]">
               Loved by Developers
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground text-start max-w-2xl">
-              Our users praise our extensive library and ease of use.
-            </p>
+
             <Carousel
               opts={{
                 align: "start",
                 loop: true,
               }}
-              className="w-full mt-16"
+              className="w-full mt-8"
             >
               <CarouselContent className="-ml-4">
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-4 md:basis-1/2">
-                    <Card className="h-full bg-background/30 backdrop-blur-lg border-border/20 rounded-2xl shadow-lg overflow-hidden flex flex-col" style={{background: 'linear-gradient(0deg,var(--dark-optional) 20%,#1d1d1d 100%)'}}>
+                    <Card className="h-full rounded-2xl shadow-lg overflow-hidden flex flex-col bg-[linear-gradient(0deg,#2a2d32_20%,_#1d1d1d_100%)] border-none">
                       <CardContent className="p-8 flex-grow flex flex-col justify-between">
                         <Quote className="w-10 h-10 text-primary/50 mb-4" />
-                        <p className="text-foreground/90 text-lg flex-grow">
+                        <p className="text-foreground/70 text-xl flex-grow leading-relaxed">
                           "{testimonial.quote}"
                         </p>
                         <div className="flex items-center gap-4 mt-8">
-                          <Image src={`https://i.pravatar.cc/80?u=${index}`} width={56} height={56} alt={testimonial.name} className="rounded-full border-2 border-primary/50" />
+                          <Image src={`https://i.pravatar.cc/80?u=${index}`} width={64} height={64} alt={testimonial.name} className="rounded-full" />
                           <div>
                             <p className="font-bold text-xl text-foreground font-headline">{testimonial.name}</p>
                             <p className="text-md text-muted-foreground">{testimonial.title}</p>
@@ -199,33 +186,26 @@ export default function LandingPage() {
                 ))}
               </CarouselContent>
               <div className="flex items-center justify-center gap-4 mt-8">
-                  <CarouselPrevious className="static -translate-y-0" />
-                  <div className="flex-1 h-px bg-border"></div>
-                  <CarouselNext className="static -translate-y-0" />
+                <CarouselPrevious className="static -translate-y-0 h-14 w-14" />
+                <CarouselNext className="static -translate-y-0 h-14 w-14" />
               </div>
             </Carousel>
           </div>
         </section>
 
         {/* How It Works Section */}
-        <section className="py-16 lg:py-24 bg-background">
+        <section className="relative py-16 lg:py-24 bg-black/40">
           <div className="container mx-auto px-4 w-4/5">
             <div className="text-center">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">How It Works</h2>
-              <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                Three simple steps to find, copy, and implement the perfect animation for your project.
-              </p>
+              <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-foreground font-headline">HOW IT WORKS</h2>
             </div>
-            <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
               {steps.map((step, index) => (
-                <div key={index} className="relative p-8 bg-card rounded-xl shadow-lg border border-border/50 overflow-hidden">
-                  <div className="absolute top-4 right-4 text-5xl font-black text-primary/10">
-                    0{index + 1}
+                <div key={index} className="relative p-8 bg-[linear-gradient(0deg,#2a2d32_20%,_#1d1d1d_100%)] rounded-xl shadow-lg border border-border/50 overflow-hidden">
+                  <div className="absolute top-1 right-1">
+                    <step.icon className="h-20 w-20 text-primary/10" />
                   </div>
                   <div className="relative z-10">
-                    <div className="bg-primary/10 text-primary p-3 rounded-lg inline-block mb-4">
-                      <step.icon className="h-8 w-8" />
-                    </div>
                     <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
                     <p className="text-muted-foreground">{step.description}</p>
                   </div>
@@ -233,6 +213,15 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
+          <div
+            className="absolute left-0 bottom-0 -z-10 rounded-full"
+            style={{
+              height: "200px",
+              width: "200px",
+              background: "#C9F31D",
+              filter: "blur(120px)",
+            }}
+          />
         </section>
 
       </main>
