@@ -1,7 +1,7 @@
 
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Copy, Palette } from "lucide-react";
+import { ArrowRight, Code, Copy, Palette, Quote } from "lucide-react";
 import Link from "next/link";
 import { AnimationCard } from "@/components/animation-card";
 import { animations } from "@/lib/animations";
@@ -71,10 +71,13 @@ export default function LandingPage() {
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
             <div className="flex flex-row gap-20">
-              <Image src="/1.png" alt="1" height={1500} width={1500} ></Image>
               <div className="flex flex-col gap-6">
-                <div className="flex gap-5 items-center justify-center">
-                  <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
+                <div className="flex gap-5 items-center justify-start">
+                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-90">
+                        <path d="M50 0L50 100" stroke="hsl(var(--primary))" strokeWidth="4"/>
+                        <path d="M50 100L25 75" stroke="hsl(var(--primary))" strokeWidth="4"/>
+                        <path d="M50 100L75 75" stroke="hsl(var(--primary))" strokeWidth="4"/>
+                    </svg>
                   <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
                     Every animation. One search.
                   </h2>
@@ -104,6 +107,20 @@ export default function LandingPage() {
               {featuredAnimations.map((animation, index) => (
                 <AnimationCard key={animation.id} animation={animation} index={index} />
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonial Section */}
+        <section className="py-16 lg:py-24 bg-background">
+          <div className="container mx-auto px-4 w-4/5 text-center">
+            <Quote className="h-12 w-12 text-primary mx-auto mb-6" />
+            <p className="text-2xl md:text-4xl lg:text-5xl font-medium text-foreground max-w-4xl mx-auto leading-tight">
+              "Motionary has completely transformed my workflow. Finding the perfect animation used to take hours of searching. Now, it's just a few clicks away. An indispensable tool for any modern developer."
+            </p>
+            <div className="mt-8">
+              <p className="font-bold text-lg text-foreground">Jane Doe</p>
+              <p className="text-sm text-muted-foreground">Lead Frontend Developer at TechCorp</p>
             </div>
           </div>
         </section>
