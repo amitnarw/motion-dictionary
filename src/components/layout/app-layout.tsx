@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './header';
 import { Footer } from './footer';
+import Lenis from '@studio-freight/lenis'
 
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
@@ -11,6 +12,23 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      const lenis = new Lenis()
+
+      function raf(time: number) {
+        lenis.raf(time)
+        requestAnimationFrame(raf)
+      }
+
+      requestAnimationFrame(raf)
+
+      return () => {
+        lenis.destroy();
+      };
+    }
+  }, [isMounted])
 
   if (!isMounted) {
     return (
