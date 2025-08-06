@@ -1169,8 +1169,8 @@ export function LiquidFillText() {
   },
   {
     id: '29',
-    title: 'Scroll Reveal Text',
-    description: 'Text color is revealed from left or right based on scroll position.',
+    title: 'Scroll Reveal Color Wipe',
+    description: 'Text color wipes from one color to another based on scroll position.',
     category: 'Text',
     preview: ScrollRevealText,
     library: 'Framer Motion',
@@ -1192,8 +1192,8 @@ export function ScrollRevealText({
   text = "Scroll to reveal text",
   className,
   direction = "left",
-  fromColor = "hsl(var(--primary))",
-  toColor = "hsl(var(--accent))",
+  fromColor = "hsl(var(--muted-foreground))",
+  toColor = "hsl(var(--foreground))",
   size = "text-4xl md:text-6xl"
 }: ScrollRevealTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -1203,24 +1203,26 @@ export function ScrollRevealText({
     offset: ["start end", "end start"]
   });
 
-  const backgroundSize = useTransform(
+  const clipPathValue = useTransform(
     scrollYProgress,
     [0, 1],
-    ["0% 100%", "100% 100%"]
+    direction === 'left' 
+      ? ["inset(0 100% 0 0)", "inset(0 0 0 0)"] 
+      : ["inset(0 0 0 100%)", "inset(0 0 0 0)"]
   );
 
-  const gradientDirection = direction === "left" 
-    ? \`linear-gradient(to right, \${fromColor}, \${toColor})\`
-    : \`linear-gradient(to left, \${fromColor}, \${toColor})\`;
+  const textClasses = cn("font-bold", size);
 
   return (
-    <div ref={containerRef} className={cn("py-20", className)}>
+    <div ref={containerRef} className={cn("relative py-20", className)}>
+       <h1 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
+        {text}
+      </h1>
       <motion.h1 
-        className={cn("font-bold text-transparent bg-clip-text", size)}
+        className={cn(textClasses, "absolute inset-0 text-center")}
         style={{ 
-            backgroundImage: gradientDirection,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: backgroundSize,
+            clipPath: clipPathValue,
+            color: toColor
         }}
       >
         {text}
@@ -1243,13 +1245,13 @@ export function ScrollRevealText({
         prop: 'fromColor',
         label: 'From Color',
         type: 'color',
-        defaultValue: 'hsl(var(--primary))',
+        defaultValue: 'hsl(var(--muted-foreground))',
       },
       {
         prop: 'toColor',
         label: 'To Color',
         type: 'color',
-        defaultValue: 'hsl(var(--accent))',
+        defaultValue: 'hsl(var(--foreground))',
       },
        { prop: 'text', label: 'Text', type: 'text', defaultValue: 'Scroll To Reveal' },
        { prop: 'size', label: 'Text Size (CSS class)', type: 'text', defaultValue: 'text-4xl md:text-6xl' },
