@@ -15,6 +15,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import { ScrollRevealText } from "@/components/animations/scroll-reveal-text";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -111,15 +112,15 @@ export default function LandingPage() {
               <div className="flex flex-col gap-6">
                 <div className="flex gap-5 items-center justify-center">
                   <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
-                  <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
-                    Every animation. One search.
-                  </h2>
+                  <ScrollRevealText
+                    className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline"
+                    text="Every animation. One search."
+                  />
                 </div>
-                <p className="text-lg md:text-lg text-muted-foreground text-start font-headline">
-                  Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more.
-                  Search, preview, and copy production-ready animation code with ease.
-                  Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
-                </p>
+                 <ScrollRevealText
+                    className="text-lg md:text-lg text-muted-foreground text-start font-headline"
+                    text="Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster."
+                  />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {steps.map((step, index) => (
                     <div key={index} className="relative p-10 rounded-3xl shadow-lg border border-primary/10 overflow-hidden hover:bg-primary/50 duration-300">
@@ -167,7 +168,7 @@ export default function LandingPage() {
               <CarouselContent className="-ml-4">
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-4 md:basis-1/2">
-                    <Card className="h-full rounded-2xl shadow-lg overflow-hidden flex flex-col bg-[linear-gradient(0deg,#2a2d32_20%,_#1d1d1d_100%)] border-none">
+                    <Card className="h-full rounded-2xl shadow-lg overflow-hidden flex flex-col border-none" style={{background: 'linear-gradient(0deg,#2a2d32 20%, #1d1d1d 100%)'}}>
                       <CardContent className="p-8 flex-grow flex flex-col justify-between">
                         <Quote className="w-10 h-10 text-primary/50 mb-4" />
                         <p className="text-foreground/70 text-xl flex-grow leading-relaxed">
