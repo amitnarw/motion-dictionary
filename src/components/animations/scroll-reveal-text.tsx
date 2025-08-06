@@ -30,7 +30,7 @@ export function ScrollRevealText({
 
   const clipPathValue = useTransform(
     scrollYProgress,
-    [0, 1],
+    [0.2, 0.8], // Animate between 20% and 80% of scroll progress
     direction === 'left' 
       ? ["inset(0 100% 0 0)", "inset(0 0 0 0)"] 
       : ["inset(0 0 0 100%)", "inset(0 0 0 0)"]
@@ -39,19 +39,22 @@ export function ScrollRevealText({
   const textClasses = cn("font-bold", size);
 
   return (
-    <div ref={containerRef} className={cn("relative", className)}>
-       <h1 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
-        {text}
-      </h1>
-      <motion.h1 
-        className={cn(textClasses, "absolute inset-0 text-center")}
-        style={{ 
-            clipPath: clipPathValue,
-            color: toColor
-        }}
-      >
-        {text}
-      </motion.h1>
+    // Add a container with a defined height to make it scrollable in the preview
+    <div className="h-[200vh] w-full flex items-center justify-center">
+        <div ref={containerRef} className={cn("relative py-10", className)}>
+            <h1 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
+                {text}
+            </h1>
+            <motion.h1 
+                className={cn(textClasses, "absolute inset-0 text-center py-10")}
+                style={{ 
+                    clipPath: clipPathValue,
+                    color: toColor
+                }}
+            >
+                {text}
+            </motion.h1>
+        </div>
     </div>
   );
 }
