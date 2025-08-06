@@ -22,9 +22,11 @@ export function ScrollRevealText({
   size = "text-4xl md:text-6xl"
 }: ScrollRevealTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: textRef,
+    container: containerRef,
     offset: ["start end", "end start"]
   });
 
@@ -39,9 +41,8 @@ export function ScrollRevealText({
   const textClasses = cn("font-bold", size);
 
   return (
-    // Add a container with a defined height to make it scrollable in the preview
-    <div className="h-[200vh] w-full flex items-center justify-center">
-        <div ref={containerRef} className={cn("relative py-10", className)}>
+    <div ref={containerRef} className={cn("h-48 w-full overflow-y-scroll rounded-md border", className)}>
+        <div ref={textRef} className="relative mt-24 mb-24 py-10">
             <h1 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
                 {text}
             </h1>
