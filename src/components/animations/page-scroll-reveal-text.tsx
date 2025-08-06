@@ -23,15 +23,13 @@ export function PageScrollRevealText({
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start 0.8", "start 0.2"]
   });
 
-  // We use a clip-path to reveal the colored text underneath.
-  // The clip-path goes from 0% width to 100% width.
   const clipPathValue = useTransform(
     scrollYProgress,
-    [0.2, 0.8], // Animate between 20% and 80% of the component being in the viewport
-    ["inset(0 100% 0 0)", "inset(0 0 0 0)"]
+    [0, 1],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
   );
 
   const textClasses = cn("font-bold", size);
