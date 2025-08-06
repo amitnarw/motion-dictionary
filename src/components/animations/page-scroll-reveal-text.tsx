@@ -35,12 +35,12 @@ export function PageScrollRevealText({
   const textClasses = cn("font-bold", size);
 
   return (
-    <div ref={containerRef} className={cn("relative py-4", className)}>
-        <h2 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
+    <div ref={containerRef} className={cn("relative", className)}>
+        <h2 className={cn(textClasses, "text-center py-4")} style={{ color: fromColor }}>
             {text}
         </h2>
         <motion.h2
-            className={cn(textClasses, "absolute inset-0 text-center")}
+            className={cn(textClasses, "absolute inset-0 text-center py-4")}
             style={{ 
                 clipPath: clipPathValue,
                 color: toColor,
