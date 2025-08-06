@@ -52,6 +52,16 @@ export default function LandingPage() {
       quote: "A must-have for any developer serious about UI/UX. The AI suggestions are surprisingly accurate and have sparked new creative ideas for me.",
       name: "Alex Johnson",
       title: "UI Engineer at Innovate Ltd."
+    },
+    {
+      quote: "The best animation resource out there, period. The code is clean and the previews are incredibly helpful. A real time-saver.",
+      name: "Emily White",
+      title: "Creative Technologist"
+    },
+    {
+      quote: "I use Motionary on almost every project now. It's the perfect starting point for creating beautiful, engaging user interfaces.",
+      name: "Michael Brown",
+      title: "Full-Stack Developer"
     }
   ];
 
@@ -97,7 +107,19 @@ export default function LandingPage() {
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
             <div className="flex flex-row gap-20">
-              <Image src="/1.png" alt="1" height={1500} width={1500} ></Image>
+               <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="inline-block mr-2"
+                >
+                  <path
+                    d="M11.5303 6.53033C11.8232 6.23744 11.8232 5.76256 11.5303 5.46967L6.75736 0.696699C6.46447 0.403806 5.98959 0.403806 5.6967 0.696699C5.40381 0.989593 5.40381 1.46447 5.6967 1.75736L9.93934 6L5.6967 10.2426C5.40381 10.5355 5.40381 11.0104 5.6967 11.3033C5.98959 11.5962 6.46447 11.5962 6.75736 11.3033L11.5303 6.53033ZM0 6.75H11V5.25H0V6.75Z"
+                    fill="currentColor"
+                  />
+                </svg>
               <div className="flex flex-col gap-6">
                 <div className="flex gap-5 items-center justify-center">
                   <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
@@ -140,7 +162,7 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 lg:py-32 bg-background">
+        <section className="py-20 lg:py-32">
           <div className="container mx-auto px-4 w-4/5">
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground font-headline">
               Loved by Developers Worldwide
@@ -153,37 +175,37 @@ export default function LandingPage() {
                 align: "start",
                 loop: true,
               }}
-              className="w-full max-w-5xl mx-auto mt-16"
+              className="w-full mt-16"
             >
-              <CarouselContent>
+              <CarouselContent className="-ml-4">
                 {testimonials.map((testimonial, index) => (
-                  <CarouselItem key={index}>
-                    <Card className="bg-card/50 border-2 border-border/20 rounded-2xl shadow-lg overflow-hidden">
-                      <CardContent className="p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center relative">
-                        <Quote className="absolute top-8 left-8 h-24 w-24 text-primary/10 -translate-x-4 -translate-y-4" />
-                        <div className="md:col-span-2 relative z-10">
-                          <p className="font-medium text-lg md:text-2xl text-foreground leading-relaxed">
-                            "{testimonial.quote}"
-                          </p>
-                        </div>
-                        <div className="text-center md:text-left">
-                          <div className="w-20 h-20 rounded-full bg-primary/20 mx-auto md:mx-0 mb-4 flex items-center justify-center">
-                             <Image src={`https://i.pravatar.cc/80?u=${index}`} width={80} height={80} alt={testimonial.name} className="rounded-full" />
+                  <CarouselItem key={index} className="pl-4 md:basis-1/2">
+                    <Card className="h-full bg-background/30 backdrop-blur-lg border-border/20 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+                      <CardContent className="p-8 flex-grow flex flex-col justify-between">
+                        <Quote className="w-10 h-10 text-primary/50 mb-4" />
+                        <p className="text-foreground/90 text-lg flex-grow">
+                          "{testimonial.quote}"
+                        </p>
+                        <div className="flex items-center gap-4 mt-8">
+                          <Image src={`https://i.pravatar.cc/80?u=${index}`} width={56} height={56} alt={testimonial.name} className="rounded-full border-2 border-primary/50" />
+                          <div>
+                            <p className="font-bold text-xl text-foreground font-headline">{testimonial.name}</p>
+                            <p className="text-md text-muted-foreground">{testimonial.title}</p>
                           </div>
-                          <p className="font-bold text-xl text-foreground font-headline">{testimonial.name}</p>
-                          <p className="text-md text-muted-foreground">{testimonial.title}</p>
                         </div>
                       </CardContent>
                     </Card>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="absolute top-1/2 -left-4 -translate-y-1/2 md:-left-12" />
-              <CarouselNext className="absolute top-1/2 -right-4 -translate-y-1/2 md:-right-12" />
+              <div className="flex items-center justify-center gap-4 mt-8">
+                  <CarouselPrevious className="static -translate-y-0" />
+                  <div className="flex-1 h-px bg-border"></div>
+                  <CarouselNext className="static -translate-y-0" />
+              </div>
             </Carousel>
           </div>
         </section>
-
 
         {/* How It Works Section */}
         <section className="py-16 lg:py-24 bg-background">
