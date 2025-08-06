@@ -112,15 +112,13 @@ export default function LandingPage() {
               <div className="flex flex-col gap-6">
                 <div className="flex gap-5 items-center justify-center">
                   <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
-                  <ScrollRevealText
-                    className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline"
-                    text="Every animation. One search."
-                  />
+                  <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
+                    Every animation. One search.
+                  </h2>
                 </div>
-                 <ScrollRevealText
-                    className="text-lg md:text-lg text-muted-foreground text-start font-headline"
-                    text="Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster."
-                  />
+                 <p className="text-lg md:text-lg text-muted-foreground text-start font-headline">
+                    Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
+                  </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {steps.map((step, index) => (
                     <div key={index} className="relative p-10 rounded-3xl shadow-lg border border-primary/10 overflow-hidden hover:bg-primary/50 duration-300">
