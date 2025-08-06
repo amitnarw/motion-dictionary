@@ -164,8 +164,8 @@ export default function LandingPage() {
         {/* Testimonials Section */}
         <section className="py-20 lg:py-32">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground font-headline">
-              Loved by Developers Worldwide
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+              Loved by Developers
             </h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
               Our users praise our extensive library and ease of use.
