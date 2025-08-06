@@ -1183,14 +1183,18 @@ interface ScrollRevealTextProps {
   text?: string;
   className?: string;
   direction?: "left" | "right";
-  color?: string;
+  fromColor?: string;
+  toColor?: string;
+  size?: string;
 }
 
 export function ScrollRevealText({
   text = "Scroll to reveal text",
   className,
   direction = "left",
-  color = "hsl(var(--primary))",
+  fromColor = "hsl(var(--primary))",
+  toColor = "hsl(var(--accent))",
+  size = "text-4xl md:text-6xl"
 }: ScrollRevealTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
@@ -1206,13 +1210,13 @@ export function ScrollRevealText({
   );
 
   const gradientDirection = direction === "left" 
-    ? \`linear-gradient(to right, \${color}, \${color})\`
-    : \`linear-gradient(to left, \${color}, \${color})\`;
+    ? \`linear-gradient(to right, \${fromColor}, \${toColor})\`
+    : \`linear-gradient(to left, \${fromColor}, \${toColor})\`;
 
   return (
     <div ref={containerRef} className={cn("py-20", className)}>
       <motion.h1 
-        className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text"
+        className={cn("font-bold text-transparent bg-clip-text", size)}
         style={{ 
             backgroundImage: gradientDirection,
             backgroundRepeat: 'no-repeat',
@@ -1236,12 +1240,19 @@ export function ScrollRevealText({
         ],
       },
       {
-        prop: 'color',
-        label: 'Color',
+        prop: 'fromColor',
+        label: 'From Color',
         type: 'color',
         defaultValue: 'hsl(var(--primary))',
       },
+      {
+        prop: 'toColor',
+        label: 'To Color',
+        type: 'color',
+        defaultValue: 'hsl(var(--accent))',
+      },
        { prop: 'text', label: 'Text', type: 'text', defaultValue: 'Scroll To Reveal' },
+       { prop: 'size', label: 'Text Size (CSS class)', type: 'text', defaultValue: 'text-4xl md:text-6xl' },
     ]
   },
   {

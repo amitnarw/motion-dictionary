@@ -108,8 +108,8 @@ export default function LandingPage() {
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
             <div className="flex flex-row gap-20">
-              <Image src="/1.png" alt="1" height={1500} width={1500} ></Image>
-              <div className="flex flex-col gap-6">
+              <Image src="/1.png" alt="1" height={1200} width={1200} ></Image>
+              <div className="flex flex-col gap-8">
                 <div className="flex gap-5 items-center justify-center">
                   <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
                   <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
