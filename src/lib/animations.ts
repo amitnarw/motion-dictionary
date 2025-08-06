@@ -32,6 +32,7 @@ import { ScrollRevealText } from '@/components/animations/scroll-reveal-text';
 import { MagneticButtonPreview } from '@/components/animations/magnetic-button-preview';
 import { FancyButtonPreview } from '@/components/animations/fancy-button-preview';
 import { InteractiveTextPreview } from '@/components/animations/interactive-text-preview';
+import { TextRevealByWordPreview } from '@/components/animations/text-reveal-by-word-preview';
 
 type AnimationControl = {
     prop: string;
@@ -1197,15 +1198,17 @@ export function ScrollRevealText({
   size = "text-4xl md:text-6xl"
 }: ScrollRevealTextProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: textRef,
+    container: containerRef,
     offset: ["start end", "end start"]
   });
 
   const clipPathValue = useTransform(
     scrollYProgress,
-    [0, 1],
+    [0.2, 0.8], // Animate between 20% and 80% of scroll progress
     direction === 'left' 
       ? ["inset(0 100% 0 0)", "inset(0 0 0 0)"] 
       : ["inset(0 0 0 100%)", "inset(0 0 0 0)"]
@@ -1214,19 +1217,21 @@ export function ScrollRevealText({
   const textClasses = cn("font-bold", size);
 
   return (
-    <div ref={containerRef} className={cn("relative py-20", className)}>
-       <h1 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
-        {text}
-      </h1>
-      <motion.h1 
-        className={cn(textClasses, "absolute inset-0 text-center")}
-        style={{ 
-            clipPath: clipPathValue,
-            color: toColor
-        }}
-      >
-        {text}
-      </motion.h1>
+    <div ref={containerRef} className={cn("h-48 w-full overflow-y-scroll rounded-md border", className)}>
+        <div ref={textRef} className="relative mt-24 mb-24 py-10">
+            <h1 className={cn(textClasses, "text-center")} style={{ color: fromColor }}>
+                {text}
+            </h1>
+            <motion.h1 
+                className={cn(textClasses, "absolute inset-0 text-center py-10")}
+                style={{ 
+                    clipPath: clipPathValue,
+                    color: toColor
+                }}
+            >
+                {text}
+            </motion.h1>
+        </div>
     </div>
   );
 }`,
@@ -1520,5 +1525,74 @@ export function InteractiveText() {
     </div>
   );
 }`
+  },
+  {
+    id: '33',
+    title: 'Text Reveal by Word',
+    description: 'Text reveals word-by-word with a fade and slide-in animation.',
+    category: 'Text',
+    preview: TextRevealByWordPreview,
+    library: 'Framer Motion',
+    code: `"use client";
+
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface TextRevealByWordProps {
+  text: string;
+  className?: string;
+}
+
+export const TextRevealByWord = ({ text, className }: TextRevealByWordProps) => {
+  const words = text.split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+    }),
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className={cn("flex overflow-hidden", className)}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
+      {words.map((word, index) => (
+        <motion.span
+          variants={child}
+          style={{ marginRight: "5px" }}
+          key={index}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};`
   }
 ];
