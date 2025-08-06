@@ -100,7 +100,6 @@ export default function LandingPage() {
               <Image src="/1.png" alt="1" height={1500} width={1500} ></Image>
               <div className="flex flex-col gap-6">
                 <div className="flex gap-5 items-center justify-center">
-                  <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
                   <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
                     Every animation. One search.
                   </h2>
@@ -141,39 +140,46 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-16 lg:py-24 bg-card/50">
+        <section className="py-20 lg:py-32 bg-background">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">What Devs Are Saying</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground font-headline">
+              Loved by Developers Worldwide
+            </h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-              Trusted by thousands of developers worldwide.
+              Our users praise our extensive library and ease of use.
             </p>
             <Carousel
               opts={{
                 align: "start",
                 loop: true,
               }}
-              className="w-full max-w-4xl mx-auto mt-12"
+              className="w-full max-w-5xl mx-auto mt-16"
             >
               <CarouselContent>
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index}>
-                    <Card className="bg-transparent border-none shadow-none">
-                      <CardContent className="p-6 text-center flex flex-col items-center">
-                        <Quote className="h-10 w-10 text-primary mb-4" />
-                        <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed">
-                          "{testimonial.quote}"
-                        </p>
-                        <div className="mt-6">
-                          <p className="font-bold text-lg text-foreground">{testimonial.name}</p>
-                          <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                    <Card className="bg-card/50 border-2 border-border/20 rounded-2xl shadow-lg overflow-hidden">
+                      <CardContent className="p-8 md:p-12 grid md:grid-cols-3 gap-8 items-center relative">
+                        <Quote className="absolute top-8 left-8 h-24 w-24 text-primary/10 -translate-x-4 -translate-y-4" />
+                        <div className="md:col-span-2 relative z-10">
+                          <p className="font-medium text-lg md:text-2xl text-foreground leading-relaxed">
+                            "{testimonial.quote}"
+                          </p>
+                        </div>
+                        <div className="text-center md:text-left">
+                          <div className="w-20 h-20 rounded-full bg-primary/20 mx-auto md:mx-0 mb-4 flex items-center justify-center">
+                             <Image src={`https://i.pravatar.cc/80?u=${index}`} width={80} height={80} alt={testimonial.name} className="rounded-full" />
+                          </div>
+                          <p className="font-bold text-xl text-foreground font-headline">{testimonial.name}</p>
+                          <p className="text-md text-muted-foreground">{testimonial.title}</p>
                         </div>
                       </CardContent>
                     </Card>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-[-50px]" />
-              <CarouselNext className="right-[-50px]" />
+              <CarouselPrevious className="absolute top-1/2 -left-4 -translate-y-1/2 md:-left-12" />
+              <CarouselNext className="absolute top-1/2 -right-4 -translate-y-1/2 md:-right-12" />
             </Carousel>
           </div>
         </section>
