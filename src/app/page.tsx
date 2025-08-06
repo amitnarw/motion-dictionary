@@ -69,9 +69,26 @@ export default function LandingPage() {
         {/* Featured Animations Section */}
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">
-              Every animation. One search.
-            </h2>
+             <div className="flex items-center justify-center text-center">
+                 <svg
+                    width="64"
+                    height="64"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-10 w-10 md:h-16 md:w-16 mr-4 text-primary"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M4 12H20L32 28V44H44" />
+                    <path d="M4 28V12L16 28H4Z" />
+                 </svg>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+                  Every animation. One search.
+                </h2>
+             </div>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center">
               Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more.
               Search, preview, and copy production-ready animation code with ease.
