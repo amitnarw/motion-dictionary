@@ -56,7 +56,7 @@ export default function LandingPage() {
                   text="Explore Animations" 
                   icon={<ArrowRight size="20" className="ml-2" />}
                   className="w-full sm:w-auto px-2 py-2" 
-                  textClassName="px-6 py-2 !text-white text-sm sm:text-lg !group-hover:!text-black"
+                  // textClassName="px-6 py-2 !text-white text-sm sm:text-lg !group-hover:!text-black"
                   fillPercentage={100}
                 />
               </Link>

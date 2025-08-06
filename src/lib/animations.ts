@@ -1339,6 +1339,8 @@ interface FancyButtonProps {
   className?: string;
   textClassName?: string;
   fillPercentage?: number;
+  initialTextColor?: string;
+  hoverTextColor?: string;
 }
 
 export function FancyButton({ 
@@ -1346,17 +1348,19 @@ export function FancyButton({
   icon, 
   className, 
   textClassName,
-  fillPercentage = 100 
+  fillPercentage = 100,
+  initialTextColor,
+  hoverTextColor
 }: FancyButtonProps) {
 
   const fill = Math.max(0, Math.min(100, fillPercentage));
   
   const textVariants: Variants = {
     rest: {
-      color: "hsl(var(--primary))",
+      color: initialTextColor || "hsl(var(--primary))",
     },
     hover: {
-      color: "hsl(var(--primary-foreground))",
+      color: hoverTextColor || "hsl(var(--primary-foreground))",
       transition: {
         duration: 0.3,
         ease: "easeOut"
@@ -1445,6 +1449,18 @@ export function FancyButton({
         max: 100,
         step: 1,
         defaultValue: 100,
+      },
+      {
+        prop: 'initialTextColor',
+        label: 'Initial Text Color',
+        type: 'color',
+        defaultValue: 'hsl(var(--primary))',
+      },
+      {
+        prop: 'hoverTextColor',
+        label: 'Hover Text Color',
+        type: 'color',
+        defaultValue: 'hsl(var(--primary-foreground))',
       },
     ]
   },
