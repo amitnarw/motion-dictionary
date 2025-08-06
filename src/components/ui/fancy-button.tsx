@@ -9,9 +9,10 @@ interface FancyButtonProps {
   text: string;
   icon?: React.ReactNode;
   className?: string;
+  textClassName?: string;
 }
 
-export function FancyButton({ text, icon, className }: FancyButtonProps) {
+export function FancyButton({ text, icon, className, textClassName }: FancyButtonProps) {
   const textVariants: Variants = {
     rest: {
       color: "hsl(var(--primary))",
@@ -60,13 +61,13 @@ export function FancyButton({ text, icon, className }: FancyButtonProps) {
 
   return (
     <motion.button
-      className={cn("relative w-48 h-12 font-medium border border-primary rounded-full overflow-hidden", className)}
+      className={cn("relative font-medium border border-primary rounded-full overflow-hidden", className)}
       initial="rest"
       whileHover="hover"
       animate="rest"
     >
       <motion.span
-        className="relative z-10 flex items-center justify-center h-full w-full"
+        className={cn("relative z-10 flex items-center justify-center h-full w-full", textClassName)}
         variants={textVariants}
       >
         {text}

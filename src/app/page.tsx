@@ -7,6 +7,7 @@ import { AnimationCard } from "@/components/animation-card";
 import { animations } from "@/lib/animations";
 import { FancyButton } from "@/components/ui/fancy-button";
 import { LiquidFillText } from "@/components/animations/liquid-fill-text";
+import { LoadingMotionText } from "@/components/animations/loading-motion-text";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -38,10 +39,8 @@ export default function LandingPage() {
           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-          <div className="w-full">
-                <h1 className="w-full text-left text-4xl sm:text-[80px] lg:text-[150px] font-headline">
-                    Motion
-                </h1>
+             <LoadingMotionText />
+             <div className="w-full">
                 <LiquidFillText 
                     text="DICTIONARY" 
                     alignment="right"
@@ -49,9 +48,9 @@ export default function LandingPage() {
                     className="w-full font-black -mt-2 sm:-mt-4 lg:mt-0" 
                 />
             </div>
-             <div className="w-full mt-10 flex flex-row items-center justify-end">
+            <div className="w-full mt-10 flex flex-row items-center justify-end">
               <Link href="/animations">
-                <FancyButton text="Explore Animations" className="px-10" icon={<ArrowRight className="ml-2 h-5 w-5" />} />
+                <FancyButton text="Explore Animations" icon={<ArrowRight size="20" className="ml-2" />} textClassName="px-6 py-2 text-white text-sm sm:text-lg w-full sm:w-auto" />
               </Link>
             </div>
           </div>
@@ -60,7 +59,7 @@ export default function LandingPage() {
         {/* Featured Animations Section */}
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">
+             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">
               Every animation. One search.
             </h2>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center">
