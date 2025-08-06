@@ -162,12 +162,12 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 lg:py-32">
+        <section className="py-20 lg:py-32" style={{background: 'linear-gradient(0deg,hsl(var(--background)) 20%,#1d1d1d 100%)'}}>
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center font-headline bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-start font-headline bg-clip-text text-transparent bg-gradient-to-r from-white to-green-500">
               Loved by Developers
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-muted-foreground text-start max-w-2xl">
               Our users praise our extensive library and ease of use.
             </p>
             <Carousel
