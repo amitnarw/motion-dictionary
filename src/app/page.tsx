@@ -180,7 +180,7 @@ export default function LandingPage() {
               <CarouselContent className="-ml-4">
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-4 md:basis-1/2">
-                    <Card className="h-full bg-background/30 backdrop-blur-lg border-border/20 rounded-2xl shadow-lg overflow-hidden flex flex-col">
+                    <Card className="h-full bg-background/30 backdrop-blur-lg border-border/20 rounded-2xl shadow-lg overflow-hidden flex flex-col" style={{background: 'linear-gradient(0deg,var(--dark-optional) 20%,#1d1d1d 100%)'}}>
                       <CardContent className="p-8 flex-grow flex flex-col justify-between">
                         <Quote className="w-10 h-10 text-primary/50 mb-4" />
                         <p className="text-foreground/90 text-lg flex-grow">
