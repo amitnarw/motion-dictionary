@@ -15,7 +15,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import { ScrollRevealText } from "@/components/animations/scroll-reveal-text";
+import { PageScrollRevealText } from "@/components/animations/page-scroll-reveal-text";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -112,7 +112,7 @@ export default function LandingPage() {
               <div className="flex flex-col gap-8">
                 <div className="flex gap-5 items-center justify-center">
                   <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
-                  <ScrollRevealText text="Every animation. One search." className="h-auto" size="text-3xl md:text-6xl text-start font-bold tracking-tight font-headline" />
+                  <PageScrollRevealText text="Every animation. One search." className="h-auto" size="text-3xl md:text-6xl text-start font-bold tracking-tight font-headline" />
                 </div>
                  <p className="text-lg md:text-lg text-muted-foreground text-start font-headline">
                     Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
@@ -157,7 +157,6 @@ export default function LandingPage() {
             <Carousel
               opts={{
                 align: "start",
-                loop: true,
               }}
               className="w-full mt-8"
             >
