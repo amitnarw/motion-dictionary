@@ -8,6 +8,7 @@ import { animations } from "@/lib/animations";
 import { FancyButton } from "@/components/ui/fancy-button";
 import { LiquidFillText } from "@/components/animations/liquid-fill-text";
 import { LoadingMotionText } from "@/components/animations/loading-motion-text";
+import Image from "next/image";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -15,17 +16,17 @@ export default function LandingPage() {
   const steps = [
     {
       icon: Palette,
-      title: "1. Discover",
+      title: "Discover",
       description: "Browse our extensive collection of animations, categorized and searchable for easy discovery. Find the perfect motion for any component."
     },
     {
       icon: Copy,
-      title: "2. Copy",
+      title: "Copy",
       description: "Once you find an animation you love, simply view the code and copy it to your clipboard with a single click."
     },
     {
       icon: Code,
-      title: "3. Implement",
+      title: "Implement",
       description: "Paste the code directly into your project. Our snippets are designed to be clean, efficient, and easy to integrate into any modern framework."
     }
   ];
@@ -69,31 +70,32 @@ export default function LandingPage() {
         {/* Featured Animations Section */}
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
-             <div className="flex items-center justify-center text-center">
-                 <svg
-                    width="64"
-                    height="64"
-                    viewBox="0 0 48 48"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-10 w-10 md:h-16 md:w-16 mr-4 text-primary"
-                    stroke="currentColor"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 12H20L32 28V44H44" />
-                    <path d="M4 28V12L16 28H4Z" />
-                 </svg>
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-                  Every animation. One search.
-                </h2>
-             </div>
-            <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-center">
-              Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more.
-              Search, preview, and copy production-ready animation code with ease.
-              Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
-            </p>
+            <div className="flex flex-row gap-20">
+              <Image src="/1.png" alt="1" height={1500} width={1500} ></Image>
+              <div className="flex flex-col gap-6">
+                <div className="flex gap-5 items-center justify-center">
+                  <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
+                  <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
+                    Every animation. One search.
+                  </h2>
+                </div>
+                <p className="text-lg md:text-lg text-muted-foreground text-start font-headline">
+                  Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more.
+                  Search, preview, and copy production-ready animation code with ease.
+                  Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {steps.map((step, index) => (
+                    <div key={index} className="p-8 rounded-3xl shadow-lg border border-border/50 overflow-hidden">
+                      <div className="top-4 left-4 text-5xl font-black text-primary/40">
+                        0{index + 1}
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground mb-2">{step.title}</h3>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
             <h2 className="mt-16 text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
               A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
