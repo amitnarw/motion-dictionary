@@ -1,5 +1,4 @@
 
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Code, Copy, Palette, Quote } from "lucide-react";
 import Link from "next/link";
@@ -7,8 +6,14 @@ import { AnimationCard } from "@/components/animation-card";
 import { animations } from "@/lib/animations";
 import { FancyButton } from "@/components/ui/fancy-button";
 import { LiquidFillText } from "@/components/animations/liquid-fill-text";
-import { LoadingMotionText } from "@/components/animations/loading-motion-text";
-import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -30,6 +35,25 @@ export default function LandingPage() {
       description: "Paste the code directly into your project. Our snippets are designed to be clean, efficient, and easy to integrate into any modern framework."
     }
   ];
+
+  const testimonials = [
+    {
+      quote: "Motionary has completely transformed my workflow. Finding the perfect animation used to take hours of searching. Now, it's just a few clicks away. An indispensable tool for any modern developer.",
+      name: "Jane Doe",
+      title: "Lead Frontend Developer at TechCorp"
+    },
+    {
+      quote: "The quality and variety of animations are top-notch. I've saved countless hours and my projects have never looked better. Highly recommended!",
+      name: "John Smith",
+      title: "Freelance Web Designer"
+    },
+    {
+      quote: "A must-have for any developer serious about UI/UX. The AI suggestions are surprisingly accurate and have sparked new creative ideas for me.",
+      name: "Alex Johnson",
+      title: "UI Engineer at Innovate Ltd."
+    }
+  ];
+
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -111,17 +135,41 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Testimonial Section */}
+        {/* Testimonials Section */}
         <section className="py-16 lg:py-24 bg-background">
-          <div className="container mx-auto px-4 w-4/5 text-center">
-            <Quote className="h-12 w-12 text-primary mx-auto mb-6" />
-            <p className="text-2xl md:text-4xl lg:text-5xl font-medium text-foreground max-w-4xl mx-auto leading-tight">
-              "Motionary has completely transformed my workflow. Finding the perfect animation used to take hours of searching. Now, it's just a few clicks away. An indispensable tool for any modern developer."
+          <div className="container mx-auto px-4 w-4/5">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Testimonials</h2>
+            <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
+              See what developers are saying about Motionary.
             </p>
-            <div className="mt-8">
-              <p className="font-bold text-lg text-foreground">Jane Doe</p>
-              <p className="text-sm text-muted-foreground">Lead Frontend Developer at TechCorp</p>
-            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full max-w-4xl mx-auto mt-12"
+            >
+              <CarouselContent>
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem key={index}>
+                    <Card className="border-none shadow-none">
+                      <CardContent className="p-6 text-center flex flex-col items-center">
+                        <Quote className="h-10 w-10 text-primary mb-4" />
+                        <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed">
+                          "{testimonial.quote}"
+                        </p>
+                        <div className="mt-6">
+                          <p className="font-bold text-lg text-foreground">{testimonial.name}</p>
+                          <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-[-50px]" />
+              <CarouselNext className="right-[-50px]" />
+            </Carousel>
           </div>
         </section>
 
@@ -157,4 +205,5 @@ export default function LandingPage() {
       </main>
     </div>
   );
-}
+
+    
