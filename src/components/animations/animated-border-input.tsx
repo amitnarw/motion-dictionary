@@ -8,18 +8,22 @@ export function AnimatedBorderInput() {
   const [isFocused, setIsFocused] = useState(false);
 
   const variants = {
-    initial: (isFocused: boolean) => ({
-      width: isFocused ? "0%" : "100%",
-      left: isFocused ? "auto" : 0,
-      right: isFocused ? 0 : "auto",
-    }),
+    initial: {
+      width: "0%",
+      left: "auto",
+      right: 0,
+    },
     animate: {
       width: "100%",
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+      left: 0,
+      right: "auto",
+      transition: { duration: 0.4, ease: "easeOut" },
     },
     exit: {
       width: "0%",
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+      left: 0,
+      right: "auto",
+      transition: { duration: 0.4, ease: "easeIn" },
     },
   };
 
@@ -39,19 +43,19 @@ export function AnimatedBorderInput() {
         "
       />
       <AnimatePresence>
-        <motion.div
-          key={isFocused ? "focused" : "unfocused"}
-          custom={isFocused}
-          variants={variants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          className="
-            absolute bottom-0 h-[2px]
-            bg-gradient-to-r from-primary to-accent
-          "
-          aria-hidden="true"
-        />
+        {isFocused && (
+            <motion.div
+              variants={variants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              className="
+                absolute bottom-0 h-[2px]
+                bg-gradient-to-r from-primary to-accent
+              "
+              aria-hidden="true"
+            />
+        )}
       </AnimatePresence>
     </div>
   );
