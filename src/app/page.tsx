@@ -14,6 +14,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Image from "next/image";
 
 export default function LandingPage() {
   const featuredAnimations = animations.slice(0, 4);
@@ -58,6 +59,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
+
         {/* Hero Section */}
         <section className="relative text-center py-32 px-4 overflow-hidden">
           <div className="absolute inset-0 -z-10 h-full w-full bg-grid" />
@@ -91,17 +93,14 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Featured Animations Section */}
+        {/* Every animation. One search. Section */}
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-4 w-4/5">
             <div className="flex flex-row gap-20">
+              <Image src="/1.png" alt="1" height={1500} width={1500} ></Image>
               <div className="flex flex-col gap-6">
-                <div className="flex gap-5 items-center justify-start">
-                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-90">
-                        <path d="M50 0L50 100" stroke="hsl(var(--primary))" strokeWidth="4"/>
-                        <path d="M50 100L25 75" stroke="hsl(var(--primary))" strokeWidth="4"/>
-                        <path d="M50 100L75 75" stroke="hsl(var(--primary))" strokeWidth="4"/>
-                    </svg>
+                <div className="flex gap-5 items-center justify-center">
+                  <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
                   <h2 className="text-3xl md:text-6xl text-start font-bold tracking-tight text-foreground font-headline">
                     Every animation. One search.
                   </h2>
@@ -123,6 +122,12 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Featured Animations Section */}
+        <section className="py-16 lg:py-24">
+          <div className="container mx-auto px-4 w-4/5">
             <h2 className="mt-16 text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
               A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
@@ -136,11 +141,11 @@ export default function LandingPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-16 lg:py-24 bg-background">
+        <section className="py-16 lg:py-24 bg-card/50">
           <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Testimonials</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">What Devs Are Saying</h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
-              See what developers are saying about Motionary.
+              Trusted by thousands of developers worldwide.
             </p>
             <Carousel
               opts={{
@@ -152,7 +157,7 @@ export default function LandingPage() {
               <CarouselContent>
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index}>
-                    <Card className="border-none shadow-none">
+                    <Card className="bg-transparent border-none shadow-none">
                       <CardContent className="p-6 text-center flex flex-col items-center">
                         <Quote className="h-10 w-10 text-primary mb-4" />
                         <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed">
@@ -175,7 +180,7 @@ export default function LandingPage() {
 
 
         {/* How It Works Section */}
-        <section className="py-16 lg:py-24 bg-card/50">
+        <section className="py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4 w-4/5">
             <div className="text-center">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">How It Works</h2>
@@ -205,5 +210,4 @@ export default function LandingPage() {
       </main>
     </div>
   );
-
-    
+}
