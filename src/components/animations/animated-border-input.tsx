@@ -7,24 +7,25 @@ import { useState } from "react";
 export function AnimatedBorderInput() {
   const [isFocused, setIsFocused] = useState(false);
 
-  const variants = {
-    initial: {
-      width: "0%",
-      left: "auto",
-      right: 0,
-    },
-    animate: {
-      width: "100%",
-      left: 0,
-      right: "auto",
-      transition: { duration: 0.4, ease: "easeOut" },
-    },
-    exit: {
-      width: "0%",
-      left: 0,
-      right: "auto",
-      transition: { duration: 0.4, ease: "easeIn" },
-    },
+  const topVariant = {
+    initial: { width: "0%" },
+    animate: { width: "100%", transition: { duration: 0.2, ease: "linear" } },
+    exit: { opacity: 0, transition: { duration: 0.1 } },
+  };
+  const rightVariant = {
+    initial: { height: "0%" },
+    animate: { height: "100%", transition: { duration: 0.2, ease: "linear", delay: 0.2 } },
+     exit: { opacity: 0, transition: { duration: 0.1 } },
+  };
+  const bottomVariant = {
+    initial: { width: "0%" },
+    animate: { width: "100%", transition: { duration: 0.2, ease: "linear", delay: 0.4 } },
+     exit: { opacity: 0, transition: { duration: 0.1 } },
+  };
+  const leftVariant = {
+    initial: { height: "0%" },
+    animate: { height: "100%", transition: { duration: 0.2, ease: "linear", delay: 0.6 } },
+     exit: { opacity: 0, transition: { duration: 0.1 } },
   };
 
   return (
@@ -44,17 +45,40 @@ export function AnimatedBorderInput() {
       />
       <AnimatePresence>
         {isFocused && (
-            <motion.div
-              variants={variants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="
-                absolute bottom-0 h-[2px]
-                bg-gradient-to-r from-primary to-accent
-              "
-              aria-hidden="true"
-            />
+            <>
+              {/* Top */}
+              <motion.div
+                variants={topVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="absolute top-0 left-0 h-[2px] bg-gradient-to-r from-primary to-accent"
+              />
+              {/* Right */}
+              <motion.div
+                variants={rightVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="absolute top-0 right-0 w-[2px] bg-gradient-to-b from-primary to-accent"
+              />
+              {/* Bottom */}
+              <motion.div
+                variants={bottomVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="absolute bottom-0 right-0 h-[2px] bg-gradient-to-l from-primary to-accent"
+              />
+              {/* Left */}
+              <motion.div
+                variants={leftVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="absolute bottom-0 left-0 w-[2px] bg-gradient-to-t from-primary to-accent"
+              />
+            </>
         )}
       </AnimatePresence>
     </div>
