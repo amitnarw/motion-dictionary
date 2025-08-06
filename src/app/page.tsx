@@ -38,19 +38,20 @@ export default function LandingPage() {
           <div className="absolute top-0 z-[-2] h-screen w-screen bg-[radial-gradient(100%_50%_at_50%_0%,rgba(142,206,2,0.1)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
 
           <div className="container w-4/5 mx-auto flex flex-col items-center">
-            <div className="w-full">
-                <h1 className="w-full text-left text-6xl sm:text-[80px] lg:text-[150px] font-headline">
+          <div className="w-full">
+                <h1 className="w-full text-left text-4xl sm:text-[80px] lg:text-[150px] font-headline">
                     Motion
                 </h1>
                 <LiquidFillText 
                     text="DICTIONARY" 
                     alignment="right"
-                    className="w-full font-black -mt-4" 
+                    size="text-[180px] sm:text-[160px] lg:text-[150px]"
+                    className="w-full font-black -mt-2 sm:-mt-4 lg:mt-0" 
                 />
             </div>
-             <div className="mt-10 flex gap-4 justify-center">
+             <div className="w-full mt-10 flex flex-row items-center justify-end">
               <Link href="/animations">
-                <FancyButton text="Explore Animations" icon={<ArrowRight className="ml-2 h-5 w-5" />} />
+                <FancyButton text="Explore Animations" className="px-10" icon={<ArrowRight className="ml-2 h-5 w-5" />} />
               </Link>
             </div>
           </div>

@@ -3,13 +3,15 @@
 
 import { motion, Variants } from "framer-motion";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 interface FancyButtonProps {
   text: string;
   icon?: React.ReactNode;
+  className?: string;
 }
 
-export function FancyButton({ text, icon }: FancyButtonProps) {
+export function FancyButton({ text, icon, className }: FancyButtonProps) {
   const textVariants: Variants = {
     rest: {
       color: "hsl(var(--primary))",
@@ -58,7 +60,7 @@ export function FancyButton({ text, icon }: FancyButtonProps) {
 
   return (
     <motion.button
-      className="relative w-48 h-12 font-medium border border-primary rounded-full overflow-hidden"
+      className={cn("relative w-48 h-12 font-medium border border-primary rounded-full overflow-hidden", className)}
       initial="rest"
       whileHover="hover"
       animate="rest"
@@ -90,4 +92,3 @@ export function FancyButton({ text, icon }: FancyButtonProps) {
     </motion.button>
   );
 }
-
