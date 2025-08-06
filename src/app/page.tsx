@@ -106,19 +106,25 @@ export default function LandingPage() {
 
         {/* Every animation. One search. Section */}
         <section className="py-16 lg:py-24">
-          <div className="container mx-auto px-4 w-4/5">
-            <div className="flex flex-row gap-20">
-              <Image src="/1.png" alt="1" height={1200} width={1200} className="hidden sm:block"></Image>
-              <div className="flex flex-col gap-8">
-                <div className="flex gap-5 items-center justify-center">
-                  <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
-                   <PageScrollRevealText text="Every animation. One search." className="text-3xl md:text-6xl text-start font-bold tracking-tight font-headline" />
+          <div className="container mx-auto px-4 w-full sm:w-4/5">
+            <div className="flex flex-col xl:flex-row gap-20 items-center">
+              <div className="w-4/12 xl:w-3/12">
+                <Image src="/1.png" alt="1"
+                  height={1200} width={1200}
+                ></Image>
+              </div>
+              <div className="flex flex-col gap-8 w-full xl:w-9/12">
+                <div className="relative flex gap-5 items-center justify-center">
+                  <div className="absolute left-0 -top-12 opacity-50 sm:opacity-100 sm:static w-2/12 sm:w-2/12 md:w-4/12 lg:w-2/12 ">
+                    <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
+                  </div>
+                  <PageScrollRevealText text="Every animation. One search." className="text-3xl md:text-6xl text-start font-bold tracking-tight font-headline" />
                 </div>
-                 <PageScrollRevealText
-                    text="Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster."
-                    className="text-lg md:text-lg text-start font-headline"
-                  />
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <PageScrollRevealText
+                  text="Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster."
+                  className="text-md md:text-lg text-start font-headline"
+                />
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-8">
                   {steps.map((step, index) => (
                     <div key={index} className="relative p-10 rounded-3xl shadow-lg border border-primary/10 overflow-hidden hover:bg-primary/50 duration-300">
                       <p className="absolute top-2 left-2 text-7xl font-black text-transparent bg-gradient-to-b from-primary/20 to-primary/0 bg-clip-text">
@@ -135,7 +141,7 @@ export default function LandingPage() {
 
         {/* Featured Animations Section */}
         <section className="py-16 lg:py-24">
-          <div className="container mx-auto px-4 w-4/5">
+          <div className="container mx-auto px-4 w-full sm:w-4/5">
             <h2 className="mt-16 text-3xl md:text-5xl font-bold tracking-tight text-center text-foreground">Featured Animations</h2>
             <p className="mt-4 text-lg text-muted-foreground text-center max-w-2xl mx-auto">
               A curated glimpse into our ever-expanding collection of high-quality, ready-to-use animations.
@@ -150,8 +156,8 @@ export default function LandingPage() {
 
         {/* Testimonials Section */}
         <section className="py-20 lg:py-32">
-          <div className="container mx-auto px-4 w-4/5">
-            <h2 className="text-3xl md:text-7xl font-bold tracking-tight text-start font-headline bg-clip-text text-transparent bg-gradient-to-r from-white to-[#99ec46]">
+          <div className="container mx-auto px-4 w-full sm:w-4/5">
+            <h2 className="text-5xl sm:text-3xl md:text-7xl font-bold tracking-tight text-start font-headline bg-clip-text text-transparent bg-gradient-to-r from-white to-[#99ec46]">
               Loved by Developers
             </h2>
 
@@ -164,7 +170,7 @@ export default function LandingPage() {
               <CarouselContent className="-ml-4">
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-4 md:basis-1/2">
-                    <Card className="h-full rounded-2xl shadow-lg overflow-hidden flex flex-col border-none" style={{background: 'linear-gradient(0deg,#2a2d32 20%, #1d1d1d 100%)'}}>
+                    <Card className="h-full rounded-2xl shadow-lg overflow-hidden flex flex-col border-none" style={{ background: 'linear-gradient(0deg,#2a2d32 20%, #1d1d1d 100%)' }}>
                       <CardContent className="p-8 flex-grow flex flex-col justify-between">
                         <Quote className="w-10 h-10 text-primary/50 mb-4" />
                         <p className="text-foreground/70 text-xl flex-grow leading-relaxed">
@@ -192,7 +198,7 @@ export default function LandingPage() {
 
         {/* How It Works Section */}
         <section className="relative py-16 lg:py-24 bg-black/40">
-          <div className="container mx-auto px-4 w-4/5">
+          <div className="container mx-auto px-4 w-full sm:w-4/5">
             <div className="text-center">
               <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-foreground font-headline">HOW IT WORKS</h2>
             </div>
