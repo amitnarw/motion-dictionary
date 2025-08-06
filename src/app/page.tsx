@@ -52,12 +52,14 @@ export default function LandingPage() {
             </div>
             <div className="w-full mt-10 flex flex-row items-center justify-end">
               <Link href="/animations" className="w-full flex justify-end group">
-                <FancyButton 
-                  text="Explore Animations" 
+                <FancyButton
+                  text="Explore Animations"
                   icon={<ArrowRight size="20" className="ml-2" />}
-                  className="w-full sm:w-auto px-2 py-2" 
-                  // textClassName="px-6 py-2 !text-white text-sm sm:text-lg !group-hover:!text-black"
+                  className="w-full sm:w-auto px-2 py-2"
+                  textClassName="px-6 py-2 text-sm sm:text-lg"
                   fillPercentage={100}
+                  initialTextColor="#fff"
+                  hoverTextColor="#000"
                 />
               </Link>
             </div>
