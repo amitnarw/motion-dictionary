@@ -1312,13 +1312,26 @@ export function MagneticButton({ className, variant, size, children, ...props }:
 
 import { motion, Variants } from "framer-motion";
 import React from "react";
+import { cn } from "@/lib/utils";
 
 interface FancyButtonProps {
   text: string;
   icon?: React.ReactNode;
+  className?: string;
+  textClassName?: string;
+  fillPercentage?: number;
 }
 
-export function FancyButton({ text, icon }: FancyButtonProps) {
+export function FancyButton({ 
+  text, 
+  icon, 
+  className, 
+  textClassName,
+  fillPercentage = 100 
+}: FancyButtonProps) {
+
+  const fill = Math.max(0, Math.min(100, fillPercentage));
+  
   const textVariants: Variants = {
     rest: {
       color: "hsl(var(--primary))",
@@ -1337,7 +1350,7 @@ export function FancyButton({ text, icon }: FancyButtonProps) {
       y: "105%",
     },
     hover: {
-      y: "0%",
+      y: \`\${100 - fill}%\`,
     },
   };
   
@@ -1367,13 +1380,13 @@ export function FancyButton({ text, icon }: FancyButtonProps) {
 
   return (
     <motion.button
-      className="relative w-48 h-12 font-medium border border-primary rounded-full overflow-hidden"
+      className={cn("relative font-medium border border-primary rounded-full overflow-hidden", className)}
       initial="rest"
       whileHover="hover"
       animate="rest"
     >
       <motion.span
-        className="relative z-10 flex items-center justify-center h-full w-full"
+        className={cn("relative z-10 flex items-center justify-center h-full w-full", textClassName)}
         variants={textVariants}
       >
         {text}
@@ -1399,7 +1412,18 @@ export function FancyButton({ text, icon }: FancyButtonProps) {
     </motion.button>
   );
 }
-`
+`,
+    controls: [
+      {
+        prop: 'fillPercentage',
+        label: 'Fill Percentage',
+        type: 'range',
+        min: 0,
+        max: 100,
+        step: 1,
+        defaultValue: 100,
+      },
+    ]
   },
   {
     id: '32',
