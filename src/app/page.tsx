@@ -114,9 +114,10 @@ export default function LandingPage() {
                   <Image src="/arrow.png" alt="arrow" height={100} width={100} ></Image>
                    <PageScrollRevealText text="Every animation. One search." className="text-3xl md:text-6xl text-start font-bold tracking-tight font-headline" />
                 </div>
-                 <p className="text-lg md:text-lg text-muted-foreground text-start font-headline">
-                    Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster.
-                  </p>
+                 <PageScrollRevealText
+                    text="Discover animations from all major JavaScript and CSS libraries, including GSAP, Framer Motion, Anime.js, Lottie, and more. Search, preview, and copy production-ready animation code with ease. Whether you're building UI interactions, transitions, or full scenes, Motionary helps you find the perfect motion, faster."
+                    className="text-lg md:text-lg text-start font-headline"
+                  />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {steps.map((step, index) => (
                     <div key={index} className="relative p-10 rounded-3xl shadow-lg border border-primary/10 overflow-hidden hover:bg-primary/50 duration-300">
